@@ -84,5 +84,4 @@ fixtures + delivery integrity ONLY. It does NOT establish:
 
 ## GitHub upload
 
-GitHub upload (private, MIT) is in progress at time of writing. Repository URL
-to be added later — no URL is claimed in this notice.
+GitHub upload (private, MIT) COMPLETE 2026-11-18 ~00:21 GMT: https://github.com/dcz66614/pagetrace — 426 files (API 345 + web 81), head 774728f, 12 commits (including one empty README.md generated at repo creation).
