@@ -1,0 +1,4027 @@
+{
+  "cases": [
+    {
+      "case_id": "du-chk-01",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "7867bada735b51c57024ee3b0781964325a4600b3942615fc15baee21805b787",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3,
+          5
+        ],
+        "correct_viewer_page1": [
+          3,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              2
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking reduced the multi-page candidate set [2, 4] to [2]; no single page may be forced",
+            "stage": "chunking",
+            "upstream_value": [
+              2,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "d4f312e79f1b155bdceea984dc0255a58c8142270a8235c376cf467fdaa4d873",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            2
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: chunking reduced the multi-page candidate set [2, 4] to [2]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            2,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-chk-02",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "b1fca8059f49b39577ea89d0a641e784272fca8f8fc2c5eca34bdb1e6a39abb6",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          2,
+          4,
+          5
+        ],
+        "correct_viewer_page1": [
+          2,
+          4,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              4
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking reduced the multi-page candidate set [1, 3, 4] to [4]; no single page may be forced",
+            "stage": "chunking",
+            "upstream_value": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "89eff57736103d674f4ab9105d6abcb675136ec2e67acfd3a1976ddd4263465c",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            4
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: chunking reduced the multi-page candidate set [1, 3, 4] to [4]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            1,
+            3,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-chk-03",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1
+        ],
+        "correct_viewer_page1": [
+          1
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "1f066846cffc833bd5be26bd79d4eb628db46aafa671abe9fa2e25ea935f814e",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          0,
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          1,
+          6
+        ],
+        "correct_viewer_page1": [
+          1,
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              5
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking reduced the multi-page candidate set [0, 5] to [5]; no single page may be forced",
+            "stage": "chunking",
+            "upstream_value": [
+              0,
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          0,
+          5
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "a1ffda359ba60d3b81760e5e2115eb43754129cb737a277613e812ce58f9f866",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            5
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: chunking reduced the multi-page candidate set [0, 5] to [5]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            0,
+            5
+          ]
+        }
+      ],
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-chk-04",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          7
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 8,
+        "correct_pdf_page_number1": [
+          8
+        ],
+        "correct_viewer_page1": [
+          8
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          7
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 8,
+        "quote_sha256": "83547028338e051da4f969db7abd89113d966ce9aa574e4e64f39bd8a8c2252e",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          6,
+          8
+        ],
+        "correct_viewer_page1": [
+          1,
+          6,
+          8
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              0
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking reduced the multi-page candidate set [0, 5, 7] to [0]; no single page may be forced",
+            "stage": "chunking",
+            "upstream_value": [
+              0,
+              5,
+              7
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "3dbf449be4e5f2bf09171c28077caa4db7c9d3955a8fbcd5316dee5b9dbebd4f",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            0
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: chunking reduced the multi-page candidate set [0, 5, 7] to [0]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            0,
+            5,
+            7
+          ]
+        }
+      ],
+      "variant": "reduce-to-first-again"
+    },
+    {
+      "case_id": "du-dsp-09",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "5269eab9cea5a31f939c825a333e9a7a451ca4e705e02f15c55684d34e6e03d2",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3,
+          5
+        ],
+        "correct_viewer_page1": [
+          3,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              2
+            ],
+            "field": "citation_page_value",
+            "note": "display forced the multi-page candidate set [2, 4] to the single page 2; no single page may be forced",
+            "stage": "display",
+            "upstream_value": [
+              2,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "55aeb45b3ad916ea7ea5a9768682d8872ef9dd08f5e9304cc54183c6bb4c4b1d",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            2
+          ],
+          "field": "citation_page_value",
+          "kind": "reduced",
+          "note": "cite-fault: display forced the multi-page candidate set [2, 4] to the single page 2; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            2,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-dsp-10",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "3f7b633a4b8b1f78282a0be71e663d1d716d10afed51a6e40e174e9fd56970c3",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          2,
+          4,
+          5
+        ],
+        "correct_viewer_page1": [
+          2,
+          4,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              4
+            ],
+            "field": "citation_page_value",
+            "note": "display forced the multi-page candidate set [1, 3, 4] to the single page 4; no single page may be forced",
+            "stage": "display",
+            "upstream_value": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "1cdc63c114ff28c14622afacbf213377453d57d1373e8e08544d73c2144a6f98",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            4
+          ],
+          "field": "citation_page_value",
+          "kind": "reduced",
+          "note": "cite-fault: display forced the multi-page candidate set [1, 3, 4] to the single page 4; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            1,
+            3,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-dsp-11",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          6
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          7
+        ],
+        "correct_viewer_page1": [
+          7
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          6
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "50039574e5f3f89804e9ea7faa61069ae90c1a8a1f27136e277de1dd57b404ec",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          4,
+          6
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          5,
+          7
+        ],
+        "correct_viewer_page1": [
+          5,
+          7
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              6
+            ],
+            "field": "citation_page_value",
+            "note": "display forced the multi-page candidate set [4, 6] to the single page 6; no single page may be forced",
+            "stage": "display",
+            "upstream_value": [
+              4,
+              6
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          4,
+          6
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "3a6fa21058a1c6c57376973c30780d875a9006ee5a31e29e3c41ad8940dc836b",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            6
+          ],
+          "field": "citation_page_value",
+          "kind": "reduced",
+          "note": "cite-fault: display forced the multi-page candidate set [4, 6] to the single page 6; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            4,
+            6
+          ]
+        }
+      ],
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-dsp-12",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          7
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 8,
+        "correct_pdf_page_number1": [
+          8
+        ],
+        "correct_viewer_page1": [
+          8
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          7
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 8,
+        "quote_sha256": "3b07005ba28fc164476c1425a6b8bdbc6ea1307504fcf70d7f916bd1f9fbd9cc",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          6,
+          8
+        ],
+        "correct_viewer_page1": [
+          1,
+          6,
+          8
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              0
+            ],
+            "field": "citation_page_value",
+            "note": "display forced the multi-page candidate set [0, 5, 7] to the single page 0; no single page may be forced",
+            "stage": "display",
+            "upstream_value": [
+              0,
+              5,
+              7
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "0cc62a74414c02712f4313a51466d5446943fb3a8a5b3c063dbec82ce231bf95",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            0
+          ],
+          "field": "citation_page_value",
+          "kind": "reduced",
+          "note": "cite-fault: display forced the multi-page candidate set [0, 5, 7] to the single page 0; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            0,
+            5,
+            7
+          ]
+        }
+      ],
+      "variant": "reduce-to-first-again"
+    },
+    {
+      "case_id": "du-idx-05",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "37f50c6b528c9f33ebc32df50c6dd79b783605de8b80bf9d7139a14973e5c660",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3,
+          5
+        ],
+        "correct_viewer_page1": [
+          3,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              2
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing reduced the multi-page candidate set [2, 4] to [2]; no single page may be forced",
+            "stage": "indexing",
+            "upstream_value": [
+              2,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "7614ff47dbfe99ad0857d7ddf7309677156d0324d8be2f9655274f1da8137ad1",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            2
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: indexing reduced the multi-page candidate set [2, 4] to [2]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            2,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-idx-06",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "fef2f1f218c2da358219286100a3a4a1bdc65b562d636d4af220ed424ee19bf0",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          2,
+          4,
+          5
+        ],
+        "correct_viewer_page1": [
+          2,
+          4,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              4
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing reduced the multi-page candidate set [1, 3, 4] to [4]; no single page may be forced",
+            "stage": "indexing",
+            "upstream_value": [
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1,
+          3,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "8ea4ee2dbb0949b3513b700d5fb27bc96c33fb1abe2d6bac4084b469bdbb4af5",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            4
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: indexing reduced the multi-page candidate set [1, 3, 4] to [4]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            1,
+            3,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-idx-07",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "0f6e353abceca36eca975a1ed111188c8797d97dd2b98f368c4e99a7be9a3d37",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2,
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          3,
+          5
+        ],
+        "correct_viewer_page1": [
+          3,
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              4
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing reduced the multi-page candidate set [2, 4] to [4]; no single page may be forced",
+            "stage": "indexing",
+            "upstream_value": [
+              2,
+              4
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2,
+          4
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "94bfbe9d7c94b93817efb01ba422f8b25205ce678c476ff5d5771f74d2196456",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            4
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: indexing reduced the multi-page candidate set [2, 4] to [4]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            2,
+            4
+          ]
+        }
+      ],
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-idx-08",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          7
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 8,
+        "correct_pdf_page_number1": [
+          8
+        ],
+        "correct_viewer_page1": [
+          8
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          7
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 8,
+        "quote_sha256": "91e0b0b4730aa48fc7dc8f79fc7c6e30cd7f902dfa05ff6a2b149524438a0228",
+        "verdict": "PASS"
+      },
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 8,
+        "correct_pdf_page_number1": [
+          1,
+          6,
+          8
+        ],
+        "correct_viewer_page1": [
+          1,
+          6,
+          8
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              7
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing reduced the multi-page candidate set [0, 5, 7] to [7]; no single page may be forced",
+            "stage": "indexing",
+            "upstream_value": [
+              0,
+              5,
+              7
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          0,
+          5,
+          7
+        ],
+        "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 8,
+        "quote_sha256": "a72a8bd5cd7e5654965f113fdc366387be80bb8ac7b90003a184afc33b6d7b95",
+        "verdict": "FAIL_AMBIGUOUS"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            7
+          ],
+          "field": "source_page_indices0",
+          "kind": "reduced",
+          "note": "cite-fault: indexing reduced the multi-page candidate set [0, 5, 7] to [7]; no single page may be forced",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            0,
+            5,
+            7
+          ]
+        }
+      ],
+      "variant": "reduce-to-last-again"
+    },
+    {
+      "case_id": "mm-chk-04",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "source_page_indices0",
+            "note": "chunking source_page_indices0 was emptied to []",
+            "stage": "chunking",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "9dec43100b2b99e6c5d46876ca5c591faae1050e43077ace6705ead87a965880",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "source_page_indices0",
+          "kind": "missing",
+          "note": "cite-fault: chunking source_page_indices0 was emptied to []",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "source-pages-emptied"
+    },
+    {
+      "case_id": "mm-chk-05",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "dfe9292b73b29a1c1e07dcd6bf92538db64d4761d6e300e6411e15a9c5cfc306",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "chunk_record",
+            "note": "no chunking record for this citation",
+            "stage": "chunking",
+            "upstream_value": [
+              2
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "81dda38d561816c10ce80410237adb6f02ca0b31151a55781a4d11a97fa01136",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "chunk_record",
+          "kind": "missing",
+          "note": "cite-fault: no chunking record for this citation",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            2
+          ]
+        }
+      ],
+      "variant": "chunk-record-absent"
+    },
+    {
+      "case_id": "mm-chk-06",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "text_sha256",
+            "note": "chunk record omits text_sha256",
+            "stage": "chunking",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 2,
+        "quote_sha256": "e68d907c7ac20ff8b67aff0d5cc1200e18dec1ddac02361c50ab07edfbbc942a",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "text_sha256",
+          "kind": "missing",
+          "note": "cite-fault: chunk record omits text_sha256",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": null
+        }
+      ],
+      "variant": "chunk-text-hash-omitted"
+    },
+    {
+      "case_id": "mm-dsp-10",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "UNKNOWN",
+        "citation_page_value": null,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "display_record",
+            "note": "no display record for this citation",
+            "stage": "display",
+            "upstream_value": [
+              1
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": null,
+        "quote_sha256": "4c93b2e636e46e6c59c78964441f09ac4a05ea2958b0ae5262ad413d71f14920",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "display_record",
+          "kind": "missing",
+          "note": "cite-fault: no display record for this citation",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            1
+          ]
+        }
+      ],
+      "variant": "display-record-absent"
+    },
+    {
+      "case_id": "mm-dsp-11",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "c67a7586bc06eb0a514f5d65905bfb16d63f620278b957a71a9a69b3d7ed65ee",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": null,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "citation_page_value",
+            "note": "display citation_page_value is missing or null",
+            "stage": "display",
+            "upstream_value": [
+              3
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": null,
+        "quote_sha256": "29daff7b6deca96a6158276f17cd7c0b07406254918ca5b5796b2f292440f12f",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "citation_page_value",
+          "kind": "missing",
+          "note": "cite-fault: display citation_page_value is missing or null",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            3
+          ]
+        }
+      ],
+      "variant": "page-value-missing"
+    },
+    {
+      "case_id": "mm-dsp-12",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "viewer_page1",
+            "note": "display viewer_page1 is missing or null",
+            "stage": "display",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "2e23b82bb2097f8cec93b0df7f0bf3be9b6c2d135e996084ad101028e6afba3d",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "viewer_page1",
+          "kind": "missing",
+          "note": "cite-fault: display viewer_page1 is missing or null",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "viewer-page-missing"
+    },
+    {
+      "case_id": "mm-ext-01",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "d709e1ebc4c946f9d81b558df58bb5285611bdfa78752a4db85ba27b7ca8bf62",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": "ERROR",
+            "field": "text_state",
+            "note": "extraction text_state for page 2 is 'ERROR', honest extraction says 'TEXT'",
+            "stage": "extraction",
+            "upstream_value": "TEXT"
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "ce394d433fb3025ef7569b238ff4acb335ccdd729ab4da209287f47582cc6a0c",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": "ERROR",
+          "field": "text_state",
+          "kind": "missing",
+          "note": "extraction text_state for page 2 is 'ERROR', honest extraction says 'TEXT'",
+          "pdf_page_index0": 2,
+          "stage": "extraction",
+          "upstream_value": "TEXT"
+        },
+        {
+          "downstream_value": "ERROR",
+          "field": "text_state",
+          "kind": "missing",
+          "note": "cite-fault: extraction text_state for page 2 is 'ERROR', honest extraction says 'TEXT'",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "TEXT"
+        }
+      ],
+      "variant": "record-text-state-error"
+    },
+    {
+      "case_id": "mm-ext-02",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "text_sha256",
+            "note": "extraction record for page 1 omits text_sha256",
+            "stage": "extraction",
+            "upstream_value": "b162831076393f90a89af149b2e8887a35b159f248295f28ac26e6240ffe60dc"
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 2,
+        "quote_sha256": "67a0be8a5fbea1d7cd6189828600a6d8e99abc96ee8c5f9b995730b3471e2dd4",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "text_sha256",
+          "kind": "missing",
+          "note": "extraction record for page 1 omits text_sha256",
+          "pdf_page_index0": 1,
+          "stage": "extraction",
+          "upstream_value": "b162831076393f90a89af149b2e8887a35b159f248295f28ac26e6240ffe60dc"
+        },
+        {
+          "downstream_value": null,
+          "field": "text_sha256",
+          "kind": "missing",
+          "note": "cite-fault: extraction record for page 1 omits text_sha256",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "b162831076393f90a89af149b2e8887a35b159f248295f28ac26e6240ffe60dc"
+        }
+      ],
+      "variant": "record-hash-omitted"
+    },
+    {
+      "case_id": "mm-ext-03",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          6
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          7
+        ],
+        "correct_viewer_page1": [
+          7
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          6
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "312335842912b5bc1024ffc3ccdf24bce6f36c5419dc0d7307210e100a592f23",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "extraction_record",
+            "note": "no extraction record for physical page 4",
+            "stage": "extraction",
+            "upstream_value": "TEXT"
+          }
+        ],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e2cbf2f47e39249919641b6f0ff72c3ac0b96aac622b448d151c17d2d4e39465",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "extraction_record",
+          "kind": "missing",
+          "note": "no extraction record for physical page 4",
+          "pdf_page_index0": 4,
+          "stage": "extraction",
+          "upstream_value": "TEXT"
+        },
+        {
+          "downstream_value": null,
+          "field": "extraction_record",
+          "kind": "missing",
+          "note": "cite-fault: no extraction record for physical page 4",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "TEXT"
+        }
+      ],
+      "variant": "record-omitted"
+    },
+    {
+      "case_id": "mm-idx-07",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "5b4bafd194d4e8d82aa38ab37d1d459eacaf4b7b117edaa9333a10ce99ad3aa3",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "source_page_indices0",
+            "note": "indexing source_page_indices0 was emptied to []",
+            "stage": "indexing",
+            "upstream_value": [
+              1
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 2,
+        "quote_sha256": "861c472ad0d9b71346ffa30fa7c7f30e12c652a00fb92704a257aad66256d699",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "source_page_indices0",
+          "kind": "missing",
+          "note": "cite-fault: indexing source_page_indices0 was emptied to []",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            1
+          ]
+        }
+      ],
+      "variant": "source-pages-emptied"
+    },
+    {
+      "case_id": "mm-idx-08",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "index_record",
+            "note": "no indexing record for this citation",
+            "stage": "indexing",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "7b0cb8e60a8a272534bb8ee3af040fa87e5d84441a7d0ca53746e1acef3e230f",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "index_record",
+          "kind": "missing",
+          "note": "cite-fault: no indexing record for this citation",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "index-record-absent"
+    },
+    {
+      "case_id": "mm-idx-09",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "214a9211c603a374d218eac1ec659f1b854d7e179c55c70ba1fdfd4261d6e1dd",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_METADATA_MISSING",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": null,
+            "field": "pdf_page_label",
+            "note": "index record dropped pdf_page_label on rebuild",
+            "stage": "indexing",
+            "upstream_value": "3"
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_METADATA_MISSING",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "f0eef0d5c0fa6b32f320df36eed62ddbb3e9c878e68196d7654420c1c87c398d",
+        "verdict": "FAIL_METADATA_MISSING"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": null,
+          "field": "pdf_page_label",
+          "kind": "missing",
+          "note": "cite-fault: index record dropped pdf_page_label on rebuild",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": "3"
+        }
+      ],
+      "variant": "label-dropped-on-rebuild"
+    },
+    {
+      "case_id": "po-chk-04",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              6
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking source_page_indices0 [6] disagrees with upstream [5]",
+            "stage": "chunking",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "e8001bd8660daad9f385bf8c21ffd0cbfce6e8dc518407561d3b041eec8b31c5",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            6
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: chunking source_page_indices0 [6] disagrees with upstream [5]",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "number1-used-as-index0"
+    },
+    {
+      "case_id": "po-chk-05",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "469d080357f48cd91611d03b49641614760aac28344441d871e8cfc522d9aa2e",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              1
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking source_page_indices0 [1] disagrees with upstream [2]",
+            "stage": "chunking",
+            "upstream_value": [
+              2
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 2,
+        "quote_sha256": "6255b7afc7bdc2f48528d1beee8c6a07c60784e80060c1666a66459f64237b44",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            1
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: chunking source_page_indices0 [1] disagrees with upstream [2]",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            2
+          ]
+        }
+      ],
+      "variant": "index0-minus-one"
+    },
+    {
+      "case_id": "po-chk-06",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              2
+            ],
+            "field": "source_page_indices0",
+            "note": "chunking source_page_indices0 [2] disagrees with upstream [1]",
+            "stage": "chunking",
+            "upstream_value": [
+              1
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "chunking",
+        "notes": [],
+        "observed_page_value": 3,
+        "quote_sha256": "95756ff91769a6ccc04af3bf8a7ef22290386dd3f5ca9e491bd7a520bfde21c7",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "chunking",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            2
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: chunking source_page_indices0 [2] disagrees with upstream [1]",
+          "pdf_page_index0": null,
+          "stage": "chunking",
+          "upstream_value": [
+            1
+          ]
+        }
+      ],
+      "variant": "roman-label-read-as-number"
+    },
+    {
+      "case_id": "po-dsp-10",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_INDEX_0",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": 1,
+            "field": "viewer_page1",
+            "note": "viewer_page1 is not the resolved page + 1 (R-01/R-06); a 0-based value was handed to the 1-based viewer",
+            "stage": "display",
+            "upstream_value": 2
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "49635c423f0c1dfca9a158805569ea623ed4fdb184bcae73946b4111eeeee804",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": 1,
+          "field": "viewer_page1",
+          "kind": "offset",
+          "note": "cite-fault: viewer_page1 is not the resolved page + 1 (R-01/R-06); a 0-based value was handed to the 1-based viewer",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": 2
+        }
+      ],
+      "variant": "index0-passed-to-viewer"
+    },
+    {
+      "case_id": "po-dsp-11",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "7c581ce25b25fe591766a7a31406bf85bc54a73e3f0bf8c8e2f386dbce1ee657",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              3
+            ],
+            "field": "citation_page_value",
+            "note": "display page value resolves to physical page 3, not the true source page 2",
+            "stage": "display",
+            "upstream_value": [
+              2
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "2431f52c7d621423260a90f3d1eda2f15e4328c98334fe0be84bf05e7598e21e",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            3
+          ],
+          "field": "citation_page_value",
+          "kind": "offset",
+          "note": "cite-fault: display page value resolves to physical page 3, not the true source page 2",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": [
+            2
+          ]
+        }
+      ],
+      "variant": "plus-one-extra"
+    },
+    {
+      "case_id": "po-dsp-12",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3,
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4,
+          5
+        ],
+        "correct_viewer_page1": [
+          4,
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3,
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          0
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_LABEL",
+        "citation_page_value": "7",
+        "correct_pdf_page_number1": [
+          1
+        ],
+        "correct_viewer_page1": [
+          1
+        ],
+        "evidence": [
+          {
+            "downstream_value": 7,
+            "field": "viewer_page1",
+            "note": "viewer_page1 is not the resolved page + 1 (R-01/R-06); a 0-based value was handed to the 1-based viewer",
+            "stage": "display",
+            "upstream_value": 1
+          }
+        ],
+        "expected_source_pages0": [
+          0
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "display",
+        "notes": [],
+        "observed_page_value": "7",
+        "quote_sha256": "be4dc0b36e733808b9087e85fb3c194d047e5bdc90f2fdc9c4ec4ec26a6437dd",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "display",
+      "stage_diffs": [
+        {
+          "downstream_value": 7,
+          "field": "viewer_page1",
+          "kind": "offset",
+          "note": "cite-fault: viewer_page1 is not the resolved page + 1 (R-01/R-06); a 0-based value was handed to the 1-based viewer",
+          "pdf_page_index0": null,
+          "stage": "display",
+          "upstream_value": 1
+        }
+      ],
+      "variant": "label-7-read-as-number1"
+    },
+    {
+      "case_id": "po-ext-01",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "47347e11b6283796e7a69eef2d4c2923e596659425e925154874c4d04be2512b",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+            "field": "text_sha256",
+            "note": "extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)",
+            "stage": "extraction",
+            "upstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "dd42af760f4fa8e8d23ceb4916a3b139ae49d02943df90df72036a44326e765a",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 2,
+          "stage": "extraction",
+          "upstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"
+        },
+        {
+          "downstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 3,
+          "stage": "extraction",
+          "upstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c"
+        },
+        {
+          "downstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+          "field": "text_sha256",
+          "kind": "offset",
+          "note": "cite-fault: extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"
+        }
+      ],
+      "variant": "plus-one-shift"
+    },
+    {
+      "case_id": "po-ext-02",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          1
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          2
+        ],
+        "correct_viewer_page1": [
+          2
+        ],
+        "evidence": [
+          {
+            "downstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+            "field": "text_sha256",
+            "note": "extraction text_sha256 for page 1 does not match the honest extraction (text of another page attached?)",
+            "stage": "extraction",
+            "upstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e"
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "66c49e07d374ef8dbf48925f064c5d4a05eb2b43190b1a75d35cb9618af3784c",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 0 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 0,
+          "stage": "extraction",
+          "upstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff"
+        },
+        {
+          "downstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 1 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 1,
+          "stage": "extraction",
+          "upstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e"
+        },
+        {
+          "downstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+          "field": "text_sha256",
+          "kind": "offset",
+          "note": "cite-fault: extraction text_sha256 for page 1 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e"
+        }
+      ],
+      "variant": "minus-one-shift"
+    },
+    {
+      "case_id": "po-ext-03",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "4d41072b083352c1cfabf54a8cbfb42cd2af32ee0b11589877a1abf5b8a96898",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [
+          {
+            "downstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+            "field": "text_sha256",
+            "note": "extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+            "stage": "extraction",
+            "upstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954"
+          }
+        ],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "extraction",
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "0479f282577f57a333ee80429d8004666b0326f4ea1a6742fe83500bef251953",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 3,
+          "stage": "extraction",
+          "upstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954"
+        },
+        {
+          "downstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954",
+          "field": "text_sha256",
+          "kind": "hash_mismatch",
+          "note": "extraction text_sha256 for page 6 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": 6,
+          "stage": "extraction",
+          "upstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056"
+        },
+        {
+          "downstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+          "field": "text_sha256",
+          "kind": "offset",
+          "note": "cite-fault: extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954"
+        }
+      ],
+      "variant": "swap-with-distant-page"
+    },
+    {
+      "case_id": "po-idx-07",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1
+        ],
+        "correct_viewer_page1": [
+          1
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "f21cfc0daa9bdeaa8c5d406e5d35abc6ec8c751a19273e7a8fd1a9fc5cd516ed",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 7,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              6
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing source_page_indices0 [6] disagrees with upstream [5]",
+            "stage": "indexing",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 7,
+        "quote_sha256": "9cd23a275ca42a1aca9d6e06bbf097100f8fd6b7ec4e7c0e864e3cbbbcbc486f",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            6
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: indexing source_page_indices0 [6] disagrees with upstream [5]",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "plus-one-shift"
+    },
+    {
+      "case_id": "po-idx-08",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              4
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing source_page_indices0 [4] disagrees with upstream [5]",
+            "stage": "indexing",
+            "upstream_value": [
+              5
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e0b95822a327e62c32b0361255f5db51690b3fec388d0043d9102058a928886f",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            4
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: indexing source_page_indices0 [4] disagrees with upstream [5]",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            5
+          ]
+        }
+      ],
+      "variant": "minus-one-shift"
+    },
+    {
+      "case_id": "po-idx-09",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "aa5c4be311a64c7e7f1c4e2f44c037a25d57983993d4e81020a225265868fdda",
+        "verdict": "PASS"
+      },
+      "fault_type": "PAGE_OFFSET",
+      "fault_verdict": {
+        "candidate_source_pages0": [
+          2
+        ],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          3
+        ],
+        "correct_viewer_page1": [
+          3
+        ],
+        "evidence": [
+          {
+            "downstream_value": [
+              3
+            ],
+            "field": "source_page_indices0",
+            "note": "indexing source_page_indices0 [3] disagrees with upstream [2]",
+            "stage": "indexing",
+            "upstream_value": [
+              2
+            ]
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "PAGE_OFFSET",
+        "first_fault_stage": "indexing",
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "d12306cbda021797a1ac2fa064e1f092c961db1258562bf9d139f99d40fce6da",
+        "verdict": "FAIL_PAGE_OFFSET"
+      },
+      "first_fault_stage_expected": "indexing",
+      "stage_diffs": [
+        {
+          "downstream_value": [
+            3
+          ],
+          "field": "source_page_indices0",
+          "kind": "offset",
+          "note": "cite-fault: indexing source_page_indices0 [3] disagrees with upstream [2]",
+          "pdf_page_index0": null,
+          "stage": "indexing",
+          "upstream_value": [
+            2
+          ]
+        }
+      ],
+      "variant": "label-A3-read-as-index3"
+    },
+    {
+      "case_id": "un-ext-01",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "daa968f93c1e8ad6dd947de71388dcb6c393b1c1376ed0bcbb8970c0ca508aca",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [2] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: IMAGE_ONLY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 3,
+        "quote_sha256": "b18b0cf5742e80748f980c63b58f38c23fb1d7cd8f8264cf6bbecedf81309764",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [2] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-02",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: IMAGE_ONLY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 2,
+        "quote_sha256": "c1298646f571b6fc9b82b25e28b51525272ee270d273e82cc1a251a54ac2a58c",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [1] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-03",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          3
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": [
+          4
+        ],
+        "correct_viewer_page1": [
+          4
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 4,
+        "quote_sha256": "e16352f7389b44c75e6b67281385c4955ea5799d6ae049489524dc88774d8284",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: IMAGE_ONLY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 2,
+        "quote_sha256": "24c5fcfab1856d69fae4b057de38b4889783ca5fa2fb78bdb0f7730f754bfd8b",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [1] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-04",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: IMAGE_ONLY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 6,
+        "quote_sha256": "1c2dcc19c4c392eaa0c3d1065938a0652db60d8dcae4cb9cffe7fbed8407bc71",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [5] are IMAGE_ONLY (scanned / raster pages, no text layer)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-05",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "c3147aa7f9aac660a85b1fb60dd772857bf77472ce626bfa3972924be75d0ea4",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [2] are EMPTY (blank pages, no text layer content)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: EMPTY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 3,
+        "quote_sha256": "2ef48f6ff240f07cae30a3c7b1a1071f7747d7e666691282f7c1c8c3810b43a7",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [2] are EMPTY (blank pages, no text layer content)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-06",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] are EMPTY (blank pages, no text layer content)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: EMPTY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 2,
+        "quote_sha256": "e242e3614feee0701c65cdb55e8c2da67d35af6ff88664cc967295f5db2268f9",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [1] are EMPTY (blank pages, no text layer content)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-07",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": [
+          6
+        ],
+        "correct_viewer_page1": [
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 6,
+        "quote_sha256": "3f601c179f772a5b5b2952f78b7f7b6e33fdcbf9b4f62b8861e302d76af86b2f",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 4,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [3] are EMPTY (blank pages, no text layer content)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          3
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: EMPTY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 4,
+        "quote_sha256": "0ad037017a6836841311f0f98c6306ed30dbfc0864a3a5bbc10c6335ed6abb5d",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [3] are EMPTY (blank pages, no text layer content)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-08",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are EMPTY (blank pages, no text layer content)",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: EMPTY",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 6,
+        "quote_sha256": "b55b4d90a70a0918f94ab07d3d51f94cc66de8f5f6fb9c069c28b0be612249ff",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [5] are EMPTY (blank pages, no text layer content)",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-09",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5
+        ],
+        "correct_viewer_page1": [
+          5
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "cfba8aed438f5b6154ad97db2d876a068649ae8925ff858008bdf5c2fdd41dda",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [2] have a text layer but the normalised quote does not occur in it exactly",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          2
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: NO_EXACT_MATCH",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 3,
+        "quote_sha256": "c12c23ab51eaf7af923c3204f0845366cbf7b7c51d84bc6de7138f7adbdfe195",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [2] have a text layer but the normalised quote does not occur in it exactly",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-10",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          4,
+          5
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "correct_pdf_page_number1": [
+          5,
+          6
+        ],
+        "correct_viewer_page1": [
+          5,
+          6
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          4,
+          5
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 5,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] have a text layer but the normalised quote does not occur in it exactly",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          1
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: NO_EXACT_MATCH",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 2,
+        "quote_sha256": "331af7681e1fae73965485d45326ca5fc11b6751738abb63ab1db47f1fa2685d",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [1] have a text layer but the normalised quote does not occur in it exactly",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-11",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1
+        ],
+        "correct_viewer_page1": [
+          1
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "58a52ae8b497fee2f0cb258339f895dc669116ce0c62eb8eba9ec42d41ece960",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] have a text layer but the normalised quote does not occur in it exactly",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: NO_EXACT_MATCH",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 6,
+        "quote_sha256": "58cb16de7dd4cf0fb2443d3d35ea51b0f5dfaf03f101945946beda6564d2d327",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [5] have a text layer but the normalised quote does not occur in it exactly",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-12",
+      "control_verdict": {
+        "candidate_source_pages0": [
+          0,
+          1
+        ],
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "correct_pdf_page_number1": [
+          1,
+          2
+        ],
+        "correct_viewer_page1": [
+          1,
+          2
+        ],
+        "evidence": [],
+        "expected_source_pages0": [
+          0,
+          1
+        ],
+        "fault_type": null,
+        "first_fault_stage": null,
+        "notes": [],
+        "observed_page_value": 1,
+        "quote_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be",
+        "verdict": "PASS"
+      },
+      "fault_type": "UNLOCATABLE",
+      "fault_verdict": {
+        "candidate_source_pages0": [],
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 6,
+        "correct_pdf_page_number1": null,
+        "correct_viewer_page1": null,
+        "evidence": [
+          {
+            "downstream_value": [],
+            "field": "candidate_source_pages0",
+            "note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] have a text layer but the normalised quote does not occur in it exactly",
+            "stage": "extraction",
+            "upstream_value": null
+          }
+        ],
+        "expected_source_pages0": [
+          5
+        ],
+        "fault_type": "UNLOCATABLE",
+        "first_fault_stage": "extraction",
+        "notes": [
+          "reason: NO_EXACT_MATCH",
+          "The quote was not found in the extractable text layer. This does not establish that the quoted text is absent from the document: it may be visible only in a raster image, on a blank page, or differ by a character from the page text. No OCR was run."
+        ],
+        "observed_page_value": 6,
+        "quote_sha256": "d64dabec9161568df0b341c286ec7a97135fc2428cfb124b1ae08606fe27060d",
+        "verdict": "FAIL_UNLOCATABLE"
+      },
+      "first_fault_stage_expected": "extraction",
+      "stage_diffs": [
+        {
+          "downstream_value": [],
+          "field": "candidate_source_pages0",
+          "kind": "not_found",
+          "note": "cite-fault: quote not found in the extractable text layer; the trace-claimed page(s) [5] have a text layer but the normalised quote does not occur in it exactly",
+          "pdf_page_index0": null,
+          "stage": "extraction",
+          "upstream_value": null
+        }
+      ],
+      "variant": "near-miss-quote"
+    }
+  ],
+  "extraction_differing": {
+    "mm-ext-01": [
+      {
+        "downstream_value": "ERROR",
+        "field": "text_state",
+        "kind": "missing",
+        "note": "extraction text_state for page 2 is 'ERROR', honest extraction says 'TEXT'",
+        "pdf_page_index0": 2,
+        "stage": "extraction",
+        "upstream_value": "TEXT"
+      }
+    ],
+    "mm-ext-02": [
+      {
+        "downstream_value": null,
+        "field": "text_sha256",
+        "kind": "missing",
+        "note": "extraction record for page 1 omits text_sha256",
+        "pdf_page_index0": 1,
+        "stage": "extraction",
+        "upstream_value": "b162831076393f90a89af149b2e8887a35b159f248295f28ac26e6240ffe60dc"
+      }
+    ],
+    "mm-ext-03": [
+      {
+        "downstream_value": null,
+        "field": "extraction_record",
+        "kind": "missing",
+        "note": "no extraction record for physical page 4",
+        "pdf_page_index0": 4,
+        "stage": "extraction",
+        "upstream_value": "TEXT"
+      }
+    ],
+    "po-ext-01": [
+      {
+        "downstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 2,
+        "stage": "extraction",
+        "upstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"
+      },
+      {
+        "downstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 3,
+        "stage": "extraction",
+        "upstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c"
+      }
+    ],
+    "po-ext-02": [
+      {
+        "downstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 0 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 0,
+        "stage": "extraction",
+        "upstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff"
+      },
+      {
+        "downstream_value": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 1 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 1,
+        "stage": "extraction",
+        "upstream_value": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e"
+      }
+    ],
+    "po-ext-03": [
+      {
+        "downstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 3,
+        "stage": "extraction",
+        "upstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954"
+      },
+      {
+        "downstream_value": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954",
+        "field": "text_sha256",
+        "kind": "hash_mismatch",
+        "note": "extraction text_sha256 for page 6 does not match the honest extraction (text of another page attached?)",
+        "pdf_page_index0": 6,
+        "stage": "extraction",
+        "upstream_value": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056"
+      }
+    ]
+  },
+  "summary": {
+    "control_pass": 48,
+    "extraction_differing_bundles": [
+      "mm-ext-01",
+      "mm-ext-02",
+      "mm-ext-03",
+      "po-ext-01",
+      "po-ext-02",
+      "po-ext-03"
+    ],
+    "fault_verdict_matches_expected": 48,
+    "total_cases": 48,
+    "verdict_counts": {
+      "FAIL_AMBIGUOUS": 12,
+      "FAIL_METADATA_MISSING": 12,
+      "FAIL_PAGE_OFFSET": 12,
+      "FAIL_UNLOCATABLE": 12
+    }
+  }
+}

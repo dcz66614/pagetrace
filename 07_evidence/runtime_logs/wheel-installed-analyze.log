@@ -1,0 +1,10 @@
+report.json: out1/report.json
+report.html: out1/report.html (12733 bytes)
+report assets: report.css, report.js
+snippets: short excerpts only (default; use --include-snippets for full quote text)
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9…)
+citations: 2 (PASS 1, FAIL 1, UNKNOWN 0, AMBIGUOUS 0)
+  cite-fault: FAIL_PAGE_OFFSET fault=PAGE_OFFSET first_fault_stage=extraction
+  cite-control: PASS
+RESULT: FAIL/UNKNOWN present — analysis completed, exit 1 (not a tool crash)

@@ -1,0 +1,64 @@
+PIPELINE_COUNTS: {"cases": 48, "control_pass": 48, "detected_by_fault_type": {"DUPLICATE_TEXT_AMBIGUITY": 12, "PAGE_METADATA_MISSING": 12, "PAGE_OFFSET": 12, "UNLOCATABLE": 12}, "entries": 96, "first_fault_stage_correct": 48}
+DEMO_ENTRIES: ['po-ext-01/cite-fault', 'mm-ext-01/cite-fault', 'du-chk-01/cite-fault', 'un-ext-01/cite-fault', 'po-ext-01/cite-control']
+DEMO_VERDICTS: [('po-ext-01/cite-fault', 'FAIL_PAGE_OFFSET', 'PAGE_OFFSET', 'extraction'), ('mm-ext-01/cite-fault', 'FAIL_METADATA_MISSING', 'PAGE_METADATA_MISSING', 'extraction'), ('du-chk-01/cite-fault', 'FAIL_AMBIGUOUS', 'DUPLICATE_TEXT_AMBIGUITY', 'chunking'), ('un-ext-01/cite-fault', 'FAIL_UNLOCATABLE', 'UNLOCATABLE', 'extraction'), ('po-ext-01/cite-control', 'PASS', None, None)]
+DEMO_REPORT: {
+  "report_html": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report/report.html",
+  "report_html_sha256": "9f69974f2384a9b7f230e638e54cc67c233f6096f5dc5f2d4462ee7e1fbfcb68",
+  "report_html_bytes": 20781,
+  "assets": {
+    "report.css": {
+      "path": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report/assets/report.css",
+      "sha256": "3e6ea8a033f7a05131492baacf495b192add66217c446be39fe56a5fada707f1"
+    },
+    "report.js": {
+      "path": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report/assets/report.js",
+      "sha256": "009da7e9e624c210210ea86ed5beeb0c37a888d05fac385b53706ee07d00a965"
+    }
+  },
+  "entries": 5
+}
+FULL_REPORT: {
+  "report_html": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report-full/report.html",
+  "report_html_sha256": "e65c2620af275dbb326c3094f3882f0c15edf9998ac3973551985b3beda23db3",
+  "report_html_bytes": 298026,
+  "assets": {
+    "report.css": {
+      "path": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report-full/assets/report.css",
+      "sha256": "3e6ea8a033f7a05131492baacf495b192add66217c446be39fe56a5fada707f1"
+    },
+    "report.js": {
+      "path": "/home/hatch/workspace/p026-pagetrace-t008/07_evidence/t008-report-full/assets/report.js",
+      "sha256": "009da7e9e624c210210ea86ed5beeb0c37a888d05fac385b53706ee07d00a965"
+    }
+  },
+  "entries": 96
+}
+
+=== BROWSER / OFFLINE EVIDENCE ===
+BROWSER: Google Chrome for Testing 158.0.8127.18 (headless shell same version)
+  binary: ~/.cache/ms-playwright/chromium-1254/chrome-linux64/chrome
+  headless shell: ~/.cache/ms-playwright/chromium_headless_shell-1254/chrome-headless-shell-linux64/chrome-headless-shell
+  NOTE: /opt/meta-chromium/chrome NOT used (cannot start standalone, per task note).
+SCREENSHOTS (1280x900 desktop, 390x844 narrow, 1280x900 deep-link du-chk-01):
+  07_evidence/screenshots/t008-report-desktop.png sha256 97bdca6a9e136bd8e37e484b7f546f696169f96b1c5e5693b5d829d2c86d20f4
+  07_evidence/screenshots/t008-report-narrow.png sha256 1dce3c12c9c9208829a033b653bac76c466c310579c54364105b802ce1795344
+  07_evidence/screenshots/t008-report-desktop-du-chk-01.png sha256 65329d55aeb72e9f6295165f8e783d08b493d3b86ae69a1fbab046e85ae135b4
+OFFLINE NETWORK LOG: 07_evidence/runtime_logs/t008-netlog.json
+  headless shell --log-net-log run over file:// report: 7 net-log events, 0 URLs, 0 http(s) URLs.
+  DNS-BLOCKED re-render (--host-resolver-rules "MAP * ~NOTFOUND"): exit 0,
+  deep link #case=du-chk-01/cite-fault still selects FAIL_AMBIGUOUS; 7 occurrences
+  of the entry id in the rendered DOM; comparison rows present.
+  (Chrome stderr shows only dbus socket noise and a SODA component-updater
+  error 5 from the browser itself, not from the page; the page issues no requests.)
+REPORT HASHES:
+  demo report.html (5 entries) sha256 9f69974f2384a9b7f230e638e54cc67c233f6096f5dc5f2d4462ee7e1fbfcb68 (20781 B)
+  full report.html (96 entries) sha256 e65c2620af275dbb326c3094f3882f0c15edf9998ac3973551985b3beda23db3 (298026 B)
+  assets/report.css sha256 3e6ea8a033f7a05131492baacf495b192add66217c446be39fe56a5fada707f1
+  assets/report.js sha256 009da7e9e624c210210ea86ed5beeb0c37a888d05fac385b53706ee07d00a965
+
+=== ACCEPTANCE COMMANDS ===
+TMPDIR=$PWD/.tmp $PWD/.venv/bin/python -m pytest tests/integration/test_html_report.py -q
+  -> 14 passed (exit 0)
+Regression (same env): pytest tests/integration/test_html_report.py tests/integration/test_oracle_parity.py tests/unit tests/prototypes -q
+  -> 271 passed in 86.54s (exit 0)
+Local browser open: file:// 07_evidence/t008-report/report.html rendered in Chrome for Testing 158.0.8127.18 (see screenshots above).

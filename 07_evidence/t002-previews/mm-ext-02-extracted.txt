@@ -1,0 +1,16 @@
+=== mm-ext-02 page index0 0 (label i, kind text) ===
+PageTrace 合成案例 mm-ext-02
+故障类别 PAGE_METADATA_MISSING · 首错阶段 extraction
+读者按引用页码查找原文时常常翻到错误页面。
+When a sentence spans two pages, both pages are the source.
+扫描件页面没有文本层，引用无法用文本定位。
+重复句mm-ext-02：本句在多页出现，须保留全部候选页。
+第 1 页 / 共 6 页
+
+=== mm-ext-02 page index0 1 (label ii, kind text) ===
+页码基准混用是引用系统最常见的隐性缺陷。
+Losing the source set in the index breaks every later check.
+跨页断句需要把前后两页都记为来源页集合。
+关键引文mm-ext-02：页码漂移误导定位。
+第 2 页 / 共 6 页
+

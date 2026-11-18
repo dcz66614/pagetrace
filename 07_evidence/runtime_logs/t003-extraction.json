@@ -1,0 +1,3485 @@
+{
+ "cases": [
+  {
+   "case_id": "po-ext-01",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "po-ext-01.pdf",
+   "pdf_sha256": "97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "6c896df0e9848a00ce560aa27d919dcef24dd26ad7221884746d08d96c4c01b0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-ext-02",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "po-ext-02.pdf",
+   "pdf_sha256": "cd21f24937ef8668acdc6f935767a98ba649b3cfc0c31c22ff52a58e78648a8f",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 202,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "b2aca098ef669933c150d4bc80fbcfeebc169dfe2c5cc28694327815ba11cec6",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "d4783594cc57814496f2b871f7a7a905eb0db73f6118c8651468a2d0d93927e9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 137,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "5984449058311335ca27058e4699df893933421f4315ea3b9888abdc3c1acd85",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "8cee3db9a494bb1987a3320ed8b379e00fcd1a11a615735f3ddf91573df1e7a6",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-ext-03",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "po-ext-03.pdf",
+   "pdf_sha256": "fc3967b8083d8f6f5dc90f782c831afc23b5a5a4575ba902cc8f6f5a56676631",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "99be83cb20d520dba5091fb22c44a4413bfc8642912ff90c0b1fcab4f35c4a66",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "c79662e7f70ba240c87c76f6c4d83976da4025890af1927a540cea34898391e0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "04deccd75b0a4d52133d9edfea5aeee9ad549e7a0bd24c3d8474185a8e943954",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "c6278ea874c3f15bec69b673b98fd9dd6d9b2f3011ac2aa106cfc56f1a908399",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 137,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "f698126abeadff1413e68dd0bac5f4d3a4ebd8af7e6008ab475c4ff4a47047c9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-chk-04",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "po-chk-04.pdf",
+   "pdf_sha256": "db5b66c3454033e6307fdae6944f2c0543b62c557fa20b5a628093747fb68fae",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 195,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "2964f23dea3721090500c86de1262747f292e6c28070ad96749743135f68b7ef",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "d2505f1483995b49cff5de22246d19bd4c76ad95f16ca887399e973387bfa43a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "7f3c8c4c96100935375515028e349efdc819712f9fcc17bf1e7c3bf63b3a7169",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 116,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "2b152d53c1abd862eca050987f0902038c7ee48c1c2c974aec2bd171bcc0afe3",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "72fd8def4127735233e5a60b383075378d02b8e9e7929fbfdbfb3a13b7c42a7e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "b3c93833cffcbc6af79e9993606eb476d452a751f7097fba1ad3f1dbf83e060a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "652899f5cc3a02cbfad7369d284cfed2297ddba3467541e1ba63052fad2b0823",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-chk-05",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "po-chk-05.pdf",
+   "pdf_sha256": "57ce8e8308f4dcde78fb2aa3394343c91c6714aa228844899373a9865043804a",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "afcf71d7620abd0ca67177c94165bc2cbdb3d0b0c737fa0e5eaf6d58f0c9a021",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "503fcd89ca072382282cfb12ac8da8d8722db0dd38bf1f53ebce185b37ffe1ea",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "feb237f10054fbe8d2c313a0033ae86807bab1c7ccfbe521a84c744444d9b2dd",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "811be7b4c86d2abf6f45e0ab3a197676b88b544c2a7fedd58ae8d45cfd9baea2",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-chk-06",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "po-chk-06.pdf",
+   "pdf_sha256": "f05572bfe00bf77caa1c3c4fb9380cf1e5d799a1b91c48b6f82147b020920c79",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 175,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "1804a3ae01c65154e48ece0675af8f2c6346860636f452c1d93c5681818e894e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "c664baa30fd44b7d382213e7af689b91c548adeff1e1537f82d9963f98e84d51",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "997e7227669a8c859417cf96cfca5ad4dfa9a6c73f8821b87b7b0d8d0a74a6d7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "9203f2e363767f9ccaccfa75b107771bcd503ec9babd2a712544dc9075617a40",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 132,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "0998745705008710c91e0d8f7431bedac5f3fad1bdc242876dc95bb705fa1582",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "eed0ed3e06fc6b96157893ecac42f2420cdfa122e9d0bf306686de5463aff25a",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-idx-07",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "po-idx-07.pdf",
+   "pdf_sha256": "f4c6050bec5e6b7c1e125f7898ffc6420b6368aae440ced51b7ed172602ac078",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 202,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "612aca2936ed3a7f73fcbf91b6bc93e35b175b4cf6370ad2c039276bb7c28772",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "954fab8ecb8f4b987a11c58ac43018fc60aa67926bdbbf7db217cf6c526b96de",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "748d99270f1a83e2d419272d0794517feadd09336da85f45cf2cd14fd59c88c9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "54586ed186bcbc639fbc5ca9de5e6d2f093cae27f717a13ea2398c3f01ef6bec",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "f31d74d72e2a448e0c033a488d9ec1555c94a4608ccfaaff2c68e4dbba219131",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    }
+   ]
+  },
+  {
+   "case_id": "po-idx-08",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "po-idx-08.pdf",
+   "pdf_sha256": "bd1b630ba15b274e5c8bd3bb81be793dee7699af49a643368516fc4a422a416e",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 192,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "e5ca078deab122f547ac42bfed87eaed94215cb2a5333a9327bcb974cabd066c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "a7b833d6672143cafea13711ae692de5f176a69da8b2b1ca5ebdab71b74d1ab9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 141,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "7310c360cde991a03cc607ed925645bbf289cd460836f8a817822e2b6a996011",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "372d882807f705e6a2a07c9a31a636f97a096cd227a692da9c2976b8cf8868ed",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "cbe87e6c62942a75b1c3dd5af9b3169e82b8be00abe86f304bdd710bdebd500a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "3505b3ae8cf1dece9ba59642f63995116c0643debd1ba7cfc826f936e28c6038",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 150,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "1052a0391545890dbab5a13f3e745126329af70dcf3b9f85b7c5ff80c28291e4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 116,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "68d4c7f64a31ef7601b2dca8730306d0fb295fc7394f6859226d6a15a09f0377",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-idx-09",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5"
+   ],
+   "pdf_file_name": "po-idx-09.pdf",
+   "pdf_sha256": "71bb0a048998cc3322aa8873657229625f22fe441e8c0eb87b490a0a8260c708",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "2b58cfca74b68ebc1b97145ab25243cf5319b749278badca784acbb0f680b991",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "210244b4724d9b066945bead82fe5d184fb3f811eb508e6bf4011f9da4ac1321",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "96ea9321926b12c5357d302fea76a9086b712e1b20d9186700fbfcbc2af624f8",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "f3af9eb062b6797220f26990502fc35a5ea1a426b4d23fb54f436182e144a59b",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-dsp-10",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "po-dsp-10.pdf",
+   "pdf_sha256": "0fed33d2f13c890d4c74f7ba9f4473c516eac6eba9e89a0b34e9059aaaab4111",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 166,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "937f0a22a4c48437ec208a1cb5ecf075cfa8e286260f5f71197ca49b1dc71d29",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "b3159e9eacaa936b4f4e2b6d212cd26b14e212d8ec1ddbe9cdacc55c8f4a9e6c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "815344a403fd243282f0d1b2ca2f54cb83b82b3eec1d275a90ebae589ac89699",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 138,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "0c271682534b7f105abc188e9f83b23b5496af7e846fc89be54642022708f0ea",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 141,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "c335bb781aacf88fe3149a665b613a6e0b6a8fc8d17459e9883945505e31b455",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-dsp-11",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "po-dsp-11.pdf",
+   "pdf_sha256": "c98b1adf1cac0eabf405a17c4edb20820032dc69cec96d96e88cd34e853d1bfc",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 150,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "3e0e38f87237561fb8b7a055d010c0567842627fc0f00457a7987c675c3e59fb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "2a0609e82b3aa59d4887262dd7a38e3aa66c801493d9a5a78f769a57bf391062",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "6839caa441e6afc635e55b17f0746093bde759aae99c5e2cb7a20190cbeb727b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "55706eaf257ca6bb770ac9b7ed69a2d6e6f661c638b2c6595517a02ae82c6fb7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "53e423429d2fc0167a8f215b58f9c459133b0e5d98fbaa6cbc61dafbdf314ac4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 156,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "62b89b0c3f53a1483f76fbc3de13aab8ccf6c9e3338a48f70bbded31cc3b0ff0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "po-dsp-12",
+   "fault_type": "PAGE_OFFSET",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14"
+   ],
+   "pdf_file_name": "po-dsp-12.pdf",
+   "pdf_sha256": "63892eca8aa148bb9cc6d1d47595602222aede023ce7850e646a354336544987",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 200,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "7",
+     "spec_kind": "text",
+     "text_sha256": "67b34380ae115ab2b6717fa9630079cdd318fa9fddc5916317e7325c8cca2951",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "8",
+     "spec_kind": "text",
+     "text_sha256": "e2cd09d25f2aa52370cac43dde5b3b06c2076e42b3a21efab281731f53ac8b8e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "9",
+     "spec_kind": "text",
+     "text_sha256": "b4067636616015355e319e215ea239f1e300c8c2a52a7a1f2fb393f9238c57be",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 138,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "10",
+     "spec_kind": "text",
+     "text_sha256": "49aedf53e04a801948e3fcdfa554771946bced98abda0a8a3ea8c87ccd2f6b5f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 132,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "11",
+     "spec_kind": "text",
+     "text_sha256": "81077b03cf4067659a2b6d7398eab6274ea714c98a9472fd939a30749dee58e7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "12",
+     "spec_kind": "text",
+     "text_sha256": "e0d7c7359045f1c878078f143d918a8ac2899635d83af7813196fa0cd036bd7d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "13",
+     "spec_kind": "text",
+     "text_sha256": "7efbfe39c21c48f7ea38c3fb742de603b588524ae0c4438ebdc2c8b31366da77",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "14",
+     "spec_kind": "text",
+     "text_sha256": "d42ac709b9424c2643872bc6d075cd8c8d8ca761cad44d8abd23565838a6b0bc",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-ext-01",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-ext-01.pdf",
+   "pdf_sha256": "50470bd0249d80aef1d433456c7a30648d510134af54546a613d71b5aa37a95b",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "b908bb56e6a97529665b8183dd613b83b0f793c88b54617c2fec042e9f0f9c8c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 144,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "53f5851c1a117da69578f0b8662a1708e39a409ac159dd4da8a6478d0f1d1ffc",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 153,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "b30bcd3afce23c9e32c21078d68e8b0d1d5cb638f0f76f5aad7b2420544757b0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-ext-02",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "mm-ext-02.pdf",
+   "pdf_sha256": "b2dd1081419cc1f90dd813ead93acc9d28937b02ed6df08c4216993ad7e1dd0b",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 219,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "10bde23bf5e7d839745f14a9bb3dcbdf04c7420cf7586a672814a80f9e97204f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 141,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "b162831076393f90a89af149b2e8887a35b159f248295f28ac26e6240ffe60dc",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "bbbe310a3abf1adb69a8c5f91573d4c7bdd24ee86ae1696699c07c9c114019ec",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 126,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "cb0b9fb5abbc8bef1b3d2a62f820355b86a77651dfdc9dc25dcfb1990aff0860",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 130,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "ae97068db344caaa33ae0f7c1b7ebe24ca9bfe776b62987aee5abae715a2914a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "131d06abf0ff2b27d7528bc4ec3e03409af118e68be833b94dd6075a4f80c0b0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-ext-03",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-ext-03.pdf",
+   "pdf_sha256": "f07725ce89964e4ade776c5c6569ce4c666626adabdf3f4498fb2c9df7d10495",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "2c5f0eb80957c2ba3a4e857a59837682762a77ef787c5843a7def29129f2302f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 125,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "d8bab40af5545387574900fbe4a1fcc5069191377c77b38fae19432fd322f6d4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 113,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "487407b5e2464f9f1d66b8f7ebb79f4af4ffd430002d8556d724b99cfc15acbb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "b0acdf005420a125b496e448aaf4681be76bf8dfb3fa8b48ea6ae5fa01f99fd7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "89e04cc84d7bd0ab09a22898c7afdf9cc1085a8e43185ad933cac3a5a7e58f54",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "1df913c8ff04a2eeb1040546622a78c845c1c1c7da8fa169e960ffbf2352e84a",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-chk-04",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "mm-chk-04.pdf",
+   "pdf_sha256": "bc0002709017a5e1a20a94ff95089e5c3dddefbabaaea40ba5038e7cca48c9b9",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 197,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "79ee5afb6d8d466ca3a663f7227d3e805c1b6dba2189314f51c1bb86f1cbf889",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "d34f0ecb21adf41cd954b69b791529f1de9577496bbc1f2a7a54bce376f62abf",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 112,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "6d4ec5c19f249cb06c94526131ff1328b60dd626266ed281aafbafd6d7157a87",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "619420501e8fdd940640503bd2b61a8ece694f0ac7e52a3839acc58f2710a6d1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "fba1b06484ecc4b54f90b097718f34c0c38d96ab67329ba8b76fb65725f9061a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "7a096c94f1f6e13c096dab92dad49c32b982138c0e3355f8f576440da46b5fef",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "cf9fc75dd209b276fc7509a48e871765b82225a9bd19f1685425a60baf9cfb50",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-chk-05",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-chk-05.pdf",
+   "pdf_sha256": "6534cb5df8657e9e7d54c9e5d6217d54b998f59084baf9ba7a0cf7afe73a6bd7",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "90b2f42e1c20ee1978e4b224422953c5849704c4f030b3077e8061cb5f757af1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "674d57e35b4e30d730e767e0dacab35c5e21d9050a3aedc9a0801d1b2538f82a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "79a1864a1602706f2082fc839cec24020fe5cdcd375e8aa67fde0603d6feab46",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "a91b4e7ad0b3452e4893d3dd422e5ea597989eae6418b9fc6aa6bf2f6123122b",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-chk-06",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "mm-chk-06.pdf",
+   "pdf_sha256": "24767892979ece1956e6df6032492be8faff3dc315e3dd2067b0420040941f18",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 178,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "dba2a5d2113e9e5295fd293a70a59c85cee7c9662f377c1028dd0a4aa65d0b4e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "3b0610481aa635496f52cea41aa97fef5ba89db57ee7eece23d8ff416feca901",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "a59da848b244d0042c468870500a1539e05a244573965b3219835345ae255b69",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "e6daf6444f75a5c33739dcb4a67608e0035312e0894b69798add4090c476e2d3",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "d416b748c7cbd3ab6b863c0041c5acc9e562c6f496824eb55d21b565a58f94b9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 141,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "886cb71fb79c693c2a84c91036191ce54cc9d5a9768ca4d891eef0f077a4397c",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-idx-07",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-idx-07.pdf",
+   "pdf_sha256": "2fb020331c8ef7f86578c321ea11291e4bb6a1f9ca14eec53e2c868dd1e374a6",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "3067d18cb48fdd3e8c02775a9ab7b0d8a9f2821fa35ddc67be624717a1ba0b36",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "b8a461b89aeed518747742ab122467ded49e6303bce9d8b6c7eb6eb10649a38d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "31515b69db443f46c04440ba194918a4d43b0d6deb23a48855a7fb9e124bb95a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "e584357a7edffa15e1369bae76c687d38123d2bf36558c95c74c145bf76c0d04",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 114,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "10c0315b946c3222bcfcdda7b1be0eaa5275964237fe02e132cdfcf297c9d48b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-idx-08",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "mm-idx-08.pdf",
+   "pdf_sha256": "fe153a538c539560797d079864fe44843b7c2fd969f3e273a33741a678e20d58",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 210,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "f9c42f74681155c4dc4dd27a7cbacf315ace1bb75b51cb1df6eaa09a7170abf7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "285d0d39f92093629d7f25e2dbd03af1ac75b682460b2d40080f03f2dd651c01",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "5f33fe2fee8e54fefcfa269056315f7d79dd87df361875595800b0b209c8e363",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "c6f91a48a9d571ab416e3ce20a161751edbbb7627a5dddc88e79f44f0864e8fd",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "c417e3eceafdc6758fe9f49e68c23305ffca1ed0dca081a8544c64136cdb09f0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "9dd11496ac2c1aa5c7e409d7a6df1dbce680b90f882ce287a9ee3581c77499a7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "44a225f3f71320253af80d77a071396bff37cddbfd22030423594a4e119c3490",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "cb5bcdfe86553cad173278b961e2f964bdf37aba40de01ec12cb9d1f4987158a",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-idx-09",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-idx-09.pdf",
+   "pdf_sha256": "c8659d1d7d36d599fc61e84b77487247f9379f5b35a7f69eeecf49c6f2c3538a",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "f4cdd5edd0acde325d7c9f653fd16d4605b901ecd6b8b7093f22016f8b792189",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "21882544a5368759e9082ba0c806bc3493e1d5c6740d2cd315cd7c7c6dc4cb63",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 112,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "3bd2b8b4363ab37ef3a53f8989627211b15740b2a2c96b838ecba2963bea85d1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "b0ab5974e0f425d6d07f9dd72ed563b333b1ddc4432b8470b0dec24c33a00e5e",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-dsp-10",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "mm-dsp-10.pdf",
+   "pdf_sha256": "2408a09aeb4f217a63d737658d91835c4f5992d18ae4dc1c9688750e235979e4",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 183,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "64daae5685b008bfd34d3fd036c348f7dc2d86cddc46fb68960fabad85b93f65",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "63eeb4624280a01f9ebf4015d30939dd554866589bd6663f17a1aac77fdbe645",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "db401f5f2cc17569a2d74475faa35d6abcaf242849a832c4b91c66f5c7e83204",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 131,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "1ec81536e67556fd6606c1bf0c42b1b37856d4db8cdaea11e74acce2f48cfdb5",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "ed40190ab6b06349a9d9f21a1daf86cd76b4825d5d6655eb1ccc3109714301cb",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-dsp-11",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "mm-dsp-11.pdf",
+   "pdf_sha256": "7bfaac267104391b89d1fe5e762ae2c5fb7afa59b68bf16aa9e3c561393b587a",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "283d12a390e27c8705544442bb8b46a35236614d5aa09cc338acdc2f9cc31e7a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "f53ba832071122fa07448b8cb779f2f505abd88b0289b165a6733dbc7b5026d4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 137,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "49779b2dab9fba15fa16712d32fa663289b144901bb0f5e74aa55dbfca13a631",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "e0bb09fa1de41a309ca3c7b03df84834e27d76f0e383890141cabb4e3469d6fb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "e45038ed539794cfd7fb66c0c4d1ea38a30e08ba2a21336fea88baeb751b5ecb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "6566daf0c7a5d33304e4c5fc8cdbcfec73386918856e28df398a5572921c0df8",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "mm-dsp-12",
+   "fault_type": "PAGE_METADATA_MISSING",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "mm-dsp-12.pdf",
+   "pdf_sha256": "e0b8897275ad5197f8ad37409a254f47df29bc6febbbc338ae49ee91d674e8d2",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 199,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "2ba39f99efb8776b450b0a6d5ea23d57f1bf4a850c886d474a5659ee60eb19a1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "32b9751f21fbb75d335d8f59dc61c69548c1814d15f1a69dcbeff9b0c1154f42",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "c0859e325806d3e0764ed0939736f63e533808e409581c7045c816a93702b18d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "c9b845f9cf0389fcd4189b6b7d98cf839b3997a2ad7ac446838582a7268d45a9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "854c1cb710288dfe04a51056218e80ed1be1bb9988e7ea5e01be666cc135f01d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "ff114a4f815c1e5e909e212238b059ecd648ce594f9a27688f456c58f004f365",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "ce8bae7296d59e1183181757fc5c0d5f2d23744dbf65b3794c8d1b2518a43b97",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "aa9fa604a49b184ae01dcb2e5562f7d2a32cd992f2c7198924ccf5779c512495",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-chk-01",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-chk-01.pdf",
+   "pdf_sha256": "5449bd32a5c224c1997470ed41f20998b06733d090eab92ed7fc07501d2ae79f",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 155,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "2975051e81aa19f99b410168fff1128805d1642d18127099dd0912713ecccb70",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 182,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "e1cba8416a4df5ea385360a3dc34b681f8488fde5e7473d4c09dc4cd934ead10",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-chk-02",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "du-chk-02.pdf",
+   "pdf_sha256": "7481fedda5d7cae12fd06d8fe43de7703221a925cc30bad2dce752add46a7607",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 182,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "a2dddf9f631287922bca599140ffd91aadc2f6c05b7dad7fc76fb94f743f13f2",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 152,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "ff11d92fd14bd2951118e05898d26411406225adb7be17c2d622187b614a3654",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 116,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "da133c68fbf6c8f9af0350180479ee02e7b24db30a596248b4e6b64c92ea0ca2",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 181,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "7dab8c02438146c1977e438f6184124e84eb23f7a0cd9da8ec5f4dc2dfc82f79",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "f4fb0e32fd48c7a64dcaf05c29508b70e4e01027111b53c25df4633867e80834",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "b7f13f2b8a5238b98ef0d30c7c5a1191ccdb03fdba803bad35345d519449f1d4",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-chk-03",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-chk-03.pdf",
+   "pdf_sha256": "3f752602d9f9164ae769f7fbb251e67e59ac6469290efe986d3e5df68c3bc979",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 250,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "6288f7728f56e5a9c1f95a27edcf7de62acb6458a2b14702fd99816f4e849b22",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "c79662e7f70ba240c87c76f6c4d83976da4025890af1927a540cea34898391e0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "43c4895c719f2eb4b9d27e7db14198b5144953a62cfd694c3fb80f7bcf6aa35b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "c6278ea874c3f15bec69b673b98fd9dd6d9b2f3011ac2aa106cfc56f1a908399",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "b8bee4a32b32abd239dbde57bf22707219b706dc84122ff49af7066cd6fa9d17",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "1f487e2dfd043fb94fba8774bca548cc18bb91decd7394f20f347af42da64056",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-chk-04",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "du-chk-04.pdf",
+   "pdf_sha256": "88d07d2aa249f3f7ef1dc832c134c7b97dabf234222c2863143a94b5c87bef58",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 218,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "63b46c32cae2f16e4f96feba9f179e65b0fd307f417d460bacac66702cb10d11",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "2cdd0e8b0e1d2bf6a86a34ebc325902f5ef06b4d5f4e16d30294e59249a9a529",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "7f3c8c4c96100935375515028e349efdc819712f9fcc17bf1e7c3bf63b3a7169",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 116,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "2b152d53c1abd862eca050987f0902038c7ee48c1c2c974aec2bd171bcc0afe3",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "72fd8def4127735233e5a60b383075378d02b8e9e7929fbfdbfb3a13b7c42a7e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 155,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "136f67918cb0c058659e3708b2a54e578db0af54ce2a1fd393524ab88a834778",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 180,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "9c7cfb7ae6e032da36a14bd738209a06d5f7ad6bf8931cb201b7797a23e117e8",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-idx-05",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-idx-05.pdf",
+   "pdf_sha256": "40ae4fe8e9c1e02b3018f1b839bb29b6426798f6449b64b3df3fdfe59a5c655e",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "fc114cb6b3607c993641450b65bc7afc2eee4a2eaaddcc319961a088b5bd4763",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "921aca9b435cf9b28939c0969108b9458ea26df2cbf5fdfd810f7cd78c4f4564",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 112,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "2200852784fc0d2fe39cd1871c18bbe38fdc5180c511dfb288923182b3424158",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 180,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "4055f59d3278bf1b6d2b56287e0b6fcaf4d847349b17d9114660f3f30b0ed2f3",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-idx-06",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "du-idx-06.pdf",
+   "pdf_sha256": "d53443ff8dbb27610a33ea550d31b5639636d30da31b3a894fb848e28775ef65",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 188,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "57219435367bd07dedb7fcbeddd1aac7c1d2e447ec99ec1ede4e103e23b3f0e2",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 150,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "aaf49b3974532704ce3b57c7259acf3749ca3c79bc8c38bfd394e7d3b96aea7f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "997e7227669a8c859417cf96cfca5ad4dfa9a6c73f8821b87b7b0d8d0a74a6d7",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 180,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "aca77180e6404c1adaa77eb63dcfd9536f0275afee9514a5069652476b281503",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "9222dde81a5c9d6e5b1c6b4582ccbcf9260a3db2e89b210a6bba95ce2f2ee769",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "4243d0104dae1317ee2e333b4a180aa60504289ecfe9db1eb327bd999bbcafc0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-idx-07",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-idx-07.pdf",
+   "pdf_sha256": "f0000fe5d7f7f1b2e38e806c82812910e61acb06f44b9f814aad70132cbefb28",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 114,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "fe98f618d52d97e2d9d0a185c2989b3c6de880f4fcf3a9a9bd9c07c59f5148bf",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 155,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "1e7a6494814de8d123f02f97dedd82980f5b3216dd58f5721f1af21e5b393190",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "748d99270f1a83e2d419272d0794517feadd09336da85f45cf2cd14fd59c88c9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 181,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "7d74879eb13f2c4dface7ab48302aa94a038ebb9cb5c1ca4aa12e0712ee4964b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "40743aa9065931c5cf9b33ff60c0560b989a946f3258ec9765d94a1f6f020b71",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    }
+   ]
+  },
+  {
+   "case_id": "du-idx-08",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "du-idx-08.pdf",
+   "pdf_sha256": "a28dcd898032f3a518c980751ab0dfd6ed0f47849569769f23e9c0a0a68ee56f",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 215,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "142cfc9fb7da716cebb4f90302b1156761cebbadf99bd4050a2fcee4fd81f51d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "9a1082e0db4b69fc2627fdf650587b9fdd0537073b61dc829b38d53a235838ec",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "25e814a9a8248bf7729bee0aeb3a038965d5732f0de283219ee8741253644b0e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 124,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "372d882807f705e6a2a07c9a31a636f97a096cd227a692da9c2976b8cf8868ed",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "cbe87e6c62942a75b1c3dd5af9b3169e82b8be00abe86f304bdd710bdebd500a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "6713937de03f67e59ad04529aa73e370f19853a76ea1acb9c9ae1d3c18988024",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "a64e7daad140a91483389147350fa7e671eaaf676ba5166070637fe5a9b6ad11",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 173,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "35a758a870f2fb0af2c9255d714b0bac79ef12d0bc077d2961bdba885ebe193f",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-dsp-09",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-dsp-09.pdf",
+   "pdf_sha256": "8127b5a834e78a453fea103d10ded96af74e9b59b072e72b526868ad3c825700",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "2b58cfca74b68ebc1b97145ab25243cf5319b749278badca784acbb0f680b991",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "a9ee46b5f5245b68e26e8be776d2a59c1f49b977ed3226a416a0fbda754f4e3b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "96ea9321926b12c5357d302fea76a9086b712e1b20d9186700fbfcbc2af624f8",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 180,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "476b7c51c201548771bfe86d97f52192280abd5c010b7cd0c35272f010c8d5ae",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-dsp-10",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "du-dsp-10.pdf",
+   "pdf_sha256": "91c835c7a30ca235163f66759624fef13fc60e7e13352ee0294e2a08704c9a4d",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 179,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "e0bec2e7e0da7d24bb897ec180050716259065f47178e3ce291549970bc1ebe0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "a75f78ec5ac62d0fbe67ebd55a53e5601f2bfc60a5b55c4d4195abda1702b638",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "0596f58083c521641f4b60fd5acfcd598e951809ac4e875b72bc6fe717760020",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 177,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "8d13dedc66a3bab6be59daf699ddc33d223b92ea63bda42d7102c9666d5c72b5",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "91509d1118aaa4f7298c1aea8f5b3987c0a61ba10e93a5c5e45960e45e7f7c51",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    }
+   ]
+  },
+  {
+   "case_id": "du-dsp-11",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "du-dsp-11.pdf",
+   "pdf_sha256": "20653731381b6eea10267dd69a0a105666536ab12a05f33d30fff73471ab4ea1",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "922f1ef1da885e451118ca3406f245e45d5b4af39f258b3ddc73a155fc98fc8a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "11f69dbce78a87fc3941aaf31be45943135b639c3b56dd3021b9b2d01f680246",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "6839caa441e6afc635e55b17f0746093bde759aae99c5e2cb7a20190cbeb727b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "8bd2a6d605c1656e9e964a2e0598e4b00984dc3dcaa6c72636cb2adb1a6c1b28",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "53e423429d2fc0167a8f215b58f9c459133b0e5d98fbaa6cbc61dafbdf314ac4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 182,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "0b0d1ba021f0587316f9c11ee0824a121d8548d823e939ab206177ac423b91c1",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "du-dsp-12",
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "du-dsp-12.pdf",
+   "pdf_sha256": "725ec8fd55e74735bcda6da631ef1639488ce1976aa5c24f7bb0164d88114ab4",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 220,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "4105840b31c9bd465e9e0c3836225d1edd897e388a367fabc5937ee286be5ce4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "e2cd09d25f2aa52370cac43dde5b3b06c2076e42b3a21efab281731f53ac8b8e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "b4067636616015355e319e215ea239f1e300c8c2a52a7a1f2fb393f9238c57be",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "6d92af899173dd50165971d2337fb446d79250ab2e272b79e30d39143b52a86f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "0d2a4c40ca314b97e7b1102bf0d7135dd4cd17f163c44d62859ba456c02fce2e",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "d7961769b81f8839f0ed8b430139e673af375f5b4111a72371df8d4aa16dae89",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "7efbfe39c21c48f7ea38c3fb742de603b588524ae0c4438ebdc2c8b31366da77",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 179,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "91ada7a669849024addeb866a37d150d2a6aae1cf23af421b4e13d5e1b3c4869",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-01",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-01.pdf",
+   "pdf_sha256": "ae451bd6f4a4a616c57af583c91f7b6f04a92407dbcb375c6aef91bda2b0be07",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 180,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "08295a7372c87b496dcf3a1a79499f081e28ae35a8b1f9eb8a65710a235d3b78",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "b908bb56e6a97529665b8183dd613b83b0f793c88b54617c2fec042e9f0f9c8c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 109,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "ed26ef8fed99f1819beb13b4e4735987258c67a2c3a9e7508caa31aa5daa822c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 153,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "5f97285c224c706e2db17aabd5519c0c5c4096bde9c095ec0ae5cfeb1271c679",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-02",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "un-ext-02.pdf",
+   "pdf_sha256": "df9894b04a5ce9aacc38bee6bb62c32c1e9f0d4a9bb5b2a17d235bcb5cac1608",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 209,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "c07e8a58bc8d2d8561500241dcbe0298b1c13d50376e10ef571e729634dac408",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "0dd7e0806abe839c8d07012239f81bc5f92ad44e0443f71e03c2fc976f3d3b31",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 126,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "cb0b9fb5abbc8bef1b3d2a62f820355b86a77651dfdc9dc25dcfb1990aff0860",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 130,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "ae97068db344caaa33ae0f7c1b7ebe24ca9bfe776b62987aee5abae715a2914a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "131d06abf0ff2b27d7528bc4ec3e03409af118e68be833b94dd6075a4f80c0b0",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-03",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-03.pdf",
+   "pdf_sha256": "b87fddf4858caea467758dac1748b4b41a41ef655fcbca11fdbec75253d95f36",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 178,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "921f5a22efbf3f781fb2268ab262eb9571b1d9b156c8ad2aa843e35380447a80",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 125,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "d8bab40af5545387574900fbe4a1fcc5069191377c77b38fae19432fd322f6d4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "f2afe831af0910862150ea9556c954e44a38da104ab6f9fdc5253fdb8f51ec10",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "c8ea4f9cbb742220c84309eebfa57a1f1643d539e26f09a9f694b6cdc943e68b",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "89e04cc84d7bd0ab09a22898c7afdf9cc1085a8e43185ad933cac3a5a7e58f54",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "d5ee50bdc7ab14f3aa3b2171881f9dcf7ddcaa369b8118ec528276f1fc6d067b",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-04",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "un-ext-04.pdf",
+   "pdf_sha256": "436e3232431b9638e140592161f89f5d3be10709b151f9e009b8400fd952b324",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 189,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "f967cca646b82e923cc640925551b24cbf60a15e6768ded6b3c32dc4e6cf2a99",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 146,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "d34f0ecb21adf41cd954b69b791529f1de9577496bbc1f2a7a54bce376f62abf",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 112,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "6d4ec5c19f249cb06c94526131ff1328b60dd626266ed281aafbafd6d7157a87",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "619420501e8fdd940640503bd2b61a8ece694f0ac7e52a3839acc58f2710a6d1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "fba1b06484ecc4b54f90b097718f34c0c38d96ab67329ba8b76fb65725f9061a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "77db84811fa5459fd616d29b4bc62414bbac7dd9c9bc27cc1a4604b9bd71a075",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 119,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "cf9fc75dd209b276fc7509a48e871765b82225a9bd19f1685425a60baf9cfb50",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-05",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-05.pdf",
+   "pdf_sha256": "164d27b1cdc2d33ff81c563371427164326e9dc1ed678f36ef598726cc42c85f",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 218,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "2d6cf587f024667643ad69d9bb41be1bbc1a871f235cf2ee94a40e6b09834be9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "142b5e8639a9b1a2b908004ab072d8b263a2b73386b03f7eb7bdf193d49be7d4",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "11f678651e418e72b85d45a34dd091a886e15152a90fb4e45419abea6ce9b68f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 147,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "252cdeebeb5bedd798d362bd41551bec78e1a1661e9d82e7dd03ece7a19f7833",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-06",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "un-ext-06.pdf",
+   "pdf_sha256": "81e504b125431cf61d3afff6bd384e2bee986cd327c67ddfd0cb86741d5795e4",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 170,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "05c366c0a9f7795b81213708f93d9b39d19b3a06223aaf7d4bc47438c7f36e3f",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "text",
+     "text_sha256": "a59da848b244d0042c468870500a1539e05a244573965b3219835345ae255b69",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "e6daf6444f75a5c33739dcb4a67608e0035312e0894b69798add4090c476e2d3",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 139,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "d416b748c7cbd3ab6b863c0041c5acc9e562c6f496824eb55d21b565a58f94b9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 141,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "886cb71fb79c693c2a84c91036191ce54cc9d5a9768ca4d891eef0f077a4397c",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-07",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-07.pdf",
+   "pdf_sha256": "c147598c9bb5af2c00453a711706a486c6316982ba8171dde3aa02e26a04ab1e",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 182,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "2bb01607bf9f18c26d41aeb6a74a62684e77eec250e21b52e8ef442f3a6c3d63",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "67a05807dc03adbe9cd903d035dd68ae8a8006c4ad0f1657dc49b4d798a8aa67",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "b8a461b89aeed518747742ab122467ded49e6303bce9d8b6c7eb6eb10649a38d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "e584357a7edffa15e1369bae76c687d38123d2bf36558c95c74c145bf76c0d04",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 140,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "4cde293bbc8d7f36229639036deaba02891f7c02b3f22f38cd95390d22f4860c",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 123,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "0ebd5e6aa617ad864c6a855a52f4590fb1b9d1e73d9869c54cdedb3a39e7f0c4",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-08",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "un-ext-08.pdf",
+   "pdf_sha256": "02e48f53067a630049ebcc8e0a37bbacf41544538d881920e5d334e4a76886cb",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 202,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "2248d06103882a8fb2a333d56d7e4fd752199b22f1a9a7b63912efbad4d58ced",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 142,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "285d0d39f92093629d7f25e2dbd03af1ac75b682460b2d40080f03f2dd651c01",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 148,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "651fd40d1d5531c1e528103c4e02d2b2a0ebf07af4f0fcc07f43984fc0611bce",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "c6f91a48a9d571ab416e3ce20a161751edbbb7627a5dddc88e79f44f0864e8fd",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 111,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "c417e3eceafdc6758fe9f49e68c23305ffca1ed0dca081a8544c64136cdb09f0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 143,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "ffa183373544240c42b01916161eb08bcdb0b96d40375c12ba7368ccde9516bb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 120,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "cb5bcdfe86553cad173278b961e2f964bdf37aba40de01ec12cb9d1f4987158a",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-09",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 5,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-09.pdf",
+   "pdf_sha256": "be632f97afa2b688d3fe85c9c747666a05a8a62eaed1239c1774315189193955",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "1",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "f4cdd5edd0acde325d7c9f653fd16d4605b901ecd6b8b7093f22016f8b792189",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "e2a67f464f1e5a906867a0042961cdd833b3af9f0c736422534ab96a4a5706e1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 112,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "3bd2b8b4363ab37ef3a53f8989627211b15740b2a2c96b838ecba2963bea85d1",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "f808fba2488d9db3b4fa537ae178784370dabfe52aa40a9439d6a5747d747a9f",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-10",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 6,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "iii",
+    "iv",
+    "v",
+    "vi"
+   ],
+   "pdf_file_name": "un-ext-10.pdf",
+   "pdf_sha256": "19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 176,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "5938df6847fd73ae74c2abb45092ff48401655bd6f2f5f4bd987b09132e381ac",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "text",
+     "text_sha256": "3a73ba0b14069fcd4fadb68cd8e1de9af6f1f396efc28c60573467f091b2b033",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "iii",
+     "spec_kind": "image",
+     "text_sha256": null,
+     "text_state": "IMAGE_ONLY"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "iv",
+     "spec_kind": "text",
+     "text_sha256": "db401f5f2cc17569a2d74475faa35d6abcaf242849a832c4b91c66f5c7e83204",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 131,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "v",
+     "spec_kind": "text",
+     "text_sha256": "1ec81536e67556fd6606c1bf0c42b1b37856d4db8cdaea11e74acce2f48cfdb5",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "vi",
+     "spec_kind": "text",
+     "text_sha256": "ed40190ab6b06349a9d9f21a1daf86cd76b4825d5d6655eb1ccc3109714301cb",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-11",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 7,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "i",
+    "ii",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "pdf_file_name": "un-ext-11.pdf",
+   "pdf_sha256": "5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 206,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "i",
+     "spec_kind": "text",
+     "text_sha256": "5be8b8b223c24800eabdfc7a16a6fedb88ed806bc5ccf3c8794b4ceac6674a35",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 0,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "ii",
+     "spec_kind": "blank",
+     "text_sha256": null,
+     "text_state": "EMPTY"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "1",
+     "spec_kind": "text",
+     "text_sha256": "6064c243300ea8e23a5a3b01c591b6965c9283c5b3fbe493f648176c5c0507e0",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 113,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "2",
+     "spec_kind": "text",
+     "text_sha256": "761e03902c180bfacb7507957f6b52c2acba0629146b68c9fae7ab7e78afc513",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 122,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "3",
+     "spec_kind": "text",
+     "text_sha256": "e0bb09fa1de41a309ca3c7b03df84834e27d76f0e383890141cabb4e3469d6fb",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 149,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "4",
+     "spec_kind": "text",
+     "text_sha256": "f35d82ca3e7b6d76ee42ccb7a6ce9efcfe9feaee40c000330102a476bba95025",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 154,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "5",
+     "spec_kind": "text",
+     "text_sha256": "f67d13401a1c10370e810fdf0958217e70cff252cf03a464fd164dceae972462",
+     "text_state": "TEXT"
+    }
+   ]
+  },
+  {
+   "case_id": "un-ext-12",
+   "fault_type": "UNLOCATABLE",
+   "page_count": 8,
+   "page_count_matches_manifest": true,
+   "page_count_matches_pypdf_reader": true,
+   "page_labels": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8"
+   ],
+   "pdf_file_name": "un-ext-12.pdf",
+   "pdf_sha256": "f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d",
+   "pdf_sha256_matches_manifest": true,
+   "records": [
+    {
+     "extracted_chars": 192,
+     "pdf_page_index0": 0,
+     "pdf_page_label": "A-1",
+     "spec_kind": "text",
+     "text_sha256": "ff1d3d52b4f64b25d2608ab318474bb666e41068f9f612bcdcd01733390b7c34",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 145,
+     "pdf_page_index0": 1,
+     "pdf_page_label": "A-2",
+     "spec_kind": "text",
+     "text_sha256": "32b9751f21fbb75d335d8f59dc61c69548c1814d15f1a69dcbeff9b0c1154f42",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 110,
+     "pdf_page_index0": 2,
+     "pdf_page_label": "A-3",
+     "spec_kind": "text",
+     "text_sha256": "c0859e325806d3e0764ed0939736f63e533808e409581c7045c816a93702b18d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 121,
+     "pdf_page_index0": 3,
+     "pdf_page_label": "A-4",
+     "spec_kind": "text",
+     "text_sha256": "c9b845f9cf0389fcd4189b6b7d98cf839b3997a2ad7ac446838582a7268d45a9",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 4,
+     "pdf_page_label": "A-5",
+     "spec_kind": "text",
+     "text_sha256": "854c1cb710288dfe04a51056218e80ed1be1bb9988e7ea5e01be666cc135f01d",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 151,
+     "pdf_page_index0": 5,
+     "pdf_page_label": "A-6",
+     "spec_kind": "text",
+     "text_sha256": "1104a6bb7af51ab076e66d0828172193289987b512f5b2be3ba33e6fe7213e3a",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 117,
+     "pdf_page_index0": 6,
+     "pdf_page_label": "A-7",
+     "spec_kind": "text",
+     "text_sha256": "ce8bae7296d59e1183181757fc5c0d5f2d23744dbf65b3794c8d1b2518a43b97",
+     "text_state": "TEXT"
+    },
+    {
+     "extracted_chars": 118,
+     "pdf_page_index0": 7,
+     "pdf_page_label": "A-8",
+     "spec_kind": "text",
+     "text_sha256": "aa9fa604a49b184ae01dcb2e5562f7d2a32cd992f2c7198924ccf5779c512495",
+     "text_state": "TEXT"
+    }
+   ]
+  }
+ ],
+ "task": "P026-T003"
+}

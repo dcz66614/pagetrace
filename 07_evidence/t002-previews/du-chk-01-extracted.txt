@@ -1,0 +1,17 @@
+=== du-chk-01 page index0 0 (label 1, kind blank) ===
+
+=== du-chk-01 page index0 2 (label 3, kind text) ===
+页码基准混用是引用系统最常见的隐性缺陷。
+The viewer expects one-based pages; the index stores zero-based.
+重复出现的句子必须保留全部候选页，不得猜一页。
+重复句du-chk-01：本句在多页出现，须保留全部候选页。
+第 3 页 / 共 5 页
+
+=== du-chk-01 page index0 4 (label 5, kind text) ===
+扫描件页面没有文本层，引用无法用文本定位。
+A blank page is evidence of nothing, and must be marked as such.
+同一句话出现在多页时，消歧需要可靠的页级锚点。
+重复句du-chk-01：本句在多页出现，须保留全部候选页。
+对照引文du-chk-01：本页引用页码正确无误。
+第 5 页 / 共 5 页
+

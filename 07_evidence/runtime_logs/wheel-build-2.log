@@ -1,0 +1,13 @@
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: pagetrace
+  Building wheel for pagetrace (pyproject.toml): started
+  Building wheel for pagetrace (pyproject.toml): finished with status 'done'
+  Created wheel for pagetrace: filename=pagetrace-0.1.0-py3-none-any.whl size=58619 sha256=4bb67527f4241058c3a6fa1e674b894e8621d9ea7c69df64a0a237dd36ce9e7b
+  Stored in directory: /home/hatch/workspace/p026-pagetrace-t013/04_source/source/.tmp/pip-ephem-wheel-cache-4k30csgu/wheels/38/20/7c/3c2cfb8d66761fbcbfeb4ae4508520e3977e4ad8ec16fe4189
+Successfully built pagetrace

@@ -1,0 +1,90 @@
+=== T009 evidence run: 2026-11-17T01:31:45Z ===
+
+### 1. CLI help
+usage: pagetrace.cli [-h] {analyze,validate,s0,clean} ...
+
+PageTrace (P026): PDF citation page-drift detector. Exit codes (PROJECT_BOOK
+§12.2): 0 success, 1 analysis completed with FAIL/UNKNOWN, 2 invalid input, 3
+internal error, 4 S0 gate failed.
+
+positional arguments:
+  {analyze,validate,s0,clean}
+    analyze             analyse one PDF + trace bundle; write report.json +
+                        report.html
+    validate            validate a trace bundle (schema + runtime rules); with
+                        --pdf also verify the document hash. No analysis.
+    s0                  run the frozen 48-case S0 gate (exit 0 pass, 4 gate
+                        failed, 2 invalid input, 3 internal error)
+    clean               delete one explicitly named PageTrace output directory
+                        (marker-checked; use --dry-run to preview)
+
+options:
+  -h, --help            show this help message and exit
+EXIT=0
+
+### 2. validate OK (po-ext-01)
+bundle: fixtures/bundles/po-ext-01.trace.json
+schema: pagetrace.bundle/v1
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf)
+citations: 2
+stages present: extraction, chunking, indexing, display
+stages missing: (none)
+stages empty: (none)
+document hash: MATCH (fixtures/pdfs/po-ext-01.pdf)
+VALID: bundle is a well-formed pagetrace.bundle/v1 document
+EXIT=0
+
+### 3. validate hash mismatch (po-ext-01 bundle + po-ext-02 pdf)
+INPUT ERROR: document sha256 mismatch for 'po-ext-01.pdf': bundle claims 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf, actual PDF bytes hash to cd21f24937ef8668acdc6f935767a98ba649b3cfc0c31c22ff52a58e78648a8f (INPUT_HASH_MISMATCH)
+bundle: fixtures/bundles/po-ext-01.trace.json
+schema: pagetrace.bundle/v1
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf)
+citations: 2
+stages present: extraction, chunking, indexing, display
+stages missing: (none)
+stages empty: (none)
+EXIT=2
+
+### 4. analyze fault case po-ext-01
+report.json: .tmp/out/case-001/report.json
+report.html: .tmp/out/case-001/report.html (12733 bytes)
+report assets: report.css, report.js
+snippets: short excerpts only (default; use --include-snippets for full quote text)
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9…)
+citations: 2 (PASS 1, FAIL 1, UNKNOWN 0, AMBIGUOUS 0)
+  cite-fault: FAIL_PAGE_OFFSET fault=PAGE_OFFSET first_fault_stage=extraction
+  cite-control: PASS
+RESULT: FAIL/UNKNOWN present — analysis completed, exit 1 (not a tool crash)
+EXIT=1
+
+### 5. output listing
+.tmp/out/case-001/assets/report.css
+.tmp/out/case-001/assets/report.js
+.tmp/out/case-001/report.html
+.tmp/out/case-001/report.json
+
+### 6. report.json summary
+{
+  "ambiguous_count": 0,
+  "fail_count": 1,
+  "normalized_result_sha256": "41c788da1909fdcaadb29673ba20d11c537906ac8f3f057847c1cdbb2eed87be",
+  "pass_count": 1,
+  "total_citations": 2,
+  "unknown_count": 0
+}
+results: [('cite-fault', 'FAIL_PAGE_OFFSET'), ('cite-control', 'PASS')]
+
+### 7. clean --dry-run
+TARGET: /home/hatch/workspace/p026-pagetrace-t009/04_source/source/.tmp/out/case-001
+contains 3 entries: assets, report.html, report.json
+DRY RUN: nothing deleted
+EXIT=0
+
+### 8. clean real delete
+TARGET: /home/hatch/workspace/p026-pagetrace-t009/04_source/source/.tmp/out/case-001
+contains 3 entries: assets, report.html, report.json
+REMOVED: /home/hatch/workspace/p026-pagetrace-t009/04_source/source/.tmp/out/case-001
+EXIT=0

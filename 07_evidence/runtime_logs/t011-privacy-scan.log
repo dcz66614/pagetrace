@@ -1,0 +1,13 @@
+PRIVACY SCAN (T011) — real artefacts scanned for /home/, hostname, timestamps, sentinel tail, quote_text in JSON, http(s) URLs
+hostname=htch-runtime home=/home/hatch
+PASS  05_tests/s0-final/S0_REPORT.json bytes=169431 sha256=878dea97d6a89a628702f0c9f3fb850ff08710c0a943e1597cc0978d464b3d35 leaks=none
+PASS  05_tests/s0-final/replay-hashes.txt bytes=6500 sha256=d17399e2ba52a98941c4be244621a665d65d2ee58cb03be5c8662115a7bddab9 leaks=none
+PASS  05_tests/s0/S0_REPORT.json bytes=169431 sha256=d1dbc71b8ecb86f25f77aae5f3cd94f7cb137c361cad0d109b720e8dfef561ae leaks=none
+PASS  07_evidence/t011-report/report.json bytes=2153 sha256=f71de849625c294c4dc65ec0e8c137cadc4069c543be0ce95444ff2b73b801b0 leaks=none
+PASS  07_evidence/t011-report/report.html bytes=12733 sha256=84a316c5d3f1cd663e9a07431c378594a2a23ffb3ba703fa3ec4a3d5116725ab leaks=none
+PASS  07_evidence/t011-report/assets/report.css bytes=5349 sha256=3e6ea8a033f7a05131492baacf495b192add66217c446be39fe56a5fada707f1 leaks=none
+PASS  07_evidence/t011-report/assets/report.js bytes=15660 sha256=009da7e9e624c210210ea86ed5beeb0c37a888d05fac385b53706ee07d00a965 leaks=none
+PASS  07_evidence/t011-report-full/report.html bytes=297917 sha256=95201e217bc11c43f5a1dbd13206711c94285ae5829c49a4a25a32f157725a2c leaks=none
+PASS  07_evidence/runtime_logs/t011-pytest-full.log bytes=752 sha256=604bfa99b3798172ba248a702b8acc6cf1fe7bf4fd5f16a0351b2b349ca533fb leaks=none
+PASS  07_evidence/runtime_logs/t011-s0-final.log bytes=438 sha256=5a25f863baeb5b8110e36d1ada16fbbb07343a5ddbbb642e1eb58446fa2ec936 leaks=none
+TOTAL LEAKS: 0

@@ -1,0 +1,116 @@
+T011 — 集成、端到端与隐私回归 证据汇总
+================================================
+TASK_ID: P026-T011 | BASE_COMMIT: a6bc9c8 | BRANCH: task/t011
+WORKTREE: ~/workspace/p026-pagetrace-t011
+DATE: 2026-11-17 ~01:40–02:10 GMT
+
+=== 验收命令与退出码（PACKAGE_ROOT = 04_source/source/，.venv/bin/python，TMPDIR=$PWD/.tmp） ===
+
+1. TMPDIR=$PWD/.tmp .venv/bin/python -m pytest -q
+   -> exit 0; 639 passed in 199.43s (0:03:19)
+   -> 含 T011 新增 25 测试（tests/e2e 13 + tests/privacy 12），全通过。
+   -> 完整日志：07_evidence/runtime_logs/t011-pytest-full.log
+      （摘要副本：05_tests/test-results/t011-pytest.log）
+2. PYTHONPATH=$PWD/src PYTHONSAFEPATH=1 TMPDIR=$PWD/.tmp \
+     .venv/bin/python -m pagetrace.cli s0 --suite fixtures --repeat 100 \
+     --out 05_tests/s0-final
+   -> exit 0; S0_RESULT: PASS；耗时约 12.2 分钟（高于任务卡约 7 分钟的估计，
+      原因是 100 次重放 × 生产+Oracle 全量 48 组；与硬件共享 1.5 CPU 有关）
+   -> 日志：07_evidence/runtime_logs/t011-s0-final.log
+
+=== S0 final（05_tests/s0-final/）与基线复核 ===
+
+S0_RESULT: PASS
+detection: 48/48（每类 12/12：PAGE_OFFSET / PAGE_METADATA_MISSING /
+  DUPLICATE_TEXT_AMBIGUITY / UNLOCATABLE）
+first_fault_stage: 48/48
+control_false_positives: 0
+parity: 96/96 citations matching, 0 field mismatches
+replay: 1 unique hash over 100 replays（replay-hashes.txt 100 行，唯一值 1 个）
+uncertainty_not_pass violations: 0
+golden_agreement mismatches: 0
+golden_sha256: 417e3ed38e9086bbb8092593231d9ae9bcc3f058852bfcb678e6f6f5149f039c
+replay hash: 5195fc9a17e8fbae37a9975234ffccef31017bc8a68ce1f081a23315355f33f8
+  == 基线 05_tests/s0/S0_REPORT.json 的重放 hash，完全一致。
+counts / input_hashes 与基线逐项相等；整份报告与基线的唯一差异是
+base_commit（基线录于 5095c37，本次为 a6bc9c8），属预期内。
+
+=== E2E（tests/e2e/test_e2e.py，13 测试） ===
+
+- 四类故障各一例全链路：po-ext-01 FAIL_PAGE_OFFSET / mm-ext-01
+  FAIL_METADATA_MISSING / du-chk-01 FAIL_AMBIGUOUS /
+  un-ext-01 FAIL_UNLOCATABLE，analyze 均退出 1，report.json 合法
+  pagetrace.report/v1，fault/control 结果与预期一致，HTML + assets
+  齐全，源 PDF 不复制进输出目录。
+- 四栏字段齐全：嵌入 #report-data 中每条 entry 含 truth_pages /
+  extraction / chunk / index_record / display / stage_diffs /
+  verdict / fault_type / first_fault_stage / observed_page_value /
+  correct_pdf_page_number1 / correct_viewer_page1 等全部字段；
+  页面含 ①②③④ 栏标题与对照表。
+- 对照包退出 0（PASS 1 / FAIL 0）；两次运行 normalized_result_sha256
+  相同、report.json 与 report.html 字节一致。
+- 退出码矩阵：hash 不符退出 2（INPUT_HASH_MISMATCH，不写报告）；
+  PDF / trace 缺失退出 2。
+- DNS 阻断浏览器渲染（pytest 内）：headless shell
+  --host-resolver-rules=MAP * ~NOTFOUND 渲染 file:// 报告退出 0，
+  四栏与 po-ext-01/cite-fault 均在 DOM 中，DOM 无 http(s)://。
+
+=== 隐私回归（tests/privacy/test_privacy.py，12 测试） ===
+
+- JSON 报告永不含 quote_text（只有 quote_sha256），无论是否
+  --include-snippets；HTML 默认只含前 40 字摘要 + …，全文仅
+  --include-snippets 时出现。证明用 > 40 字唯一 sentinel 长引文
+  bundle（冻结夹具引文均 ≤ 40 字，默认摘要即全文是摘要规则本身，
+  测试中有显式断言）。
+- 扫描真实产物（report.json / report.html / assets / S0 报告 /
+  replay-hashes.txt / 日志）中的 /home/、主机名、时间戳：0 泄漏。
+  相对路径调用 CLI 时 stdout/stderr 同样 0 泄漏。
+  扫描日志：07_evidence/runtime_logs/t011-privacy-scan.log
+  （TOTAL LEAKS: 0；10 个文件逐项 PASS，含 SHA-256）。
+- 生产源码无 socket / urllib / requests / httpx / http.client；
+  报告无 http(s)://、fetch(、XMLHttpRequest、外部 <script src>；
+  输出目录无 PDF 副本，document 只记文件名 + SHA-256。
+
+=== 离线网络日志 ===
+
+headless shell --host-resolver-rules="MAP * ~NOTFOUND" --log-net-log
+渲染 07_evidence/t011-report/report.html：exit 0，7 个 net-log 事件，
+0 个 URL，0 个 http(s) URL；DOM 含四栏标题与 po-ext-01/cite-fault。
+日志：07_evidence/runtime_logs/t011-netlog.json
+（Chrome stderr 仅 dbus 套接字噪声与浏览器自身 SODA 组件更新 error 5，
+与页面无关；页面本身不发任何请求。）
+
+=== UI 截图（亲自目视确认） ===
+
+浏览器：Google Chrome for Testing 158.0.8127.18
+（headless shell 同版本；/opt/meta-chromium/chrome 无法独立启动，未用）
+- 07_evidence/screenshots/t011-report-desktop.png（1280×2000，单用例
+  po-ext-01 报告）：亲眼确认四栏齐全——① PDF 真值 ② 抽取
+  ③ 分片与索引 ④ 最终引用；对照表：错误页码 p.4 → 首错阶段 抽取
+  extraction → 正确来源位置 PDF 页号 p.3；stage diffs 1 条。
+  sha256 d874b90ce106deb6b1c6c9d65f95f05cb32332473080fc046949bf5a6848ef79
+- 07_evidence/screenshots/t011-report-narrow.png（390×844，96 条全量
+  报告窄屏）：列表、筛选与状态标签正常折叠显示，无横向溢出。
+  sha256 26f03471596bcc4f50f239cbbb56b83529fe76c1e3e4a02fbda15d3bc583a105
+- 07_evidence/screenshots/t011-report-desktop-full.png（1280×2400，
+  96 条全量报告顶部）：共 96 条引用 · PASS 48 · FAIL 48。
+  sha256 21cc5c2b1ceba249e2e4712a093c9ebf35290a1930a10b6909f7ade4dffbd70c
+全量报告：07_evidence/t011-report-full/report.html（96 条，检出 12/12×4，
+首错阶段 48/48，对照 PASS 48；重建一次 SHA-256 相同
+95201e217bc11c43f5a1dbd13206711c94285ae5829c49a4a25a32f157725a2c，确定性成立）
+单用例报告：07_evidence/t011-report/（po-ext-01，analyze 退出 1，预期内）
+
+=== 测试中发现并已在测试内修正的两处测试侧问题（非产品缺陷） ===
+
+1. headless shell 1248：空格形式的 --host-resolver-rules "MAP * ~NOTFOUND"
+   会被当成第二个目标而报 "Multiple targets are not supported"；须用
+   "=" 形式并优先用最新 1254 shell。测试已按此实现，见 TEST_PLAN §6。
+2. 隐私测试曾把本地相对 <script src="assets/report.js"> 误判为外部
+   请求；已改为只禁 http(s)/协议相对外部 src。
+
+=== 未改动 ===
+
+未改 Golden、核心算法、生产 UI、规格。只新增 tests/e2e/、
+tests/privacy/，新增 05_tests/TEST_PLAN.md、05_tests/test-results/、
+05_tests/s0-final/ 与 07_evidence/ 证据。未合并、未动 master、
+未上传 GitHub。

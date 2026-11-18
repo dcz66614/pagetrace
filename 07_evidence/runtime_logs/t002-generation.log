@@ -1,0 +1,45 @@
+=== T002 generation evidence log ===
+date(UTC): 2026-11-16T23:56:31Z
+base commit: 7cc3068  branch: task/t002
+
+--- run 1: python tools/generate_fixtures.py --out fixtures ---
+generated un-ext-11: UNLOCATABLE / extraction / near-miss-quote pages=7 sha=5c26f3613c33...
+generated un-ext-12: UNLOCATABLE / extraction / near-miss-quote pages=8 sha=f4bb6a31c691...
+cases=48 counts={'PAGE_OFFSET': 12, 'PAGE_METADATA_MISSING': 12, 'DUPLICATE_TEXT_AMBIGUITY': 12, 'UNLOCATABLE': 12}
+coverage={"control_citations_total": 48, "label_schemes_used": ["alpha-prefix", "decimal", "label-7", "roman", "roman-decimal"], "pdfs_with_blank_page": 24, "pdfs_with_chinese_text": 48, "pdfs_with_cross_page_split": 18, "pdfs_with_duplicate_sentence": 24, "pdfs_with_image_page": 16}
+
+--- run 2 (determinism check): --out .tmp/regen-evidence ---
+run2 exit=0
+DETERMINISM: 146/146 files byte-identical across two runs (diff empty)
+
+--- schema validation: all 48 bundles vs pagetrace.bundle/v1 ---
+BUNDLE SCHEMA: 48/48 valid
+
+--- previews: python tools/render_previews.py (2 cases per fault type) ---
+preview po-ext-01 p0 (blank)
+preview po-ext-01 p2 (text)
+preview po-ext-02 p0 (text)
+preview po-ext-02 p1 (text)
+preview mm-ext-01 p0 (blank)
+preview mm-ext-01 p2 (text)
+preview mm-ext-02 p0 (text)
+preview mm-ext-02 p1 (text)
+preview du-chk-01 p0 (blank)
+preview du-chk-01 p2 (text)
+preview du-chk-01 p4 (text)
+preview du-chk-02 p0 (text)
+preview du-chk-02 p1 (text)
+preview du-chk-02 p3 (text)
+preview du-chk-02 p4 (text)
+preview un-ext-01 p0 (text)
+preview un-ext-01 p2 (image)
+preview un-ext-02 p0 (text)
+preview un-ext-02 p1 (image)
+previews written to ../../07_evidence/t002-previews
+
+--- acceptance: python -m pytest tests/unit/test_fixture_manifest.py -q ---
+.......                                                                  [100%]
+7 passed in 12.30s
+--- full unit suite: python -m pytest tests/unit/ -q ---
+......................................................                   [100%]
+54 passed in 13.68s

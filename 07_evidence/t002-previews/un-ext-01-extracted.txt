@@ -1,0 +1,11 @@
+=== un-ext-01 page index0 0 (label 1, kind text) ===
+PageTrace 合成案例 un-ext-01
+故障类别 UNLOCATABLE · 首错阶段 extraction
+本页讨论引用页码漂移的成因与检测方法。
+A blank page is evidence of nothing, and must be marked as such.
+物理页与印刷页号本是两套不同的计数体系。
+第 1 页 / 共 5 页
+
+=== un-ext-01 page index0 2 (label 3, kind image) ===
+[image page: embedded raster extracted from PDF; visible text: '关键引文un-ext-01：页码漂移误导定位。']
+

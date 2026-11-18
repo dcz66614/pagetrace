@@ -1,0 +1,30 @@
+=== du-chk-02 page index0 0 (label i, kind text) ===
+PageTrace 合成案例 du-chk-02
+故障类别 DUPLICATE_TEXT_AMBIGUITY · 首错阶段 chunking
+读者按引用页码查找原文时常常翻到错误页面。
+A citation is only as good as the page it points to.
+扫描件页面没有文本层，引用无法用文本定位。
+第 1 页 / 共 6 页
+
+=== du-chk-02 page index0 1 (label ii, kind text) ===
+页码基准混用是引用系统最常见的隐性缺陷。
+The viewer expects one-based pages; the index stores zero-based.
+跨页断句需要把前后两页都记为来源页集合。
+重复句du-chk-02：本句在多页出现，须保留全部候选页。
+第 2 页 / 共 6 页
+
+=== du-chk-02 page index0 3 (label iv, kind text) ===
+扫描件页面没有文本层，引用无法用文本定位。
+A blank page is evidence of nothing, and must be marked as such.
+展示层把零基索引直接交给阅读器必然错位一页。
+重复句du-chk-02：本句在多页出现，须保留全部候选页。
+对照引文du-chk-02：本页引用页码正确无误。
+第 4 页 / 共 6 页
+
+=== du-chk-02 page index0 4 (label v, kind text) ===
+空白页应当诚实标记，不应被当作内容页处理。
+When a sentence spans two pages, both pages are the source.
+本页讨论引用页码漂移的成因与检测方法。
+重复句du-chk-02：本句在多页出现，须保留全部候选页。
+第 5 页 / 共 6 页
+

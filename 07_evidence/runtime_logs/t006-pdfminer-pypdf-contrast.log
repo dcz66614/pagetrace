@@ -1,0 +1,43 @@
+pages compared: 312
+pages identical after spec folding: 281
+pages differing: 31
+differing pages (case, page_index0):
+  po-ext-02 page 0
+  po-chk-04 page 0
+  po-chk-06 page 0
+  po-idx-07 page 0
+  po-idx-08 page 0
+  po-dsp-10 page 0
+  po-dsp-12 page 0
+  mm-ext-02 page 0
+  mm-chk-04 page 0
+  mm-chk-06 page 0
+  mm-idx-08 page 0
+  mm-dsp-10 page 0
+  mm-dsp-12 page 0
+  du-chk-02 page 0
+  du-chk-03 page 0
+  du-chk-04 page 0
+  du-idx-06 page 0
+  du-idx-08 page 0
+  du-dsp-10 page 0
+  du-dsp-12 page 0
+  un-ext-01 page 0
+  un-ext-02 page 0
+  un-ext-03 page 0
+  un-ext-04 page 0
+  un-ext-05 page 0
+  un-ext-06 page 0
+  un-ext-07 page 0
+  un-ext-08 page 0
+  un-ext-10 page 0
+  un-ext-11 page 0
+  un-ext-12 page 0
+character multiset differences (pypdf minus pdfminer): {"' '": 31, "'·'": 31}
+citation quotes containing U+00B7: 0 (of 96)
+conclusion: the ONLY divergence is pdfminer.six dropping U+00B7 (MIDDLE DOT);
+every differing page is a page-0 header line '故障类别 X · 首错阶段 Y'.
+No quote contains U+00B7, so quote location is unaffected. The Oracle
+verifies page-0 bundle hashes through the documented single-glyph repair
+(oracle.textnorm.hash_matches_page); 30 cases use it, and the one other
+differing page (po-ext-02 page 0) is a genuine hash swap, still caught.

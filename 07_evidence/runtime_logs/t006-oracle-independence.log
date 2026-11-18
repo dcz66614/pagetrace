@@ -1,0 +1,94 @@
+T006 Oracle independence evidence — 2026-11-17T00:37:46Z
+Base commit: 482152e (branch task/t006)
+
+== 1. Import statements in tests/oracle/ (grep -rnE import/from pagetrace|pypdf|src) ==
+(no matches — Oracle imports neither pagetrace nor pypdf)
+
+== 2. All imports in tests/oracle/ modules (incl. test file: pytest/json/sys are test-only) ==
+10:from __future__ import annotations
+12:from dataclasses import dataclass, field
+221:        from pdfminer.pdfparser import PDFParser
+27:from __future__ import annotations
+29:from __future__ import annotations
+29:import hashlib
+30:import json
+31:from dataclasses import dataclass
+31:import re
+32:from __future__ import annotations
+32:import sys
+33:from pathlib import Path
+34:import io
+35:from dataclasses import dataclass
+35:import pytest
+37:from __future__ import annotations
+37:from pdfminer.high_level import extract_text_to_fp
+38:from pdfminer.layout import LAParams
+39:from pdfminer.pdfdocument import PDFDocument
+39:import hashlib
+40:from pdfminer.pdfpage import PDFPage
+40:import re
+41:from pdfminer.pdftypes import PDFStream, resolve1
+41:import unicodedata
+43:from oracle import api as oracle_api  # noqa: E402
+44:from oracle import attribute as oracle_attr  # noqa: E402
+45:from oracle import locate as oracle_locate  # noqa: E402
+46:from oracle import pdfread as oracle_pdfread  # noqa: E402
+47:from oracle import textnorm as oracle_textnorm  # noqa: E402
+67:from __future__ import annotations
+69:from dataclasses import dataclass, field
+
+== 3. AST import graph (stdlib / pdfminer / relative only) ==
+__init__.py: ['__future__']
+api.py: ['.attribute', '.locate', '.pdfread', '__future__', 'dataclasses']
+attribute.py: ['.locate', '.pdfread', '.textnorm', '__future__', 'dataclasses']
+locate.py: ['.textnorm', '__future__', 'dataclasses']
+pdfread.py: ['.textnorm', '__future__', 'dataclasses', 'io', 'pdfminer.high_level', 'pdfminer.layout', 'pdfminer.pdfdocument', 'pdfminer.pdfpage', 'pdfminer.pdfparser', 'pdfminer.pdftypes']
+textnorm.py: ['__future__', 'hashlib', 're', 'unicodedata']
+
+== 4. 'pagetrace' mentions in tests/oracle/ (docstrings/comments only — schema names, no code use) ==
+04_source/source/tests/oracle/__init__.py:6:``pagetrace`` or any production module.  The only things shared with
+04_source/source/tests/oracle/__init__.py:7:production are the JSON schemas (``pagetrace.bundle/v1``,
+04_source/source/tests/oracle/__init__.py:8:``pagetrace.golden/v1``) and the fixed input files themselves
+04_source/source/tests/oracle/__init__.py:25:(no ``pagetrace`` import anywhere under ``tests/oracle/``) and by the
+04_source/source/tests/oracle/api.py:3::func:`analyze_case` takes a PDF path and a ``pagetrace.bundle/v1``
+04_source/source/tests/oracle/api.py:7:``pagetrace`` or ``pypdf``.
+04_source/source/tests/oracle/attribute.py:4:``pagetrace.report/v1`` citation-result contract — never from the
+04_source/source/tests/oracle/attribute.py:94:    """Verdict for one citation, in ``pagetrace.report/v1`` shape."""
+04_source/source/tests/oracle/pdfread.py:6:``pypdf`` or ``pagetrace``; the pypdf path is used only by the
+
+== 5. Oracle defines its own functions (no production function is reused) ==
+Production function names that the Oracle does NOT define or call:
+  normalize_text: absent
+  compare_extraction: absent
+  analyze_bundle: absent
+  extract_pages: absent
+  load_pdf: absent
+  quote_sha256: present ONLY as a report-schema field name (see note below), never defined or called as a function
+Same-named identifiers the Oracle DOES define itself (own code, own algorithms):
+127:def audit_extraction(pages: list[OraclePage],
+350:def analyze_citation(*, citation: dict, bundle: dict,
+113:def locate_quote(page_texts: list[str], quote_text: str) -> OracleMatch:
+207:def read_pdf_pages(pdf_path: str) -> list[OraclePage]:
+49:def collapse_text(text: str) -> str:
+58:def fingerprint(text: str) -> str:
+82:def hash_matches_page(bundle_hash: str | None, page_text: str) -> tuple[bool, str | None]:
+Note: 'locate_quote'/'analyze_citation' are Oracle-owned definitions in oracle/locate.py and oracle/attribute.py (maximal prefix/suffix coverage; spec-table stage walk). 'quote_sha256' occurs only as a report-schema FIELD name (OracleMatch.quote_sha256 / OracleResult.quote_sha256), filled by oracle.textnorm.quote_fingerprint — never as a call into production.
+04_source/source/tests/oracle/attribute.py:97:    quote_sha256: str
+04_source/source/tests/oracle/attribute.py:369:        quote_sha256=match.quote_sha256,
+04_source/source/tests/oracle/locate.py:47:    quote_sha256: str
+
+== 6. Oracle test file imports (test-only; production is imported ONLY by the parity test, never by the Oracle) ==
+27:from __future__ import annotations
+29:import hashlib
+30:import json
+31:import re
+32:import sys
+33:from pathlib import Path
+35:import pytest
+43:from oracle import api as oracle_api  # noqa: E402
+44:from oracle import attribute as oracle_attr  # noqa: E402
+45:from oracle import locate as oracle_locate  # noqa: E402
+Parity test imports production (expected — it is the comparison, not the Oracle):
+40:from pagetrace.compare_stages import (  # noqa: E402
+42:from pagetrace.extract import extract_pdf  # noqa: E402
+43:from pagetrace.pdf_input import load_pdf  # noqa: E402

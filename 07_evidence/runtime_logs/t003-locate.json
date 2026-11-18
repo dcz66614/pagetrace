@@ -1,0 +1,1469 @@
+{
+ "cases": [
+  {
+   "case_id": "po-ext-01",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "plus-one-shift"
+  },
+  {
+   "case_id": "po-ext-02",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "minus-one-shift"
+  },
+  {
+   "case_id": "po-ext-03",
+   "control_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "expected_candidate_source_pages0": [
+     3
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "swap-with-distant-page"
+  },
+  {
+   "case_id": "po-chk-04",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "number1-used-as-index0"
+  },
+  {
+   "case_id": "po-chk-05",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "index0-minus-one"
+  },
+  {
+   "case_id": "po-chk-06",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "roman-label-read-as-number"
+  },
+  {
+   "case_id": "po-idx-07",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     0
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "plus-one-shift"
+  },
+  {
+   "case_id": "po-idx-08",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "minus-one-shift"
+  },
+  {
+   "case_id": "po-idx-09",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "label-A3-read-as-index3"
+  },
+  {
+   "case_id": "po-dsp-10",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "index0-passed-to-viewer"
+  },
+  {
+   "case_id": "po-dsp-11",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "plus-one-extra"
+  },
+  {
+   "case_id": "po-dsp-12",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3,
+     4
+    ],
+    "cross_page_spans": [
+     [
+      3,
+      4
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     3,
+     4
+    ],
+    "true_source_pages0": [
+     3,
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     0
+    ],
+    "expected_candidate_source_pages0": [
+     0
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_OFFSET",
+   "variant": "label-7-read-as-number1"
+  },
+  {
+   "case_id": "mm-ext-01",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "record-text-state-error"
+  },
+  {
+   "case_id": "mm-ext-02",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "record-hash-omitted"
+  },
+  {
+   "case_id": "mm-ext-03",
+   "control_quote": {
+    "candidate_source_pages0": [
+     6
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     6
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "record-omitted"
+  },
+  {
+   "case_id": "mm-chk-04",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "source-pages-emptied"
+  },
+  {
+   "case_id": "mm-chk-05",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "chunk-record-absent"
+  },
+  {
+   "case_id": "mm-chk-06",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "chunk-text-hash-omitted"
+  },
+  {
+   "case_id": "mm-idx-07",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     3
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "source-pages-emptied"
+  },
+  {
+   "case_id": "mm-idx-08",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "index-record-absent"
+  },
+  {
+   "case_id": "mm-idx-09",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2
+    ],
+    "expected_candidate_source_pages0": [
+     2
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "label-dropped-on-rebuild"
+  },
+  {
+   "case_id": "mm-dsp-10",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1
+    ],
+    "expected_candidate_source_pages0": [
+     1
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "display-record-absent"
+  },
+  {
+   "case_id": "mm-dsp-11",
+   "control_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "expected_candidate_source_pages0": [
+     3
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "page-value-missing"
+  },
+  {
+   "case_id": "mm-dsp-12",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "PAGE_METADATA_MISSING",
+   "variant": "viewer-page-missing"
+  },
+  {
+   "case_id": "du-chk-01",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     2,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-first"
+  },
+  {
+   "case_id": "du-chk-02",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     3
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-last"
+  },
+  {
+   "case_id": "du-chk-03",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     0
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     0,
+     5
+    ],
+    "expected_candidate_source_pages0": [
+     0,
+     5
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-middle"
+  },
+  {
+   "case_id": "du-chk-04",
+   "control_quote": {
+    "candidate_source_pages0": [
+     7
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     7
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "expected_candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-first-again"
+  },
+  {
+   "case_id": "du-idx-05",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     2,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-first"
+  },
+  {
+   "case_id": "du-idx-06",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     3
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-last"
+  },
+  {
+   "case_id": "du-idx-07",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     2,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-middle"
+  },
+  {
+   "case_id": "du-idx-08",
+   "control_quote": {
+    "candidate_source_pages0": [
+     7
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     7
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "expected_candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-last-again"
+  },
+  {
+   "case_id": "du-dsp-09",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     2,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     2,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-first"
+  },
+  {
+   "case_id": "du-dsp-10",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     3
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "expected_candidate_source_pages0": [
+     1,
+     3,
+     4
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-last"
+  },
+  {
+   "case_id": "du-dsp-11",
+   "control_quote": {
+    "candidate_source_pages0": [
+     6
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     6
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     4,
+     6
+    ],
+    "expected_candidate_source_pages0": [
+     4,
+     6
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-middle"
+  },
+  {
+   "case_id": "du-dsp-12",
+   "control_quote": {
+    "candidate_source_pages0": [
+     7
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     7
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "expected_candidate_source_pages0": [
+     0,
+     5,
+     7
+    ],
+    "match": true,
+    "span_status": "single_page"
+   },
+   "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+   "variant": "reduce-to-first-again"
+  },
+  {
+   "case_id": "un-ext-01",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "image-only-page"
+  },
+  {
+   "case_id": "un-ext-02",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "image-only-page"
+  },
+  {
+   "case_id": "un-ext-03",
+   "control_quote": {
+    "candidate_source_pages0": [
+     3
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     3
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "image-only-page"
+  },
+  {
+   "case_id": "un-ext-04",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "image-only-page"
+  },
+  {
+   "case_id": "un-ext-05",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "blank-page"
+  },
+  {
+   "case_id": "un-ext-06",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "blank-page"
+  },
+  {
+   "case_id": "un-ext-07",
+   "control_quote": {
+    "candidate_source_pages0": [
+     5
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "blank-page"
+  },
+  {
+   "case_id": "un-ext-08",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "blank-page"
+  },
+  {
+   "case_id": "un-ext-09",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     4
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "near-miss-quote"
+  },
+  {
+   "case_id": "un-ext-10",
+   "control_quote": {
+    "candidate_source_pages0": [
+     4,
+     5
+    ],
+    "cross_page_spans": [
+     [
+      4,
+      5
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     4,
+     5
+    ],
+    "true_source_pages0": [
+     4,
+     5
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "near-miss-quote"
+  },
+  {
+   "case_id": "un-ext-11",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0
+    ],
+    "cross_page_spans": [],
+    "match": true,
+    "span_status": "single_page",
+    "split_pages0": [],
+    "true_source_pages0": [
+     0
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "near-miss-quote"
+  },
+  {
+   "case_id": "un-ext-12",
+   "control_quote": {
+    "candidate_source_pages0": [
+     0,
+     1
+    ],
+    "cross_page_spans": [
+     [
+      0,
+      1
+     ]
+    ],
+    "match": true,
+    "span_status": "cross_page",
+    "split_pages0": [
+     0,
+     1
+    ],
+    "true_source_pages0": [
+     0,
+     1
+    ]
+   },
+   "fault_quote": {
+    "candidate_source_pages0": [],
+    "expected_candidate_source_pages0": [],
+    "match": true,
+    "span_status": "not_found"
+   },
+   "fault_type": "UNLOCATABLE",
+   "variant": "near-miss-quote"
+  }
+ ],
+ "task": "P026-T003"
+}

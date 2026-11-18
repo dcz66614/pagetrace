@@ -1,0 +1,9 @@
+S0_RESULT: PASS
+detection: 48/48 (by type: {'DUPLICATE_TEXT_AMBIGUITY': 12, 'PAGE_METADATA_MISSING': 12, 'PAGE_OFFSET': 12, 'UNLOCATABLE': 12})
+first_fault_stage: 48/48
+control_false_positives: 0
+parity: 96/96 citations matching, 0 field mismatches
+replay: 1 unique hash(es) over 100 replays
+uncertainty_not_pass violations: 0
+golden_agreement mismatches: 0
+golden_sha256: 9db9b16e1fd8e93a5a3e2a5cde39e09ade4acbc057ef0fe8550a037ccf60e353

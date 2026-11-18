@@ -1,0 +1,79 @@
+{
+  "case_id": "po-ext-01",
+  "document": {
+    "file_name": "po-ext-01.pdf",
+    "page_count": 5,
+    "sha256": "97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf"
+  },
+  "results": [
+    {
+      "candidate_source_pages0": [
+        2
+      ],
+      "citation_id": "cite-fault",
+      "citation_page_basis": "PDF_NUMBER_1",
+      "citation_page_value": 4,
+      "correct_pdf_page_number1": [
+        3
+      ],
+      "correct_viewer_page1": [
+        3
+      ],
+      "evidence": [
+        {
+          "downstream_value": "9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c",
+          "field": "text_sha256",
+          "note": "extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)",
+          "stage": "extraction",
+          "upstream_value": "3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"
+        }
+      ],
+      "expected_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "extraction",
+      "notes": [],
+      "observed_page_value": 4,
+      "quote_sha256": "dd42af760f4fa8e8d23ceb4916a3b139ae49d02943df90df72036a44326e765a",
+      "verdict": "FAIL_PAGE_OFFSET"
+    },
+    {
+      "candidate_source_pages0": [
+        4
+      ],
+      "citation_id": "cite-control",
+      "citation_page_basis": "PDF_NUMBER_1",
+      "citation_page_value": 5,
+      "correct_pdf_page_number1": [
+        5
+      ],
+      "correct_viewer_page1": [
+        5
+      ],
+      "evidence": [],
+      "expected_source_pages0": [
+        4
+      ],
+      "fault_type": null,
+      "first_fault_stage": null,
+      "notes": [],
+      "observed_page_value": 5,
+      "quote_sha256": "47347e11b6283796e7a69eef2d4c2923e596659425e925154874c4d04be2512b",
+      "verdict": "PASS"
+    }
+  ],
+  "schema": "pagetrace.report/v1",
+  "summary": {
+    "ambiguous_count": 0,
+    "fail_count": 1,
+    "normalized_result_sha256": "41c788da1909fdcaadb29673ba20d11c537906ac8f3f057847c1cdbb2eed87be",
+    "pass_count": 1,
+    "total_citations": 2,
+    "unknown_count": 0
+  },
+  "tool": {
+    "name": "pagetrace",
+    "version": "0.1.0"
+  }
+}

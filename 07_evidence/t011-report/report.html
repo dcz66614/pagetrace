@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PageTrace — 四栏联动报告</title>
+<link rel="stylesheet" href="assets/report.css">
+</head>
+<body>
+<header class="page-header">
+  <h1>PageTrace — 四栏联动报告</h1>
+  <p class="header-meta">单页离线 HTML · 无 CDN、远程字体、分析脚本或外部请求 · 数据来自真实 pagetrace.report/v1 运行结果（非 mock）</p>
+  <p class="header-meta">bundle schema：pagetrace.bundle/v1 · 报告 schema：pagetrace.report/v1 · 工具 pagetrace 0.1.0 · 状态颜色见 PROJECT_BOOK §9.3，状态同时以文字标出，不只靠颜色</p>
+  <p class="header-meta" id="report-summary">共 2 条引用 · PASS 1 · FAIL 1 · UNKNOWN 0 · AMBIGUOUS 0 · 需人工复核 0</p>
+</header>
+
+<main>
+  <section class="controls" aria-label="过滤与操作">
+    <label>故障类型
+      <select id="filter-fault">
+        <option value="">全部</option>
+        <option value="PAGE_OFFSET">页码偏移 PAGE_OFFSET</option>
+        <option value="PAGE_METADATA_MISSING">元数据缺失 PAGE_METADATA_MISSING</option>
+        <option value="DUPLICATE_TEXT_AMBIGUITY">重复文本歧义 DUPLICATE_TEXT_AMBIGUITY</option>
+        <option value="UNLOCATABLE">无法定位 UNLOCATABLE</option>
+      </select>
+    </label>
+    <label>首错阶段
+      <select id="filter-stage">
+        <option value="">全部</option>
+        <option value="extraction">抽取 extraction</option>
+        <option value="chunking">分片 chunking</option>
+        <option value="indexing">索引 indexing</option>
+        <option value="display">展示 display</option>
+      </select>
+    </label>
+    <label>状态
+      <select id="filter-status">
+        <option value="">全部</option>
+        <option value="pass">PASS（绿）</option>
+        <option value="fail">FAIL（红）</option>
+        <option value="amber">未确认 / 歧义 / 无法定位（琥珀）</option>
+      </select>
+    </label>
+    <button type="button" id="download-json">下载完整 report.json</button>
+    <button type="button" id="copy-json">复制当前引用 JSON 证据</button>
+  </section>
+
+  <p id="selected-summary" class="selected-summary" aria-live="polite"></p>
+
+  <section aria-label="引用列表">
+    <h2>引用列表（点击一条，四栏同步联动）</h2>
+    <div id="citation-list" class="citation-list" role="group" aria-label="引用"></div>
+  </section>
+
+  <section aria-label="四栏联动视图">
+    <h2>四栏联动视图</h2>
+    <p class="hint">点击任意一栏中的页行，可在四栏同步高亮同一物理页（0-based 索引）。“✓ 正确来源”行是真值来源页；“✕ 与真值不符”是该阶段观测到的漂移。</p>
+    <div class="columns">
+      <article class="column" id="col-truth" aria-label="PDF 真值栏">
+        <h3>① PDF 真值</h3>
+        <p class="col-note" id="col-truth-note"></p>
+        <div class="table-scroll">
+        <table>
+          <thead><tr><th>页（索引 0-based / 页号 1-based / label）</th><th>抽取状态</th><th>来源标记</th><th>本地 PDF 链接</th></tr></thead>
+          <tbody id="col-truth-body"></tbody>
+        </table>
+        </div>
+      </article>
+
+      <article class="column" id="col-extraction" aria-label="抽取栏">
+        <h3>② 抽取</h3>
+        <p class="col-note" id="col-extraction-note"></p>
+        <div class="table-scroll">
+        <table>
+          <thead><tr><th>页（索引 0-based / 页号 1-based）</th><th>文本状态</th><th>文本 hash</th><th>命中</th><th>差异</th></tr></thead>
+          <tbody id="col-extraction-body"></tbody>
+        </table>
+        </div>
+      </article>
+
+      <article class="column" id="col-chunk-index" aria-label="分片与索引栏">
+        <h3>③ 分片与索引</h3>
+        <p class="col-note" id="col-chunk-note"></p>
+        <h4>分片 chunk</h4>
+        <div class="table-scroll">
+        <table>
+          <thead><tr><th>chunk id</th><th>source page 集合</th><th>文本 hash</th><th>差异</th></tr></thead>
+          <tbody id="col-chunk-body"></tbody>
+        </table>
+        </div>
+        <h4>索引 index</h4>
+        <div class="table-scroll">
+        <table>
+          <thead><tr><th>index record id</th><th>source page 集合</th><th>保留的页元数据</th></tr></thead>
+          <tbody id="col-index-body"></tbody>
+        </table>
+        </div>
+      </article>
+
+      <article class="column" id="col-citation" aria-label="最终引用栏">
+        <h3>④ 最终引用</h3>
+        <div id="col-citation-body"></div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-label="错误页码对照表">
+    <h2>对照表：错误页码 → 首错阶段 → 正确来源位置</h2>
+    <div class="table-scroll">
+    <table class="comparison">
+      <thead><tr><th>引用</th><th>错误页码（观测值）</th><th>首错阶段</th><th>正确来源位置</th><th>verdict</th></tr></thead>
+      <tbody id="comparison-body"></tbody>
+    </table>
+    </div>
+  </section>
+
+  <section aria-label="阶段差异">
+    <h2>阶段差异（stage diffs）</h2>
+    <div id="stage-diff-list"></div>
+  </section>
+
+  <section aria-label="原始观测 JSON">
+    <h2>原始观测 JSON</h2>
+    <details>
+      <summary>展开当前引用的完整 JSON（可复制）</summary>
+      <pre id="raw-json"></pre>
+    </details>
+  </section>
+</main>
+
+<footer>
+  <p>PageTrace 离线报告：本页只呈现 pagetrace.report/v1 的真实运行结果，不改算法门槛、不阻断 S0；若表现不清晰，保留 JSON 输出并重做 UI，不让 UI 缺陷影响 S0 核心。</p>
+</footer>
+
+<script id="report-data" type="application/json">{"bundle_schema":"pagetrace.bundle/v1","entries":[{"candidate_source_pages0":[2],"case_id":"po-ext-01","chunk":{"chunk_id":"c-fault","source_page_indices0":[3],"text_sha256":"dd42af760f4fa8e8d23ceb4916a3b139ae49d02943df90df72036a44326e765a"},"citation_id":"cite-fault","citation_page_basis":"PDF_NUMBER_1","correct_pdf_page_number1":[3],"correct_viewer_page1":[3],"display":{"citation_id":"cite-fault","citation_page_basis":"PDF_NUMBER_1","citation_page_value":4,"viewer_page1":4},"document":{"file_name":"po-ext-01.pdf","page_count":5,"sha256":"97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf"},"entry_id":"po-ext-01/cite-fault","expected_source_pages0":[2],"extraction":[{"pdf_page_index0":0,"pdf_page_label":"1","text_sha256":null,"text_state":"EMPTY"},{"pdf_page_index0":1,"pdf_page_label":"2","text_sha256":"8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7","text_state":"TEXT"},{"pdf_page_index0":2,"pdf_page_label":"3","text_sha256":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","text_state":"TEXT"},{"pdf_page_index0":3,"pdf_page_label":"4","text_sha256":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","text_state":"TEXT"},{"pdf_page_index0":4,"pdf_page_label":"5","text_sha256":"6c896df0e9848a00ce560aa27d919dcef24dd26ad7221884746d08d96c4c01b0","text_state":"TEXT"}],"extraction_diffs":[{"downstream_value":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","field":"text_sha256","kind":"hash_mismatch","note":"extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)","pdf_page_index0":2,"stage":"extraction","upstream_value":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"},{"downstream_value":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","field":"text_sha256","kind":"hash_mismatch","note":"extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)","pdf_page_index0":3,"stage":"extraction","upstream_value":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c"}],"fault_type":"PAGE_OFFSET","first_fault_stage":"extraction","index_record":{"pdf_page_label":"4","record_id":"v-fault","source_page_indices0":[3]},"notes":[],"observed_page_value":4,"quote_sha256":"dd42af760f4fa8e8d23ceb4916a3b139ae49d02943df90df72036a44326e765a","quote_text":"关键引文po-ext-01：页码漂移误导定位。","stage_diffs":[{"downstream_value":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","field":"text_sha256","note":"extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)","stage":"extraction","upstream_value":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"}],"truth_pages":[{"pdf_page_index0":0,"pdf_page_label":"1","text_sha256":null,"text_state":"EMPTY"},{"pdf_page_index0":1,"pdf_page_label":"2","text_sha256":"8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7","text_state":"TEXT"},{"pdf_page_index0":2,"pdf_page_label":"3","text_sha256":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","text_state":"TEXT"},{"pdf_page_index0":3,"pdf_page_label":"4","text_sha256":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","text_state":"TEXT"},{"pdf_page_index0":4,"pdf_page_label":"5","text_sha256":"6c896df0e9848a00ce560aa27d919dcef24dd26ad7221884746d08d96c4c01b0","text_state":"TEXT"}],"verdict":"FAIL_PAGE_OFFSET"},{"candidate_source_pages0":[4],"case_id":"po-ext-01","chunk":{"chunk_id":"c-control","source_page_indices0":[4],"text_sha256":"47347e11b6283796e7a69eef2d4c2923e596659425e925154874c4d04be2512b"},"citation_id":"cite-control","citation_page_basis":"PDF_NUMBER_1","correct_pdf_page_number1":[5],"correct_viewer_page1":[5],"display":{"citation_id":"cite-control","citation_page_basis":"PDF_NUMBER_1","citation_page_value":5,"viewer_page1":5},"document":{"file_name":"po-ext-01.pdf","page_count":5,"sha256":"97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf"},"entry_id":"po-ext-01/cite-control","expected_source_pages0":[4],"extraction":[{"pdf_page_index0":0,"pdf_page_label":"1","text_sha256":null,"text_state":"EMPTY"},{"pdf_page_index0":1,"pdf_page_label":"2","text_sha256":"8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7","text_state":"TEXT"},{"pdf_page_index0":2,"pdf_page_label":"3","text_sha256":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","text_state":"TEXT"},{"pdf_page_index0":3,"pdf_page_label":"4","text_sha256":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","text_state":"TEXT"},{"pdf_page_index0":4,"pdf_page_label":"5","text_sha256":"6c896df0e9848a00ce560aa27d919dcef24dd26ad7221884746d08d96c4c01b0","text_state":"TEXT"}],"extraction_diffs":[{"downstream_value":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","field":"text_sha256","kind":"hash_mismatch","note":"extraction text_sha256 for page 2 does not match the honest extraction (text of another page attached?)","pdf_page_index0":2,"stage":"extraction","upstream_value":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1"},{"downstream_value":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","field":"text_sha256","kind":"hash_mismatch","note":"extraction text_sha256 for page 3 does not match the honest extraction (text of another page attached?)","pdf_page_index0":3,"stage":"extraction","upstream_value":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c"}],"fault_type":null,"first_fault_stage":null,"index_record":{"pdf_page_label":"5","record_id":"v-control","source_page_indices0":[4]},"notes":[],"observed_page_value":5,"quote_sha256":"47347e11b6283796e7a69eef2d4c2923e596659425e925154874c4d04be2512b","quote_text":"对照引文po-ext-01：本页引用页码正确无误。","stage_diffs":[],"truth_pages":[{"pdf_page_index0":0,"pdf_page_label":"1","text_sha256":null,"text_state":"EMPTY"},{"pdf_page_index0":1,"pdf_page_label":"2","text_sha256":"8e534a38b1b68025beddfecd7bd757e6145157ba251ef3ff8dc802a63c34d9a7","text_state":"TEXT"},{"pdf_page_index0":2,"pdf_page_label":"3","text_sha256":"3aa9712445bbab6b7d69ca0368e349c42514e92959aa7c97e48dfa82b1bfc6e1","text_state":"TEXT"},{"pdf_page_index0":3,"pdf_page_label":"4","text_sha256":"9030819870f0541f2263033a61e15a5fb764788cc2bd2015740bc47d87818b5c","text_state":"TEXT"},{"pdf_page_index0":4,"pdf_page_label":"5","text_sha256":"6c896df0e9848a00ce560aa27d919dcef24dd26ad7221884746d08d96c4c01b0","text_state":"TEXT"}],"verdict":"PASS"}],"pdf_dir":null,"schema":"pagetrace.report/v1","summary":{"ambiguous_count":0,"by_fault_type":{"PAGE_OFFSET":1},"fail_count":1,"needs_manual_review_count":0,"pass_count":1,"total_citations":2,"unknown_count":0},"title":"PageTrace — 四栏联动报告","tool":{"name":"pagetrace","version":"0.1.0"}}</script>
+<script src="assets/report.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+=== un-ext-02 page index0 0 (label i, kind text) ===
+PageTrace 合成案例 un-ext-02
+故障类别 UNLOCATABLE · 首错阶段 extraction
+读者按引用页码查找原文时常常翻到错误页面。
+When a sentence spans two pages, both pages are the source.
+扫描件页面没有文本层，引用无法用文本定位。
+重复句un-ext-02：本句在多页出现，须保留全部候选页。
+第 1 页 / 共 6 页
+
+=== un-ext-02 page index0 1 (label ii, kind image) ===
+[image page: embedded raster extracted from PDF; visible text: '关键引文un-ext-02：页码漂移误导定位。']
+

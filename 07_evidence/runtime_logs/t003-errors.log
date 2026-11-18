@@ -1,0 +1,11 @@
+P026-T003 abnormal-input log (controlled PdfInputError expected)
+
+missing-file: PdfInputError reason=FILE_NOT_FOUND :: [FILE_NOT_FOUND] PDF file not found: /home/hatch/workspace/p026-pagetrace/04_source/source/.tmp/no-such.pdf
+corrupt-bytes: PdfInputError reason=CORRUPT :: [CORRUPT] PDF cannot be parsed: Stream has ended unexpectedly
+empty-file: PdfInputError reason=CORRUPT :: [CORRUPT] PDF cannot be parsed: Cannot read an empty file
+truncated-pdf: PdfInputError reason=CORRUPT :: [CORRUPT] PDF cannot be parsed: Stream has ended unexpectedly
+encrypted-pdf: PdfInputError reason=ENCRYPTED :: [ENCRYPTED] PDF is encrypted; no password support in this tool (no OCR, no decryption attempted)
+oversize-50MiB-plus-1: PdfInputError reason=TOO_LARGE :: [TOO_LARGE] PDF is 52428801 bytes, over the limit of 52428800 bytes
+oversize-by-limit-100B: PdfInputError reason=TOO_LARGE :: [TOO_LARGE] PDF is 5239 bytes, over the limit of 100 bytes
+over-pages-limit: PdfInputError reason=TOO_MANY_PAGES :: [TOO_MANY_PAGES] PDF has 5 pages, over the limit of 1
+directory-not-file: PdfInputError reason=NOT_A_FILE :: [NOT_A_FILE] PDF path is not a file: /home/hatch/workspace/p026-pagetrace/04_source/source/.tmp

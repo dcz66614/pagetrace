@@ -1,0 +1,164 @@
+/* P026 PageTrace T005 prototype styles — PROJECT_BOOK §9.3.
+ * PASS neutral green, FAIL red, AMBIGUOUS / UNLOCATABLE / UNKNOWN amber,
+ * SKIPPED grey. Status is always shown as text in the badge as well, never
+ * by colour alone. No remote fonts or external resources. */
+:root {
+  --pass-fg: #1b5e20;
+  --pass-bg: #e8f5e9;
+  --pass-border: #2e7d32;
+  --fail-fg: #b71c1c;
+  --fail-bg: #fdecea;
+  --fail-border: #c62828;
+  --amber-fg: #7a4a00;
+  --amber-bg: #fff3d6;
+  --amber-border: #b26a00;
+  --skipped-fg: #424242;
+  --skipped-bg: #f5f5f5;
+  --skipped-border: #616161;
+  --ink: #212121;
+  --muted: #616161;
+  --line: #bdbdbd;
+  --correct-bg: #e8f5e9;
+  --diff-bg: #fdecea;
+  --selected-bg: #e3f2fd;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto;
+  max-width: 1600px;
+  padding: 16px 24px 48px;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+h1 { font-size: 22px; margin: 0 0 8px; }
+h2 { font-size: 18px; margin: 28px 0 8px; }
+h3 { font-size: 16px; margin: 0 0 8px; }
+h4 { font-size: 14px; margin: 12px 0 4px; }
+.prototype-tag {
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+.header-meta { color: var(--muted); margin: 2px 0; font-size: 14px; }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fafafa;
+}
+.controls label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
+.controls select, .controls button { font: inherit; padding: 6px 8px; }
+.controls button { cursor: pointer; }
+:focus-visible { outline: 3px solid #1565c0; outline-offset: 2px; }
+.selected-summary { font-weight: 700; margin: 16px 0 0; }
+.hint { color: var(--muted); margin: 4px 0 12px; }
+
+.citation-list { display: flex; flex-direction: column; gap: 8px; }
+.citation-item {
+  display: grid;
+  grid-template-columns: 260px 340px 220px 1fr;
+  gap: 8px;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+.citation-item.selected { border: 2px solid #1565c0; background: var(--selected-bg); }
+.citation-id { font-weight: 700; }
+.citation-quote { color: var(--muted); }
+
+/* Four-column linked view: 4 columns at desktop width (readable at 1280px),
+ * 2 columns mid-width, stacked cards on narrow screens (§9.4). */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.column {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px;
+  min-width: 0;
+}
+.col-note { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #e0e0e0; padding: 5px 7px; text-align: left; vertical-align: top; }
+thead th { background: #f5f5f5; }
+code { font-size: 12px; overflow-wrap: anywhere; }
+
+/* Row highlights shared across the four columns. */
+.page-row { cursor: pointer; }
+.row-correct { background: var(--correct-bg); }
+.row-candidate { background: #fff8e1; }
+.row-correct.row-candidate { background: #f1f8e9; }
+.row-diff { background: var(--diff-bg); }
+.row-selected { outline: 2px solid #1565c0; outline-offset: -2px; }
+
+/* Status badges — §9.3. Text label is part of the badge. */
+.badge {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+.status-pass { color: var(--pass-fg); background: var(--pass-bg); border-color: var(--pass-border); }
+.status-fail { color: var(--fail-fg); background: var(--fail-bg); border-color: var(--fail-border); }
+.status-amber { color: var(--amber-fg); background: var(--amber-bg); border-color: var(--amber-border); }
+.status-skipped { color: var(--skipped-fg); background: var(--skipped-bg); border-color: var(--skipped-border); }
+
+.tag { font-weight: 700; font-size: 12px; }
+.tag-correct { color: var(--pass-fg); }
+.tag-candidate { color: #6d4c00; }
+.tag-diff { color: var(--fail-fg); }
+.cell-wrong { color: var(--fail-fg); font-weight: 700; }
+.cell-correct { color: var(--pass-fg); font-weight: 700; }
+.cell-unknown { color: var(--amber-fg); font-weight: 700; }
+.comparison td { font-size: 14px; }
+
+#col-citation-body dl { margin: 0; }
+#col-citation-body dt { font-weight: 700; color: var(--muted); margin-top: 8px; }
+#col-citation-body dt:first-child { margin-top: 0; }
+#col-citation-body dd { margin: 0; overflow-wrap: anywhere; }
+.empty-note { color: var(--muted); }
+pre {
+  background: #fafafa;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px;
+  overflow: auto;
+  max-height: 480px;
+  font-size: 12px;
+}
+details summary { cursor: pointer; font-weight: 700; }
+footer { margin-top: 32px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+@media (max-width: 1279px) {
+  .columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .citation-item { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  body { padding: 12px; }
+  .columns { grid-template-columns: 1fr; }
+  .citation-item { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,9 @@
+=== po-ext-01 page index0 0 (label 1, kind blank) ===
+
+=== po-ext-01 page index0 2 (label 3, kind text) ===
+页码基准混用是引用系统最常见的隐性缺陷。
+The viewer expects one-based pages; the index stores zero-based.
+重复出现的句子必须保留全部候选页，不得猜一页。
+关键引文po-ext-01：页码漂移误导定位。
+第 3 页 / 共 5 页
+
