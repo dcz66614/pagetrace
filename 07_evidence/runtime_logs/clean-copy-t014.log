@@ -1,0 +1,65 @@
+Tue Nov 17 02:51:53 UTC 2026
+=== CLI --help ===
+usage: pagetrace.cli [-h] {analyze,validate,s0,clean} ...
+
+PageTrace (P026): PDF citation page-drift detector. Exit codes (PROJECT_BOOK
+§12.2): 0 success, 1 analysis completed with FAIL/UNKNOWN, 2 invalid input, 3
+internal error, 4 S0 gate failed.
+
+positional arguments:
+  {analyze,validate,s0,clean}
+    analyze             analyse one PDF + trace bundle; write report.json +
+                        report.html
+    validate            validate a trace bundle (schema + runtime rules); with
+                        --pdf also verify the document hash. No analysis.
+    s0                  run the frozen 48-case S0 gate (exit 0 pass, 4 gate
+                        failed, 2 invalid input, 3 internal error)
+    clean               delete one explicitly named PageTrace output directory
+                        (marker-checked; use --dry-run to preview)
+
+options:
+  -h, --help            show this help message and exit
+HELP_EXIT=0
+=== validate ===
+bundle: fixtures/bundles/po-ext-01.trace.json
+schema: pagetrace.bundle/v1
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf)
+citations: 2
+stages present: extraction, chunking, indexing, display
+stages missing: (none)
+stages empty: (none)
+document hash: MATCH (fixtures/pdfs/po-ext-01.pdf)
+VALID: bundle is a well-formed pagetrace.bundle/v1 document
+VALIDATE_EXIT=0
+=== analyze ===
+report.json: /tmp/t014-clean/out-po-ext-01/report.json
+report.html: /tmp/t014-clean/out-po-ext-01/report.html (12733 bytes)
+report assets: report.css, report.js
+snippets: short excerpts only (default; use --include-snippets for full quote text)
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9…)
+citations: 2 (PASS 1, FAIL 1, UNKNOWN 0, AMBIGUOUS 0)
+  cite-fault: FAIL_PAGE_OFFSET fault=PAGE_OFFSET first_fault_stage=extraction
+  cite-control: PASS
+RESULT: FAIL/UNKNOWN present — analysis completed, exit 1 (not a tool crash)
+ANALYZE_EXIT=1
+assets
+report.html
+report.json
+report schema: pagetrace.report/v1
+verdicts: ['FAIL_PAGE_OFFSET', 'PASS']
+Tue Nov 17 02:51:59 UTC 2026
+=== s0 --repeat 1 (clean copy) ===
+S0_RESULT: PASS
+detection: 48/48 (by type: {'DUPLICATE_TEXT_AMBIGUITY': 12, 'PAGE_METADATA_MISSING': 12, 'PAGE_OFFSET': 12, 'UNLOCATABLE': 12})
+first_fault_stage: 48/48
+control_false_positives: 0
+parity: 96/96 citations matching, 0 field mismatches
+replay: 1 unique hash(es) over 1 replays
+uncertainty_not_pass violations: 0
+golden_agreement mismatches: 0
+golden_sha256: 417e3ed38e9086bbb8092593231d9ae9bcc3f058852bfcb678e6f6f5149f039c
+S0_CLEAN_EXIT=0
+Tue Nov 17 02:52:07 UTC 2026
+5195fc9a17e8fbae37a9975234ffccef31017bc8a68ce1f081a23315355f33f8

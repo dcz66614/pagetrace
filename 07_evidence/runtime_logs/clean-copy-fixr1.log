@@ -1,0 +1,75 @@
+FIX-R1 clean-copy run log — 2026-11-17 ~03:50-03:52 UTC
+Setup: /tmp/fixr1-clean; pkg = copy of the CURRENT working tree 04_source/source (post-FIX-R1, incl. SMOKE_PASS fix + lock-based install steps), NOT the T014 source-release.zip (which predates the fix). Fresh venv; install exactly per HOW_TO_REPRODUCE.md §4 as updated (pip install -r pkg/requirements.lock, then pip install -e ./pkg --no-deps).
+
+=== date ===
+Tue Nov 17 03:50:11 UTC 2026
+=== venv ===
+VENV_OK
+=== pip install -r pkg/requirements.lock ===
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: typing_extensions, rpds-py, pypdf, Pygments, pycparser, pluggy, Pillow, packaging, iniconfig, charset-normalizer, attrs, reportlab, referencing, pytest, cffi, jsonschema-specifications, cryptography, pdfminer.six, jsonschema
+Successfully installed Pillow-13.0.0 Pygments-2.21.0 attrs-26.1.0 cffi-2.1.1 charset-normalizer-3.5.2 cryptography-50.0.2 iniconfig-2.3.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 packaging-26.3 pdfminer.six-20260107 pluggy-1.7.0 pycparser-3.12 pypdf-7.1.0 pytest-9.2.0 referencing-0.37.0 reportlab-5.1.0 rpds-py-2026.9.1 typing_extensions-4.16.0
+=== pip install -e ./pkg --no-deps ===
+Successfully built pagetrace
+Installing collected packages: pagetrace
+Successfully installed pagetrace-0.1.0
+=== versions ===
+pypdf 7.1.0
+pdfminer.six 20260107
+jsonschema 4.26.0
+pytest 9.2.0
+=== freeze check vs lock ===
+jsonschema==4.26.0
+pdfminer.six==20260107
+pypdf==7.1.0
+pytest==9.2.0
+reportlab==5.1.0
+
+=== help ===
+HELP_EXIT=0
+=== validate ===
+bundle: pkg/fixtures/bundles/po-ext-01.trace.json
+schema: pagetrace.bundle/v1
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf)
+citations: 2
+stages present: extraction, chunking, indexing, display
+stages missing: (none)
+stages empty: (none)
+document hash: MATCH (pkg/fixtures/pdfs/po-ext-01.pdf)
+VALID: bundle is a well-formed pagetrace.bundle/v1 document
+VALIDATE_EXIT=0
+=== analyze ===
+report.json: /tmp/fixr1-clean/out-po-ext-01/report.json
+report.html: /tmp/fixr1-clean/out-po-ext-01/report.html (12733 bytes)
+report assets: report.css, report.js
+snippets: short excerpts only (default; use --include-snippets for full quote text)
+case_id: po-ext-01
+document: po-ext-01.pdf (5 pages, sha256 97d1f68a573e09c9…)
+citations: 2 (PASS 1, FAIL 1, UNKNOWN 0, AMBIGUOUS 0)
+  cite-fault: FAIL_PAGE_OFFSET fault=PAGE_OFFSET first_fault_stage=extraction
+  cite-control: PASS
+RESULT: FAIL/UNKNOWN present — analysis completed, exit 1 (not a tool crash)
+ANALYZE_EXIT=1
+assets
+report.html
+report.json
+schema: pagetrace.report/v1 verdicts: []
+=== s0 --repeat 1 ===
+INPUT ERROR: suite dir not found: pkg/fixtures
+S0_EXIT=2
+=== s0 --repeat 1 (re-run from pkg dir, per doc §4: cd pkg; --suite fixtures) ===
+S0_RESULT: SMOKE_PASS
+note: smoke run only (1 replay(s)); formal S0 PASS requires --repeat 100
+detection: 48/48 (by type: {'DUPLICATE_TEXT_AMBIGUITY': 12, 'PAGE_METADATA_MISSING': 12, 'PAGE_OFFSET': 12, 'UNLOCATABLE': 12})
+first_fault_stage: 48/48
+control_false_positives: 0
+parity: 96/96 citations matching, 0 field mismatches
+replay: 1 unique hash(es) over 1 replays
+uncertainty_not_pass violations: 0
+golden_agreement mismatches: 0
+golden_sha256: 417e3ed38e9086bbb8092593231d9ae9bcc3f058852bfcb678e6f6f5149f039c
+S0_EXIT=0
+json s0_result: SMOKE_PASS | replay: ['5195fc9a17e8fbae37a9975234ffccef31017bc8a68ce1f081a23315355f33f8']
+
+Note: the first s0 attempt from /tmp/fixr1-clean with '--suite pkg/fixtures' exited 2 (INPUT ERROR: suite dir not found) — --suite resolves against PACKAGE_ROOT, so the doc's 'cd pkg; --suite fixtures' form is the correct one; the doc was already written that way and needed no change.

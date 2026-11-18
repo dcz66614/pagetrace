@@ -1,0 +1,348 @@
+{
+    "$defs": {
+        "chunk_record": {
+            "additionalProperties": false,
+            "properties": {
+                "chunk_id": {
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "source_page_indices0": {
+                    "$ref": "#/$defs/source_page_indices0"
+                },
+                "text_sha256": {
+                    "description": "SHA-256 of the chunk text, or null when the chunk carries no text.",
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "chunk_id",
+                "source_page_indices0"
+            ],
+            "type": "object"
+        },
+        "citation": {
+            "additionalProperties": false,
+            "properties": {
+                "chunk_id": {
+                    "description": "Chunk the quote came from, or null when the trace does not record one.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "citation_id": {
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "index_record_id": {
+                    "description": "Index record the quote came from, or null when the trace does not record one.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "quote_text": {
+                    "description": "Verbatim quoted text as cited. Matching uses the PROJECT_BOOK \u00a74.2 normalisation (NFC, LF, collapsed whitespace); case, punctuation and full/half-width differences are preserved.",
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "citation_id",
+                "quote_text",
+                "chunk_id",
+                "index_record_id"
+            ],
+            "type": "object"
+        },
+        "display_record": {
+            "additionalProperties": false,
+            "description": "What the display layer claims. viewer_page1 is the value actually handed to the PDF viewer and must be 1-based; when citation_page_basis is UNKNOWN, viewer_page1 must be null (no conversion is allowed).",
+            "if": {
+                "properties": {
+                    "citation_page_basis": {
+                        "const": "UNKNOWN"
+                    }
+                },
+                "required": [
+                    "citation_page_basis"
+                ]
+            },
+            "properties": {
+                "citation_id": {
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "citation_page_basis": {
+                    "description": "What citation_page_value means. UNKNOWN means the source did not state its basis; the value must be kept verbatim and flagged UNKNOWN_PAGE_BASIS, never guessed.",
+                    "enum": [
+                        "PDF_INDEX_0",
+                        "PDF_NUMBER_1",
+                        "PDF_LABEL",
+                        "UNKNOWN"
+                    ]
+                },
+                "citation_page_value": {
+                    "description": "Raw page value as emitted by the external system. Integer for PDF_INDEX_0 / PDF_NUMBER_1, string for PDF_LABEL, any of the three (or null) for UNKNOWN. The value/basis type agreement is a runtime rule (docs/PAGE_SEMANTICS.md R-08).",
+                    "maxLength": 64,
+                    "minLength": 1,
+                    "type": [
+                        "integer",
+                        "string",
+                        "null"
+                    ]
+                },
+                "viewer_page1": {
+                    "description": "Page number handed to the viewer, 1-based, or null when unknown / not convertible. 0 is never valid.",
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "citation_id",
+                "citation_page_value",
+                "citation_page_basis",
+                "viewer_page1"
+            ],
+            "then": {
+                "description": "UNKNOWN basis must not be converted: viewer_page1 is forced to null.",
+                "properties": {
+                    "viewer_page1": {
+                        "const": null
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "extraction_record": {
+            "additionalProperties": false,
+            "properties": {
+                "pdf_page_index0": {
+                    "$ref": "#/$defs/page_index0"
+                },
+                "pdf_page_label": {
+                    "$ref": "#/$defs/page_label"
+                },
+                "text_sha256": {
+                    "description": "SHA-256 of the extracted page text (normalised form per PROJECT_BOOK \u00a74.2), or null when text_state is not TEXT.",
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "text_state": {
+                    "description": "TEXT: extractable text present. EMPTY: blank page, honestly marked. IMAGE_ONLY: scanned/image page, no text layer. ERROR: extraction failed for this page.",
+                    "enum": [
+                        "TEXT",
+                        "EMPTY",
+                        "IMAGE_ONLY",
+                        "ERROR"
+                    ]
+                }
+            },
+            "required": [
+                "pdf_page_index0",
+                "text_state"
+            ],
+            "type": "object"
+        },
+        "index_record": {
+            "additionalProperties": false,
+            "properties": {
+                "pdf_page_label": {
+                    "$ref": "#/$defs/page_label"
+                },
+                "record_id": {
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "source_page_indices0": {
+                    "$ref": "#/$defs/source_page_indices0"
+                }
+            },
+            "required": [
+                "record_id",
+                "source_page_indices0"
+            ],
+            "type": "object"
+        },
+        "page_index0": {
+            "description": "Physical PDF page index, 0-based. Range [0, page_count-1] is enforced at runtime against document.page_count (JSON Schema cannot compare two fields).",
+            "minimum": 0,
+            "type": "integer"
+        },
+        "page_label": {
+            "description": "PDF page label string, e.g. 'i', 'iv', 'A-3'. Null when the PDF defines no label. Labels are looked up, never arithmetically converted (PROJECT_BOOK \u00a74.1).",
+            "maxLength": 64,
+            "minLength": 1,
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "page_number1": {
+            "description": "Human 1-based physical page number. Strictly pdf_page_index0 + 1. Never computed from a label.",
+            "minimum": 1,
+            "type": "integer"
+        },
+        "sha256_hex": {
+            "description": "Lowercase hex SHA-256.",
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+        },
+        "source_page_indices0": {
+            "description": "Physical PDF pages (0-based) a chunk / index record covers. Must be sorted ascending, de-duplicated, non-negative and in range at runtime; the schema enforces type, non-negativity and uniqueness, but not ordering (JSON Schema cannot express ordering).",
+            "items": {
+                "$ref": "#/$defs/page_index0"
+            },
+            "type": "array",
+            "uniqueItems": true
+        }
+    },
+    "$id": "pagetrace.bundle/v1",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "PageTrace case bundle (P026, PROJECT_BOOK.md v1.0.0 \u00a76.2-\u00a76.3). Frozen by T001. Canonical page identity is pdf_page_index0 (0-based). A bare field named 'page' is forbidden anywhere: every object sets additionalProperties:false and 'page' is not a listed property, so any bare 'page' fails validation. Cross-field rules the schema cannot express (index < page_count, sorted source_page_indices0, basis/value type agreement, viewer_page1 recomputation) are runtime rules in docs/PAGE_SEMANTICS.md and are enforced by the analyzer, not by this schema.",
+    "properties": {
+        "case_id": {
+            "description": "Case identifier, e.g. 'sample-offset-display-001'.",
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+            "type": "string"
+        },
+        "citations": {
+            "description": "Citations to check. Each citation carries the quote text; the page value it claims lives in stages.display, never as a bare 'page'.",
+            "items": {
+                "$ref": "#/$defs/citation"
+            },
+            "type": "array"
+        },
+        "document": {
+            "additionalProperties": false,
+            "properties": {
+                "file_name": {
+                    "description": "PDF file name only (no directory, no absolute path).",
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "page_count": {
+                    "description": "Number of physical PDF pages. Must equal the real PDF page count. Maximum 500 is the PROJECT_BOOK \u00a713 default refusal threshold.",
+                    "maximum": 500,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "sha256": {
+                    "description": "Lowercase hex SHA-256 of the exact PDF bytes. Must match the real file or the run fails with INPUT_HASH_MISMATCH (PROJECT_BOOK \u00a76.3).",
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "file_name",
+                "sha256",
+                "page_count"
+            ],
+            "type": "object"
+        },
+        "page_semantics": {
+            "additionalProperties": false,
+            "properties": {
+                "canonical_field": {
+                    "const": "pdf_page_index0",
+                    "description": "Canonical page identity field. Always 'pdf_page_index0'."
+                },
+                "index_base": {
+                    "const": 0,
+                    "description": "pdf_page_index0 is 0-based."
+                },
+                "viewer_base": {
+                    "const": 1,
+                    "description": "viewer_page1 is 1-based."
+                }
+            },
+            "required": [
+                "canonical_field",
+                "index_base",
+                "viewer_base"
+            ],
+            "type": "object"
+        },
+        "schema": {
+            "const": "pagetrace.bundle/v1",
+            "description": "Schema identifier. Must match exactly; an unknown major version is rejected (PROJECT_BOOK \u00a76.3)."
+        },
+        "stages": {
+            "additionalProperties": false,
+            "description": "Stage snapshots. Each stage array is optional, but any absent stage MUST be listed in missing_stages; an empty array must never be passed off as 'stage checked and clean' (PROJECT_BOOK \u00a76.3).",
+            "properties": {
+                "chunking": {
+                    "items": {
+                        "$ref": "#/$defs/chunk_record"
+                    },
+                    "type": "array"
+                },
+                "display": {
+                    "items": {
+                        "$ref": "#/$defs/display_record"
+                    },
+                    "type": "array"
+                },
+                "extraction": {
+                    "description": "One record per physical PDF page, in pdf_page_index0 order.",
+                    "items": {
+                        "$ref": "#/$defs/extraction_record"
+                    },
+                    "type": "array"
+                },
+                "indexing": {
+                    "items": {
+                        "$ref": "#/$defs/index_record"
+                    },
+                    "type": "array"
+                },
+                "missing_stages": {
+                    "description": "Stages with no snapshot at all. Empty array means all four stages are present.",
+                    "items": {
+                        "enum": [
+                            "extraction",
+                            "chunking",
+                            "indexing",
+                            "display"
+                        ]
+                    },
+                    "type": "array",
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "missing_stages"
+            ],
+            "type": "object"
+        }
+    },
+    "required": [
+        "schema",
+        "case_id",
+        "document",
+        "page_semantics",
+        "stages",
+        "citations"
+    ],
+    "title": "pagetrace.bundle/v1",
+    "type": "object"
+}
