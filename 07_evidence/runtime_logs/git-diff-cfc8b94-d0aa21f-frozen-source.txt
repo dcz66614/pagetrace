@@ -1,0 +1,3273 @@
+diff --git a/04_source/source/contracts/pagetrace.bundle.v1.schema.json b/04_source/source/contracts/pagetrace.bundle.v1.schema.json
+index 731405f..a4e8519 100644
+--- a/04_source/source/contracts/pagetrace.bundle.v1.schema.json
++++ b/04_source/source/contracts/pagetrace.bundle.v1.schema.json
+@@ -1 +1 @@
+-{"$defs":{"chunk_record":{"additionalProperties":false,"properties":{"chunk_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"},"text_sha256":{"description":"SHA-256 of the chunk text, or null when the chunk carries no text.","pattern":"^[0-9a-f]{64}$","type":["string","null"]}},"required":["chunk_id","source_page_indices0"],"type":"object"},"citation":{"additionalProperties":false,"properties":{"chunk_id":{"description":"Chunk the quote came from, or null when the trace does not record one.","type":["string","null"]},"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"index_record_id":{"description":"Index record the quote came from, or null when the trace does not record one.","type":["string","null"]},"quote_text":{"description":"Verbatim quoted text as cited. Matching uses the PROJECT_BOOK §4.2 normalisation (NFC, LF, collapsed whitespace); case, punctuation and full/half-width differences are preserved.","minLength":1,"type":"string"}},"required":["citation_id","quote_text","chunk_id","index_record_id"],"type":"object"},"display_record":{"additionalProperties":false,"description":"What the display layer claims. viewer_page1 is the value actually handed to the PDF viewer and must be 1-based; when citation_page_basis is UNKNOWN, viewer_page1 must be null (no conversion is allowed).","if":{"properties":{"citation_page_basis":{"const":"UNKNOWN"}},"required":["citation_page_basis"]},"properties":{"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"citation_page_basis":{"description":"What citation_page_value means. UNKNOWN means the source did not state its basis; the value must be kept verbatim and flagged UNKNOWN_PAGE_BASIS, never guessed.","enum":["PDF_INDEX_0","PDF_NUMBER_1","PDF_LABEL","UNKNOWN"]},"citation_page_value":{"description":"Raw page value as emitted by the external system. Integer for PDF_INDEX_0 / PDF_NUMBER_1, string for PDF_LABEL, any of the three (or null) for UNKNOWN. The value/basis type agreement is a runtime rule (docs/PAGE_SEMANTICS.md R-08).","maxLength":64,"minLength":1,"type":["integer","string","null"]},"viewer_page1":{"description":"Page number handed to the viewer, 1-based, or null when unknown / not convertible. 0 is never valid.","minimum":1,"type":["integer","null"]}},"required":["citation_id","citation_page_value","citation_page_basis","viewer_page1"],"then":{"description":"UNKNOWN basis must not be converted: viewer_page1 is forced to null.","properties":{"viewer_page1":{"const":null}}},"type":"object"},"extraction_record":{"additionalProperties":false,"properties":{"pdf_page_index0":{"$ref":"#/$defs/page_index0"},"pdf_page_label":{"$ref":"#/$defs/page_label"},"text_sha256":{"description":"SHA-256 of the extracted page text (normalised form per PROJECT_BOOK §4.2), or null when text_state is not TEXT.","pattern":"^[0-9a-f]{64}$","type":["string","null"]},"text_state":{"description":"TEXT: extractable text present. EMPTY: blank page, honestly marked. IMAGE_ONLY: scanned/image page, no text layer. ERROR: extraction failed for this page.","enum":["TEXT","EMPTY","IMAGE_ONLY","ERROR"]}},"required":["pdf_page_index0","text_state"],"type":"object"},"index_record":{"additionalProperties":false,"properties":{"pdf_page_label":{"$ref":"#/$defs/page_label"},"record_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"}},"required":["record_id","source_page_indices0"],"type":"object"},"page_index0":{"description":"Physical PDF page index, 0-based. Range [0, page_count-1] is enforced at runtime against document.page_count (JSON Schema cannot compare two fields).","minimum":0,"type":"integer"},"page_label":{"description":"PDF page label string, e.g. 'i', 'iv', 'A-3'. Null when the PDF defines no label. Labels are looked up, never arithmetically converted (PROJECT_BOOK §4.1).","maxLength":64,"minLength":1,"type":["string","null"]},"page_number1":{"description":"Human 1-based physical page number. Strictly pdf_page_index0 + 1. Never computed from a label.","minimum":1,"type":"integer"},"sha256_hex":{"description":"Lowercase hex SHA-256.","pattern":"^[0-9a-f]{64}$","type":"string"},"source_page_indices0":{"description":"Physical PDF pages (0-based) a chunk / index record covers. Must be sorted ascending, de-duplicated, non-negative and in range at runtime; the schema enforces type, non-negativity and uniqueness, but not ordering (JSON Schema cannot express ordering).","items":{"$ref":"#/$defs/page_index0"},"type":"array","uniqueItems":true}},"$id":"pagetrace.bundle/v1","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"description":"PageTrace case bundle (P026, PROJECT_BOOK.md v1.0.0 §6.2-§6.3). Frozen by T001. Canonical page identity is pdf_page_index0 (0-based). A bare field named 'page' is forbidden anywhere: every object sets additionalProperties:false and 'page' is not a listed property, so any bare 'page' fails validation. Cross-field rules the schema cannot express (index < page_count, sorted source_page_indices0, basis/value type agreement, viewer_page1 recomputation) are runtime rules in docs/PAGE_SEMANTICS.md and are enforced by the analyzer, not by this schema.","properties":{"case_id":{"description":"Case identifier, e.g. 'sample-offset-display-001'.","maxLength":128,"minLength":1,"pattern":"^[A-Za-z0-9][A-Za-z0-9._-]*$","type":"string"},"citations":{"description":"Citations to check. Each citation carries the quote text; the page value it claims lives in stages.display, never as a bare 'page'.","items":{"$ref":"#/$defs/citation"},"type":"array"},"document":{"additionalProperties":false,"properties":{"file_name":{"description":"PDF file name only (no directory, no absolute path).","maxLength":255,"minLength":1,"type":"string"},"page_count":{"description":"Number of physical PDF pages. Must equal the real PDF page count. Maximum 500 is the PROJECT_BOOK §13 default refusal threshold.","maximum":500,"minimum":1,"type":"integer"},"sha256":{"description":"Lowercase hex SHA-256 of the exact PDF bytes. Must match the real file or the run fails with INPUT_HASH_MISMATCH (PROJECT_BOOK §6.3).","pattern":"^[0-9a-f]{64}$","type":"string"}},"required":["file_name","sha256","page_count"],"type":"object"},"page_semantics":{"additionalProperties":false,"properties":{"canonical_field":{"const":"pdf_page_index0","description":"Canonical page identity field. Always 'pdf_page_index0'."},"index_base":{"const":0,"description":"pdf_page_index0 is 0-based."},"viewer_base":{"const":1,"description":"viewer_page1 is 1-based."}},"required":["canonical_field","index_base","viewer_base"],"type":"object"},"schema":{"const":"pagetrace.bundle/v1","description":"Schema identifier. Must match exactly; an unknown major version is rejected (PROJECT_BOOK §6.3)."},"stages":{"additionalProperties":false,"description":"Stage snapshots. Each stage array is optional, but any absent stage MUST be listed in missing_stages; an empty array must never be passed off as 'stage checked and clean' (PROJECT_BOOK §6.3).","properties":{"chunking":{"items":{"$ref":"#/$defs/chunk_record"},"type":"array"},"display":{"items":{"$ref":"#/$defs/display_record"},"type":"array"},"extraction":{"description":"One record per physical PDF page, in pdf_page_index0 order.","items":{"$ref":"#/$defs/extraction_record"},"type":"array"},"indexing":{"items":{"$ref":"#/$defs/index_record"},"type":"array"},"missing_stages":{"description":"Stages with no snapshot at all. Empty array means all four stages are present.","items":{"enum":["extraction","chunking","indexing","display"]},"type":"array","uniqueItems":true}},"required":["missing_stages"],"type":"object"}},"required":["schema","case_id","document","page_semantics","stages","citations"],"title":"pagetrace.bundle/v1","type":"object"}
+\ No newline at end of file
++{"$defs":{"chunk_record":{"additionalProperties":false,"properties":{"chunk_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"},"text_sha256":{"description":"SHA-256 of the chunk text, or null when the chunk carries no text.","pattern":"^[0-9a-f]{64}$","type":["string","null"]}},"required":["chunk_id","source_page_indices0"],"type":"object"},"citation":{"additionalProperties":false,"properties":{"chunk_id":{"description":"Chunk the quote came from, or null when the trace does not record one.","type":["string","null"]},"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"index_record_id":{"description":"Index record the quote came from, or null when the trace does not record one.","type":["string","null"]},"quote_text":{"description":"Verbatim quoted text as cited. Matching uses the PROJECT_BOOK §4.2 normalisation (NFC, LF, collapsed whitespace); case, punctuation and full/half-width differences are preserved.","minLength":1,"type":"string"}},"required":["citation_id","quote_text","chunk_id","index_record_id"],"type":"object"},"display_record":{"additionalProperties":false,"description":"What the display layer claims. viewer_page1 is the value actually handed to the PDF viewer and must be 1-based; when citation_page_basis is UNKNOWN, viewer_page1 must be null (no conversion is allowed).","if":{"properties":{"citation_page_basis":{"const":"UNKNOWN"}},"required":["citation_page_basis"]},"properties":{"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"citation_page_basis":{"description":"What citation_page_value means. UNKNOWN means the source did not state its basis; the value must be kept verbatim and flagged UNKNOWN_PAGE_BASIS, never guessed.","enum":["PDF_INDEX_0","PDF_NUMBER_1","PDF_LABEL","UNKNOWN"]},"citation_page_value":{"description":"Raw page value as emitted by the external system. Integer for PDF_INDEX_0 / PDF_NUMBER_1, string for PDF_LABEL, any of the three (or null) for UNKNOWN. The value/basis type agreement is a runtime rule (docs/PAGE_SEMANTICS.md R-08).","maxLength":64,"minLength":1,"type":["integer","string","null"]},"viewer_page1":{"description":"Page number handed to the viewer, 1-based, or null when unknown / not convertible. 0 is never valid.","minimum":1,"type":["integer","null"]}},"required":["citation_id","citation_page_value","citation_page_basis","viewer_page1"],"then":{"description":"UNKNOWN basis must not be converted: viewer_page1 is forced to null.","properties":{"viewer_page1":{"const":null}}},"type":"object"},"extraction_record":{"additionalProperties":false,"properties":{"pdf_page_index0":{"$ref":"#/$defs/page_index0"},"pdf_page_label":{"$ref":"#/$defs/page_label"},"text_sha256":{"description":"SHA-256 of the extracted page text (normalised form per PROJECT_BOOK §4.2), or null when text_state is not TEXT.","pattern":"^[0-9a-f]{64}$","type":["string","null"]},"text_state":{"description":"TEXT: extractable text present. EMPTY: blank page, honestly marked. IMAGE_ONLY: scanned/image page, no text layer. ERROR: extraction failed for this page.","enum":["TEXT","EMPTY","IMAGE_ONLY","ERROR"]}},"required":["pdf_page_index0","text_state"],"type":"object"},"index_record":{"additionalProperties":false,"properties":{"pdf_page_label":{"$ref":"#/$defs/page_label"},"record_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"}},"required":["record_id","source_page_indices0"],"type":"object"},"page_index0":{"description":"Physical PDF page index, 0-based. Range [0, page_count-1] is enforced at runtime against document.page_count (JSON Schema cannot compare two fields).","minimum":0,"type":"integer"},"page_label":{"description":"PDF page label string, e.g. 'i', 'iv', 'A-3'. Null when the PDF defines no label. Labels are looked up, never arithmetically converted (PROJECT_BOOK §4.1).","maxLength":64,"minLength":1,"type":["string","null"]},"page_number1":{"description":"Human 1-based physical page number. Strictly pdf_page_index0 + 1. Never computed from a label.","minimum":1,"type":"integer"},"sha256_hex":{"description":"Lowercase hex SHA-256.","pattern":"^[0-9a-f]{64}$","type":"string"},"source_page_indices0":{"description":"Physical PDF pages (0-based) a chunk / index record covers. Must be sorted ascending, de-duplicated, non-negative and in range at runtime; the schema enforces type, non-negativity and uniqueness, but not ordering (JSON Schema cannot express ordering).","items":{"$ref":"#/$defs/page_index0"},"type":"array","uniqueItems":true}},"$id":"pagetrace.bundle/v1","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"description":"PageTrace case bundle (P026, PROJECT_BOOK.md v1.0.0 §6.2-§6.3). Frozen by T001. Canonical page identity is pdf_page_index0 (0-based). A bare field named 'page' is forbidden anywhere: every object sets additionalProperties:false and 'page' is not a listed property, so any bare 'page' fails validation. Cross-field rules the schema cannot express (index < page_count, sorted source_page_indices0, basis/value type agreement, viewer_page1 recomputation) are runtime rules in docs/PAGE_SEMANTICS.md and are enforced by the analyzer, not by this schema.","properties":{"case_id":{"description":"Case identifier, e.g. 'sample-offset-display-001'.","maxLength":128,"minLength":1,"pattern":"^[A-Za-z0-9][A-Za-z0-9._-]*$","type":"string"},"citations":{"description":"Citations to check. Each citation carries the quote text; the page value it claims lives in stages.display, never as a bare 'page'.","items":{"$ref":"#/$defs/citation"},"type":"array"},"document":{"additionalProperties":false,"properties":{"file_name":{"description":"PDF file name only: a bare file name, no directory and no absolute path. Must not contain '/' or '\\', must not start with a Windows drive letter (e.g. 'C:'), must not be a UNC path, and must not be '.' or '..' (R-11, FIX-R1 P1-R1-04).","maxLength":255,"minLength":1,"pattern":"^(?![A-Za-z]:)(?!\\.{1,2}$)[^/\\\\]+$","type":"string"},"page_count":{"description":"Number of physical PDF pages. Must equal the real PDF page count. Maximum 500 is the PROJECT_BOOK §13 default refusal threshold.","maximum":500,"minimum":1,"type":"integer"},"sha256":{"description":"Lowercase hex SHA-256 of the exact PDF bytes. Must match the real file or the run fails with INPUT_HASH_MISMATCH (PROJECT_BOOK §6.3).","pattern":"^[0-9a-f]{64}$","type":"string"}},"required":["file_name","sha256","page_count"],"type":"object"},"page_semantics":{"additionalProperties":false,"properties":{"canonical_field":{"const":"pdf_page_index0","description":"Canonical page identity field. Always 'pdf_page_index0'."},"index_base":{"const":0,"description":"pdf_page_index0 is 0-based."},"viewer_base":{"const":1,"description":"viewer_page1 is 1-based."}},"required":["canonical_field","index_base","viewer_base"],"type":"object"},"schema":{"const":"pagetrace.bundle/v1","description":"Schema identifier. Must match exactly; an unknown major version is rejected (PROJECT_BOOK §6.3)."},"stages":{"additionalProperties":false,"description":"Stage snapshots. Each stage array is optional, but any absent stage MUST be listed in missing_stages; an empty array must never be passed off as 'stage checked and clean' (PROJECT_BOOK §6.3).","properties":{"chunking":{"items":{"$ref":"#/$defs/chunk_record"},"type":"array"},"display":{"items":{"$ref":"#/$defs/display_record"},"type":"array"},"extraction":{"description":"One record per physical PDF page, in pdf_page_index0 order.","items":{"$ref":"#/$defs/extraction_record"},"type":"array"},"indexing":{"items":{"$ref":"#/$defs/index_record"},"type":"array"},"missing_stages":{"description":"Stages with no snapshot at all. Empty array means all four stages are present.","items":{"enum":["extraction","chunking","indexing","display"]},"type":"array","uniqueItems":true}},"required":["missing_stages"],"type":"object"}},"required":["schema","case_id","document","page_semantics","stages","citations"],"title":"pagetrace.bundle/v1","type":"object"}
+\ No newline at end of file
+diff --git a/04_source/source/docs/LIMITATIONS.md b/04_source/source/docs/LIMITATIONS.md
+index 1bc574c..b7c9bfe 100644
+--- a/04_source/source/docs/LIMITATIONS.md
++++ b/04_source/source/docs/LIMITATIONS.md
+@@ -64,13 +64,42 @@ review. Nothing here is a secret: if a capability is not listed in
+   clean. The 48 fixtures are frozen T002 products, not generated by
+   the CLI. Implementing the command needs its own task; see
+   `docs/CLI.md` ("未实现：`fixtures build`").
+-- **P2-11 — UN §8.1 wording deviation (un-ext-12).** The frozen spec
+-  says the 12 UN cases "均含扫描件式图像页或无文本层页面", but
+-  `un-ext-12`'s 8 pages are all `kind: "text"` (its fault is a
+-  near-miss, `NO_EXACT_MATCH`); the other 11 cases do contain image or
+-  blank pages. Behaviour is correct and S0 passes; the spec is frozen
+-  and was not edited. Recorded in `00_control/DECISIONS.md`
+-  (2026-11-17 ~00:26 GMT) and here.
++- **P2-11 — UN attribution (un-ext-09..12), FIXED by FIX-R1 P1-R1-02.**
++  GPT final review R1 found the near-miss `UNLOCATABLE` cases wrongly
++  blamed `extraction`: production, Oracle and Golden all returned
++  `first_fault_stage = "extraction"` (and `expected_source_pages0`
++  = the trace-claimed page) even when the extraction records matched
++  the honest extraction exactly and the only defect was a one-character
++  quote difference (`NO_EXACT_MATCH`). New rule, applied identically
++  in production (`src/pagetrace/compare_stages.py`), Oracle
++  (`tests/oracle/attribute.py`) and Golden
++  (`fixtures/golden/expected.json`): extraction is blamed only for a
++  provable extraction failure — anchor page honestly `IMAGE_ONLY` /
++  `EMPTY`, or a bundle extraction record for a claimed page that
++  provably differs from the honest extraction. Otherwise
++  (`NO_EXACT_MATCH` / `NO_TEXT_LAYER` with verified-correct
++  extraction) `first_fault_stage` is `null` and
++  `expected_source_pages0` is `null`: the trace-claimed page is
++  unconfirmed, never a verified source. `null` is the existing
++  report-schema convention for "no stage can be blamed" (same as
++  `PASS` / `UNKNOWN_TRACE_MISSING` / `AMBIGUOUS` /
++  `NEEDS_MANUAL_REVIEW`). Affected cases: `un-ext-09..12` (the four
++  `NO_EXACT_MATCH` cases); `un-ext-01..08` (`IMAGE_ONLY` / `EMPTY`)
++  still blame `extraction`. Full record:
++  `07_evidence/runtime_logs/FIX_R1_UNLOCATABLE.md`.
++- **P2-11 residual — UN §8.1 composition wording (un-ext-12 only).
++  RESOLVED by FIX-R1收尾.** The frozen spec says the 12 UN cases
++  "均含扫描件式图像页或无文本层页面"; `un-ext-12` previously had
++  8 all-`TEXT` pages. The generator was fixed
++  (`tools/generate_fixtures.py`: near-miss UN cases are guaranteed a
++  non-text page on a free page that is neither an anchor nor part of
++  the control citation) and fixtures `un-ext-09..12` were regenerated
++  (other 44 cases byte-identical): `un-ext-12` now has page index 6
++  `EMPTY` (page states `TEXT`×6, `EMPTY`, `TEXT`; anchor page index 5
++  still `TEXT`, control citation pages 0–1 untouched), its page-0
++  header no longer claims a definite stage, and all 12 UN cases now
++  contain at least one image or blank page. Full record:
++  `07_evidence/runtime_logs/FIX_R1_UNLOCATABLE.md` §8.
+ 
+ ## Installed-package notes
+ 
+diff --git a/04_source/source/docs/PAGE_SEMANTICS.md b/04_source/source/docs/PAGE_SEMANTICS.md
+index daea37f..a312167 100644
+--- a/04_source/source/docs/PAGE_SEMANTICS.md
++++ b/04_source/source/docs/PAGE_SEMANTICS.md
+@@ -37,13 +37,13 @@
+ | 字段 | 类型 | 基准 | 定义 | 缺省 / 空值语义 |
+ |---|---|---|---|---|
+ | `candidate_source_pages0` | integer[] | 0-based | 规范化 quote 实际出现的全部物理页 | 找不到时为 `[]`（不是 null）；不得缩减为单页（R-09） |
+-| `expected_source_pages0` | integer[] 或 null | 0-based | trace 宣称的权威来源页集合 | trace 未给出可用来源集合时为 null（“未知”，不是“无来源”） |
++| `expected_source_pages0` | integer[] 或 null | 0-based | trace 宣称的权威来源页集合 | trace 未给出可用来源集合时为 null（“未知”，不是“无来源”）；近似引用 UNLOCATABLE 无可证实抽取失败时亦为 null（FIX-R1 P1-R1-02），声称页不作已确认来源 |
+ | `observed_page_value` | integer / string / null | 随 basis | 展示层实际出示/传给 viewer 的页码值，原样保留 | 同 `citation_page_value` |
+ | `correct_pdf_page_number1` | integer[] 或 null | 1-based | 真实来源页对应的正确 1-based 页号（可多页，跨页引用） | 无法确定正确页时为 null |
+ | `correct_viewer_page1` | integer[] 或 null | 1-based | 正确的 viewer 目标页号 | 与 `correct_pdf_page_number1` 逐项相等；后者为 null 时必为 null |
+ | `verdict` | enum | — | 见 §4 | 必填，无缺省 |
+ | `fault_type` | enum 或 null | — | `PAGE_OFFSET` / `PAGE_METADATA_MISSING` / `DUPLICATE_TEXT_AMBIGUITY` / `UNLOCATABLE` | `verdict == PASS` 时必须为 null；不确定类 verdict（`UNKNOWN_*` / `AMBIGUOUS` / `NEEDS_MANUAL_REVIEW`）无故障类时也为 null |
+-| `first_fault_stage` | enum 或 null | — | `extraction` / `chunking` / `indexing` / `display` | `verdict == PASS` 时必须为 null；阶段快照缺失导致无法归咎时为 null 并出 `UNKNOWN_TRACE_MISSING` |
++| `first_fault_stage` | enum 或 null | — | `extraction` / `chunking` / `indexing` / `display` | `verdict == PASS` 时必须为 null；阶段快照缺失导致无法归咎时为 null 并出 `UNKNOWN_TRACE_MISSING`；近似引用 UNLOCATABLE（`NO_EXACT_MATCH`，锚页为 TEXT 且抽取与诚实抽取一致、无可证实抽取失败）时亦为 null（FIX-R1 P1-R1-02），此时 `expected_source_pages0` 亦为 null，trace 声称页不作已确认来源 |
+ | `quote_sha256` | string（64 位小写 hex） | — | 规范化 quote 文本的 SHA-256（§4.2 规范化） | 必填；报告默认不存 quote 原文 |
+ | `evidence[]` | object[] | — | 阶段差异证据：`stage`、`field`、可选 `upstream_value` / `downstream_value` / `note` | 至少 `stage` + `field`；值缺失时字段可省，不得填 0 占位 |
+ 
+@@ -53,7 +53,7 @@
+ |---|---|---|---|
+ | `schema` | string | 精确为 `pagetrace.bundle/v1` 或 `pagetrace.report/v1`；未知主版本拒绝 | 无缺省 |
+ | `case_id` | string | 匹配 `^[A-Za-z0-9][A-Za-z0-9._-]*$`，1–128 字符 | 必填 |
+-| `document.file_name` | string | PDF 文件名（仅名，不含目录与绝对路径） | 必填 |
++| `document.file_name` | string | PDF 文件名（仅名，不含目录与绝对路径） | 必填；只允许纯文件名：不得含 `/` 或 `\`、不得以 Windows 盘符开头（如 `C:`）、不得为 UNC 路径、不得为 `.` 或 `..`、不得含 `..` 目录段；违反者 schema 与运行时双双拒绝（R-11，FIX-R1 P1-R1-04），且错误信息不得回显该路径值 |
+ | `document.sha256` | string（64 位小写 hex） | PDF 精确字节的 SHA-256；与实测不一致返回 `INPUT_HASH_MISMATCH` | 必填 |
+ | `document.page_count` | integer | 物理页数，1–500（500 为 §13 默认拒收阈值）；必须与真实 PDF 一致 | 必填 |
+ | `page_semantics.canonical_field` | string | 恒为 `pdf_page_index0` | 必填 |
+@@ -101,6 +101,14 @@ pdf_page_index0  = viewer_page1 - 1            (R-02, 唯一允许的 1-based ->
+ - **R-10** 跨页引用是集合：引用横跨第 n、n+1 页（1-based）时，权威来源集合为
+   `[n-1, n]`（0-based），`correct_viewer_page1` 为 `[n, n+1]`；展示必须明确页范围，
+   不得伪装成单页引用。
++- **R-11** `document.file_name` 只允许纯文件名（FIX-R1，P1-R1-04）：
++  不得含 `/` 或 `\`；不得以 Windows 盘符开头（`C:\...`、`C:/...`、盘符相对路径
++  `C:...`）；不得为 UNC 路径（`\\server\share\...`、`//server/share/...`）；
++  不得为相对目录形式（`sub/file.pdf`、`../file.pdf`、`..\file.pdf`）；不得为裸目录引用
++  `.` 或 `..`。schema（`file_name.pattern`）与运行时（`trace_bundle.is_bare_file_name`
++  / `TraceBundle._runtime_errors`）双层拒绝，违反者整个 bundle 校验失败（退出码 2），
++  分析不运行、报告不写。拒绝时的错误信息只说明规则，**不得回显该路径值**（路径最小化，
++  §13）：`TraceBundle` 在 schema 校验前先行拦截，`jsonschema` 的报错文本不得成为泄漏通道。
+ 
+ ## 3. 可复算示例（独立审查者按此复算）
+ 
+@@ -185,6 +193,12 @@ Quote 横跨 1-based 第 7、8 页 → 权威来源集合 `expected_source_pages
+ 差异为 `first_fault_stage`（§4.3）。阶段快照缺失时不得跳过未知环节归咎某阶段，
+ 输出 `UNKNOWN_TRACE_MISSING` 并列出缺失快照。
+ 
++`FAIL_UNLOCATABLE` 近似引用（FIX-R1 P1-R1-02）：quote 与 TEXT 锚页上的句子仅一字之差
++（`NO_EXACT_MATCH`），且抽取 trace 与诚实抽取一致、无可证实抽取失败时，
++`first_fault_stage` 与 `expected_source_pages0` 均为 null——无阶段可归咎，trace 声称页
++只作为证据文本记录，不冒充已确认来源页。只有锚页诚实状态为 `IMAGE_ONLY` / `EMPTY`
++（无文本层可抽取），或锚页抽取记录可证与诚实抽取不同时，才归因 `extraction`。
++
+ ## 5. Schema 强制 vs 运行时强制
+ 
+ | 规则 | schema 强制 | 运行时强制（分析器 / T003、T010） |
+@@ -198,6 +212,7 @@ Quote 横跨 1-based 第 7、8 页 → 权威来源集合 `expected_source_pages
+ | `UNKNOWN` basis → `viewer_page1 == null` | 是（display record 的 `if`/`then`） | 是（R-04） |
+ | 值/基准类型一致（R-08） | 否（basis 依赖） | 是 |
+ | `+1` / `-1` 唯一转换（R-01/R-02） | 否（算术不在 schema 表达范围） | 是（单元测试锁定，见 §6） |
++| `document.file_name` 为纯文件名（R-11） | 是（`file_name.pattern`：禁 `/`、`\`、盘符、`.`/`..`） | 是（`is_bare_file_name` + `_runtime_errors`；拒绝前拦截，错误信息不回显路径值） |
+ | label 不做算术（R-03） | 否 | 是（查表；无映射拒绝猜测） |
+ | verdict PASS → fault/stage 为 null | 否 | 是 |
+ | `correct_viewer_page1 == correct_pdf_page_number1` | 否 | 是 |
+@@ -235,6 +250,7 @@ Quote 横跨 1-based 第 7、8 页 → 权威来源集合 `expected_source_pages
+ - 把 `viewer_page1` 缺省为 0，或把缺失值默认成 0 / 空列表。
+ - 用空数组冒充“阶段已检查且无问题”（必须走 `missing_stages`）。
+ - 把机器执行时间、绝对本地路径、临时目录名纳入规范化结果哈希。
++- 把绝对路径或目录路径放进 `document.file_name`（R-11）；拒绝时不得把该路径值回显到终端或错误信息中。
+ - 报告中存 quote 原文（默认只存 `quote_sha256`；短摘录仅在用户启用 `--include-snippets` 时保存本地）。
+ 
+ ## 8. 变更纪律
+diff --git a/04_source/source/fixtures/bundles/un-ext-10.trace.json b/04_source/source/fixtures/bundles/un-ext-10.trace.json
+index b63e070..56c71ff 100644
+--- a/04_source/source/fixtures/bundles/un-ext-10.trace.json
++++ b/04_source/source/fixtures/bundles/un-ext-10.trace.json
+@@ -17,7 +17,7 @@
+   "document": {
+     "file_name": "un-ext-10.pdf",
+     "page_count": 6,
+-    "sha256": "19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c"
++    "sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76"
+   },
+   "page_semantics": {
+     "canonical_field": "pdf_page_index0",
+@@ -61,7 +61,7 @@
+       {
+         "pdf_page_index0": 0,
+         "pdf_page_label": "i",
+-        "text_sha256": "5938df6847fd73ae74c2abb45092ff48401655bd6f2f5f4bd987b09132e381ac",
++        "text_sha256": "819949379e140d8cfe199985c96c56eae55da1bf21ee224b638d4ec65fcee5da",
+         "text_state": "TEXT"
+       },
+       {
+diff --git a/04_source/source/fixtures/bundles/un-ext-11.trace.json b/04_source/source/fixtures/bundles/un-ext-11.trace.json
+index 7e815ad..fe69cd5 100644
+--- a/04_source/source/fixtures/bundles/un-ext-11.trace.json
++++ b/04_source/source/fixtures/bundles/un-ext-11.trace.json
+@@ -17,7 +17,7 @@
+   "document": {
+     "file_name": "un-ext-11.pdf",
+     "page_count": 7,
+-    "sha256": "5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f"
++    "sha256": "f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea"
+   },
+   "page_semantics": {
+     "canonical_field": "pdf_page_index0",
+@@ -60,7 +60,7 @@
+       {
+         "pdf_page_index0": 0,
+         "pdf_page_label": "i",
+-        "text_sha256": "5be8b8b223c24800eabdfc7a16a6fedb88ed806bc5ccf3c8794b4ceac6674a35",
++        "text_sha256": "f3454372e6827c789b99c53a789ae0a2d1ea4691fde4ab75e7714869793edfc6",
+         "text_state": "TEXT"
+       },
+       {
+diff --git a/04_source/source/fixtures/bundles/un-ext-12.trace.json b/04_source/source/fixtures/bundles/un-ext-12.trace.json
+index 1fb2af9..517e194 100644
+--- a/04_source/source/fixtures/bundles/un-ext-12.trace.json
++++ b/04_source/source/fixtures/bundles/un-ext-12.trace.json
+@@ -17,7 +17,7 @@
+   "document": {
+     "file_name": "un-ext-12.pdf",
+     "page_count": 8,
+-    "sha256": "f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d"
++    "sha256": "6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf"
+   },
+   "page_semantics": {
+     "canonical_field": "pdf_page_index0",
+@@ -61,7 +61,7 @@
+       {
+         "pdf_page_index0": 0,
+         "pdf_page_label": "A-1",
+-        "text_sha256": "ff1d3d52b4f64b25d2608ab318474bb666e41068f9f612bcdcd01733390b7c34",
++        "text_sha256": "be25697370eeb7f4a24fcc94f8389e2c548b2ff1025b9da2b819a5eaf20adf48",
+         "text_state": "TEXT"
+       },
+       {
+@@ -97,8 +97,8 @@
+       {
+         "pdf_page_index0": 6,
+         "pdf_page_label": "A-7",
+-        "text_sha256": "ce8bae7296d59e1183181757fc5c0d5f2d23744dbf65b3794c8d1b2518a43b97",
+-        "text_state": "TEXT"
++        "text_sha256": null,
++        "text_state": "EMPTY"
+       },
+       {
+         "pdf_page_index0": 7,
+diff --git a/04_source/source/fixtures/golden/expected.json b/04_source/source/fixtures/golden/expected.json
+index 72a25f9..90aba00 100644
+--- a/04_source/source/fixtures/golden/expected.json
++++ b/04_source/source/fixtures/golden/expected.json
+@@ -2627,18 +2627,16 @@
+         "citation_id": "cite-fault",
+         "verdict": "FAIL_UNLOCATABLE",
+         "fault_type": "UNLOCATABLE",
+-        "first_fault_stage": "extraction",
++        "first_fault_stage": null,
+         "candidate_source_pages0": [],
+-        "expected_source_pages0": [
+-          2
+-        ],
++        "expected_source_pages0": null,
+         "observed_page_value": 3,
+         "citation_page_basis": "PDF_NUMBER_1",
+         "correct_pdf_page_number1": null,
+         "correct_viewer_page1": null,
+         "unlocatable_reason": "NO_EXACT_MATCH",
+-        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [2] are TEXT",
+-        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [2], whose honest states give reason NO_EXACT_MATCH. First provable difference: quote not found in the extractable text layer; the trace-claimed page(s) [2] are TEXT at stage extraction. Bundle stages: chunk[pages=[2],hash=present] index[pages=[2],label='3'] display[value=3 basis=PDF_NUMBER_1 viewer=3]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
++        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [2] are TEXT; the extraction records for the claimed page(s) match the honest extraction, so no stage can be blamed and the claimed page(s) are not a confirmed source",
++        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [2], whose honest states give reason NO_EXACT_MATCH. No stage can be blamed: the extraction records for the claimed page(s) match the honest extraction, so the missing exact match does not prove an extraction failure; the trace-claimed page(s) are unconfirmed, not a verified source. Bundle stages: chunk[pages=[2],hash=present] index[pages=[2],label='3'] display[value=3 basis=PDF_NUMBER_1 viewer=3]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
+       },
+       "control": {
+         "citation_id": "cite-control",
+@@ -2671,24 +2669,22 @@
+     {
+       "case_id": "un-ext-10",
+       "pdf_file_name": "un-ext-10.pdf",
+-      "pdf_sha256": "19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c",
++      "pdf_sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76",
+       "page_count": 6,
+       "fault": {
+         "citation_id": "cite-fault",
+         "verdict": "FAIL_UNLOCATABLE",
+         "fault_type": "UNLOCATABLE",
+-        "first_fault_stage": "extraction",
++        "first_fault_stage": null,
+         "candidate_source_pages0": [],
+-        "expected_source_pages0": [
+-          1
+-        ],
++        "expected_source_pages0": null,
+         "observed_page_value": 2,
+         "citation_page_basis": "PDF_NUMBER_1",
+         "correct_pdf_page_number1": null,
+         "correct_viewer_page1": null,
+         "unlocatable_reason": "NO_EXACT_MATCH",
+-        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] are TEXT",
+-        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [1], whose honest states give reason NO_EXACT_MATCH. First provable difference: quote not found in the extractable text layer; the trace-claimed page(s) [1] are TEXT at stage extraction. Bundle stages: chunk[pages=[1],hash=present] index[pages=[1],label='ii'] display[value=2 basis=PDF_NUMBER_1 viewer=2]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
++        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [1] are TEXT; the extraction records for the claimed page(s) match the honest extraction, so no stage can be blamed and the claimed page(s) are not a confirmed source",
++        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [1], whose honest states give reason NO_EXACT_MATCH. No stage can be blamed: the extraction records for the claimed page(s) match the honest extraction, so the missing exact match does not prove an extraction failure; the trace-claimed page(s) are unconfirmed, not a verified source. Bundle stages: chunk[pages=[1],hash=present] index[pages=[1],label='ii'] display[value=2 basis=PDF_NUMBER_1 viewer=2]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
+       },
+       "control": {
+         "citation_id": "cite-control",
+@@ -2725,24 +2721,22 @@
+     {
+       "case_id": "un-ext-11",
+       "pdf_file_name": "un-ext-11.pdf",
+-      "pdf_sha256": "5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f",
++      "pdf_sha256": "f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea",
+       "page_count": 7,
+       "fault": {
+         "citation_id": "cite-fault",
+         "verdict": "FAIL_UNLOCATABLE",
+         "fault_type": "UNLOCATABLE",
+-        "first_fault_stage": "extraction",
++        "first_fault_stage": null,
+         "candidate_source_pages0": [],
+-        "expected_source_pages0": [
+-          5
+-        ],
++        "expected_source_pages0": null,
+         "observed_page_value": 6,
+         "citation_page_basis": "PDF_NUMBER_1",
+         "correct_pdf_page_number1": null,
+         "correct_viewer_page1": null,
+         "unlocatable_reason": "NO_EXACT_MATCH",
+-        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT",
+-        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [5], whose honest states give reason NO_EXACT_MATCH. First provable difference: quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT at stage extraction. Bundle stages: chunk[pages=[5],hash=present] index[pages=[5],label='4'] display[value=6 basis=PDF_NUMBER_1 viewer=6]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
++        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT; the extraction records for the claimed page(s) match the honest extraction, so no stage can be blamed and the claimed page(s) are not a confirmed source",
++        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [5], whose honest states give reason NO_EXACT_MATCH. No stage can be blamed: the extraction records for the claimed page(s) match the honest extraction, so the missing exact match does not prove an extraction failure; the trace-claimed page(s) are unconfirmed, not a verified source. Bundle stages: chunk[pages=[5],hash=present] index[pages=[5],label='4'] display[value=6 basis=PDF_NUMBER_1 viewer=6]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
+       },
+       "control": {
+         "citation_id": "cite-control",
+@@ -2775,24 +2769,22 @@
+     {
+       "case_id": "un-ext-12",
+       "pdf_file_name": "un-ext-12.pdf",
+-      "pdf_sha256": "f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d",
++      "pdf_sha256": "6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf",
+       "page_count": 8,
+       "fault": {
+         "citation_id": "cite-fault",
+         "verdict": "FAIL_UNLOCATABLE",
+         "fault_type": "UNLOCATABLE",
+-        "first_fault_stage": "extraction",
++        "first_fault_stage": null,
+         "candidate_source_pages0": [],
+-        "expected_source_pages0": [
+-          5
+-        ],
++        "expected_source_pages0": null,
+         "observed_page_value": 6,
+         "citation_page_basis": "PDF_NUMBER_1",
+         "correct_pdf_page_number1": null,
+         "correct_viewer_page1": null,
+         "unlocatable_reason": "NO_EXACT_MATCH",
+-        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT",
+-        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [5], whose honest states give reason NO_EXACT_MATCH. First provable difference: quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT at stage extraction. Bundle stages: chunk[pages=[5],hash=present] index[pages=[5],label='A-6'] display[value=6 basis=PDF_NUMBER_1 viewer=6]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
++        "evidence_note": "quote not found in the extractable text layer; the trace-claimed page(s) [5] are TEXT; the extraction records for the claimed page(s) match the honest extraction, so no stage can be blamed and the claimed page(s) are not a confirmed source",
++        "basis": "pdfminer found the fault quote on NO page (exact match fails everywhere); trace claims page(s) [5], whose honest states give reason NO_EXACT_MATCH. No stage can be blamed: the extraction records for the claimed page(s) match the honest extraction, so the missing exact match does not prove an extraction failure; the trace-claimed page(s) are unconfirmed, not a verified source. Bundle stages: chunk[pages=[5],hash=present] index[pages=[5],label='A-6'] display[value=6 basis=PDF_NUMBER_1 viewer=6]. Spec design intent (cross-check only): variant 'near-miss-quote' — The quote differs by one character from the sentence on the page; exact match fails."
+       },
+       "control": {
+         "citation_id": "cite-control",
+diff --git a/04_source/source/fixtures/manifest.json b/04_source/source/fixtures/manifest.json
+index 41fc037..178fc9b 100644
+--- a/04_source/source/fixtures/manifest.json
++++ b/04_source/source/fixtures/manifest.json
+@@ -1392,7 +1392,7 @@
+         2
+       ],
+       "fault_type": "UNLOCATABLE",
+-      "first_fault_stage": "extraction",
++      "first_fault_stage": null,
+       "label_scheme": "decimal",
+       "page_count": 5,
+       "page_labels": [
+@@ -1422,7 +1422,7 @@
+         1
+       ],
+       "fault_type": "UNLOCATABLE",
+-      "first_fault_stage": "extraction",
++      "first_fault_stage": null,
+       "label_scheme": "roman",
+       "page_count": 6,
+       "page_labels": [
+@@ -1434,7 +1434,7 @@
+         "vi"
+       ],
+       "pdf_file_name": "un-ext-10.pdf",
+-      "pdf_sha256": "19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c",
++      "pdf_sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76",
+       "variant": "near-miss-quote"
+     },
+     {
+@@ -1452,7 +1452,7 @@
+         5
+       ],
+       "fault_type": "UNLOCATABLE",
+-      "first_fault_stage": "extraction",
++      "first_fault_stage": null,
+       "label_scheme": "roman-decimal",
+       "page_count": 7,
+       "page_labels": [
+@@ -1465,7 +1465,7 @@
+         "5"
+       ],
+       "pdf_file_name": "un-ext-11.pdf",
+-      "pdf_sha256": "5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f",
++      "pdf_sha256": "f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea",
+       "variant": "near-miss-quote"
+     },
+     {
+@@ -1484,7 +1484,7 @@
+         5
+       ],
+       "fault_type": "UNLOCATABLE",
+-      "first_fault_stage": "extraction",
++      "first_fault_stage": null,
+       "label_scheme": "alpha-prefix",
+       "page_count": 8,
+       "page_labels": [
+@@ -1498,7 +1498,7 @@
+         "A-8"
+       ],
+       "pdf_file_name": "un-ext-12.pdf",
+-      "pdf_sha256": "f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d",
++      "pdf_sha256": "6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf",
+       "variant": "near-miss-quote"
+     }
+   ],
+@@ -1517,7 +1517,7 @@
+       "roman",
+       "roman-decimal"
+     ],
+-    "pdfs_with_blank_page": 24,
++    "pdfs_with_blank_page": 25,
+     "pdfs_with_chinese_text": 48,
+     "pdfs_with_cross_page_split": 18,
+     "pdfs_with_duplicate_sentence": 24,
+diff --git a/04_source/source/fixtures/pdfs/un-ext-10.pdf b/04_source/source/fixtures/pdfs/un-ext-10.pdf
+index db5e08f..9e66d46 100644
+--- a/04_source/source/fixtures/pdfs/un-ext-10.pdf
++++ b/04_source/source/fixtures/pdfs/un-ext-10.pdf
+@@ -49,10 +49,10 @@ endobj
+ 5 0 obj
+ <<
+ /Filter [ /ASCII85Decode /FlateDecode ]
+-/Length 541
++/Length 554
+ >>
+ stream
+-Gat$tD/[lW&H9CNES@;l-1d[;Hi(l\-R>RSZ"s]f!bIKcf[b/Okl>SupY@j#LT2+h7='!b([%CQc3T:LN*&dS%L^oN69p.^)do9!:`RBOfSP%YeBr1iqs;Ab&WXYpK5CPfMTM=JJQGHl&1@]sJKRbpbYk*+!T46`9<UlDn&Cqq8$B]pTG;^BdXMRFabKr_"Vb$7]\J*jese+AOXIH+FT-7ZnQ"l:>i8$.=C<]L<o?^3(TkT>1.nsGXQr)A@t-NWYBnr0F4d;D'q-YA7Gi<?BiJ_llH3t@rb(sU&&N9ekV\e^?98L#>C3[Q)=,XiJ@T?bN,[.d`o40:R`6D>Mq&2"i0mnNm?uSGeSH2Dc-g@1]R^oLY;9A:X51g-YCfVFBVC*)BY2Vl!Tpk&4,<7e'Q2)Tb_L-tm@)mdEYb<`3+ogi<?^+#,&>D7M<a%t!+&W6?LdFHM0TNPoMF[;^KEjNk=OcT__4CohBB68X/@<5"4uOlf<ekXs0kW#\;U+!ZrHh-IJp""^:e3Nr^[OrSFfl-Yk&.4UBBf~>
++Gat$t@;jUK&H0=MES@<G9'/4Up@aWB+sa$#L&iGKVCXKZJ>T)9#AEVa\T9eJTb^TrHF_h%j7f.k#`9]t=O-um4<-RS5Q^rtYUiE9k:lE2.8PITj\9/BH!LBd&NFi8S=G2'D.t$pV:5m(8tZcP!a]8s$["'%=&<0-7B1bo%>6cR"]b\q^n]]a?(fM('Mo=UIfb,,LBO`'98JcsA-;)ekM>7;biZ=KKtt77<8`VKj/an&B=VT:f*8Nup`PR6hoQ!Y`:c!R9e&(ln%"(&G"u;!6'l?8ng\>5XtDl,ACiEC^NAR\9E0-Z`<Tgr9+2``#Mt0%KXDVOn$%Wh(RU9GP7\7-flVITKr/QLkL/Wq(a\0aQO#Mi)o_C3Dlu3RR'tTMD<5M.E6WOt[Z);,Y`)j0]/mh"VWsJoJ"+>Me\pPdY313p`)&$0oI]g]=,T*THWt$?fkjSB?5p\48usPV*Si5A72]!nMrYuHTY:l2au&'q`##!gZn8nfB$V^*`@jO+G)-&mQ2Yb>n&BVQnUC=h99jP<.=1eI-g[_p%jGu^)boZ$<W~>
+ endstream
+ endobj
+ 6 0 obj
+@@ -253,20 +253,20 @@ xref
+ 0000000409 00000 n 
+ 0000000512 00000 n 
+ 0000000707 00000 n 
+-0000001339 00000 n 
+-0000001380 00000 n 
+-0000001487 00000 n 
+-0000002393 00000 n 
+-0000002589 00000 n 
+-0000003178 00000 n 
+-0000003439 00000 n 
+-0000003676 00000 n 
+-0000061653 00000 n 
+-0000061850 00000 n 
+-0000062347 00000 n 
+-0000062544 00000 n 
+-0000063102 00000 n 
+-0000063299 00000 n 
++0000001352 00000 n 
++0000001393 00000 n 
++0000001500 00000 n 
++0000002406 00000 n 
++0000002602 00000 n 
++0000003191 00000 n 
++0000003452 00000 n 
++0000003689 00000 n 
++0000061666 00000 n 
++0000061863 00000 n 
++0000062360 00000 n 
++0000062557 00000 n 
++0000063115 00000 n 
++0000063312 00000 n 
+ trailer
+ <<
+ /Size 20
+@@ -274,5 +274,5 @@ trailer
+ /Info 1 0 R
+ >>
+ startxref
+-63866
++63879
+ %%EOF
+diff --git a/04_source/source/fixtures/pdfs/un-ext-11.pdf b/04_source/source/fixtures/pdfs/un-ext-11.pdf
+index d6f7032..6581f5f 100644
+--- a/04_source/source/fixtures/pdfs/un-ext-11.pdf
++++ b/04_source/source/fixtures/pdfs/un-ext-11.pdf
+@@ -53,10 +53,10 @@ endobj
+ 5 0 obj
+ <<
+ /Filter [ /ASCII85Decode /FlateDecode ]
+-/Length 596
++/Length 612
+ >>
+ stream
+-Gat='9lJKG&A@g>N&Uthmd@1.RrT`%LdO^*l]qXR<j>et&=P"S<N8B84#>o=K0fhNZLg8.41fr[Ak.KJ7gkWl!3I59hJ(=Bq,bpWP!\#VG((]!Ji:L#,hqg7I=st,p,$KT6@QNk\`&fOB+03CMBO\7%(!H?`W`"MXU;7.%GphAC*P:IP$uT(.]0Bd(6R&IcQW;mq25>+)"VqZU$WFJO!ahqE;hVm\RanZF;T<4D].D"IhK.u8iuJ6R(<%qNNQ&IlW"s<,?hN1GK],Lc%I#k9Va_)>?>]<p\a.OC[YI2o`7LZag+_!3;iU=L0A-VLe(1"WU1=oO5?u:-tT6!`gNmDNAo!TUWMAJDI!C?QAQmA(/7k-M[ks/:=33CY=1B2PPK0&_.!s`5$?0'HA)M2a2/8*?c!/-=m1q/&FRF%*kq@b@0Yg9Pb[<t@V+-Y.G!4V8&_V^og`esdaC(m/9armhP@T)]HG2tasE^T?8o'W?9?14S?'nWi$5@fh*eh`B>+;H)u#<TBDSNt<h`Or*AhQ=R5Pn`N^`$$IRiL79GUS"AEH*.W')C%E#cne5L!2F6+@Sb5#*?]2G(XiJYQRFCcQ#~>
++Gat='?#S1G'RelB\DjKHOkJ?+h!mk3U-3VckV@CM[AjN[mE.1AD5U-]rH>>^Jr?99Fc(;#*8fE3g^a^C*m'f,!H_4!rZFKNUgHF-;%..L]'07e#Z<C\UL_9cjp6TIoL[OrJb3hQE6AS3/j,(U'HWd"e3as/nur/%,=Q2JMTOPeU/]?_=Eu;X]FEh8&'Ma[L=_OD6@-.s"f;38_0%>=@St,%T8%99RO\ns%m:F*&#UK*#CjDOKTL*Hf4&4S%ofhu*OQXT3gnC(k3_0tRNg*.@sh=I<O(20>[!uKBUD\\Os]5neqMdS4aZkscIu#_=!6g.8b/;;_B5sN<$M9+7%@J?Fe9e*[]8jBK]^u;UHVCA<XCo"-3r`43XJE["Kh/hdF=&:Ff5STMGDm2&`)a.0;`:]bDCkjrMn$)jd%SPR@0@Jg`!K@NFrW<&$C53Dr[[p+J6/k(@@Zo7-bl8CA_6LhNcB74ZH(bgL@M'=_0lfeCjF>0ud'A!@@E9IFGWfC.JR<`MO[ROkT<^7%.q-^Ab;TGDt`Ch'qLj.qM"nc!&qJ$B$,Eq7#6a^+PnpXj+N*K%MfP:Iej#jKH+o/MMCmX,lj;QqbqG6K$cL?GnhL~>
+ endstream
+ endobj
+ 6 0 obj
+@@ -263,21 +263,21 @@ xref
+ 0000000416 00000 n 
+ 0000000545 00000 n 
+ 0000000740 00000 n 
+-0000001427 00000 n 
+-0000001468 00000 n 
+-0000001575 00000 n 
+-0000002481 00000 n 
+-0000002677 00000 n 
+-0000002827 00000 n 
+-0000003024 00000 n 
+-0000003618 00000 n 
+-0000003815 00000 n 
+-0000004314 00000 n 
+-0000004511 00000 n 
+-0000005003 00000 n 
+-0000005200 00000 n 
+-0000005792 00000 n 
+-0000005989 00000 n 
++0000001443 00000 n 
++0000001484 00000 n 
++0000001591 00000 n 
++0000002497 00000 n 
++0000002693 00000 n 
++0000002843 00000 n 
++0000003040 00000 n 
++0000003634 00000 n 
++0000003831 00000 n 
++0000004330 00000 n 
++0000004527 00000 n 
++0000005019 00000 n 
++0000005216 00000 n 
++0000005808 00000 n 
++0000006005 00000 n 
+ trailer
+ <<
+ /Size 21
+@@ -285,5 +285,5 @@ trailer
+ /Info 1 0 R
+ >>
+ startxref
+-6580
++6596
+ %%EOF
+diff --git a/04_source/source/fixtures/pdfs/un-ext-12.pdf b/04_source/source/fixtures/pdfs/un-ext-12.pdf
+index 84d3a2b..5646dd9 100644
+--- a/04_source/source/fixtures/pdfs/un-ext-12.pdf
++++ b/04_source/source/fixtures/pdfs/un-ext-12.pdf
+@@ -49,10 +49,10 @@ endobj
+ 5 0 obj
+ <<
+ /Filter [ /ASCII85Decode /FlateDecode ]
+-/Length 631
++/Length 644
+ >>
+ stream
+-Gat$umn_[l&H0m]ESo@G+SD;c\Ek/.SYh7[=u)dcef_"[ko_QNgC4;FDr9@sQjK$Q<M_)?md.U\mT]n45?&V&!.-_Jh]j70IKl/d.HLBQcaP`+J6(\_aWBKp?Ju4'gIZ]QOB3ri42Dd*=eH<C$^:_'5TLN5QiPF)q%4%'o+-V-ctZNf.52LhNoejoM\ne^H3sCCaBrd,_:n&uPl3k3"g[CKmI57/o0qS&?shhgi17Z$e>K@\=ON7C"(f4"ON$@*EksTum"3\=eio5l`&!BI"D6rEk0f6=?FobQ<K0MbVG=a3XW%E/C!J9SEThd]hS_J!Z4&Y739B7$`PptKb^t5;(g3@p^;kL*T)RkhWordPV7q)&Xo`l*@7:uX5Z-4fKN:^eHItjSlqUte(#s=]2SHbS.pg&jW9[#8LZo3_jn/[-Mjq#,`=1m?;30"dNLe7_>;Q!t9Y,u!@MV%;ZASVNbKr98T($td?JTVHhQs%b?cMi3g11Z$k3-3?dh`%uIk08</"QK#<Ef,b#p"6/-tR5tInff'r,hR.#Y9-[+)[Q`l%/kbBtA620cgHX-@5;*SdL[IJXegLp:!u*3HMOhA_t.XY65r=;tDZ9Z*(56^LEl1=S*+9f_Pub__f"~>
++Gat$u;,8)r&:X@TbZh'K0Je'&Mga'/VJ3+I]Z)dGMH=hm<PT[&C,Gq`c4%b@#G`Lg?Zp)EG/*L8=U7iQA2kD,*+mRo5X5b2,uE#`+?P0M[UX:]EYeDoF;:_=LqjT"I^?]ufk=*",9l+`Kj8&b:afi]AXs[f$'5SSO,/`r+&=)EZ`(`G@B?\7Qes=;l51u>CWLrk[_%4rk?aHNF<YcEfd0FT]f.g<Y6r;W7g^UNmhH=IIC;2<902aTOjgPeYbT2%lm".6l&DLPV2)\G;Sgb7TWT!V-+GEbNR!<.0,'PtWe@gINo=R6g5Em+b$Bk5DE-gkEZ7f.!hRBN2rW#u''DS7>nT^u;N*P%@2fu>8]2biB+82FQ>L*g4\&76jT+1,%YSgr(M,kRfXW?4Q'/STP0u<,_t>E"(4288m/u.c$3kcY?5HNW:LI5Ycep^2-q]k$?s;XQi2X>qF/emQk$Ec+E71/C-&uCp&q@b\2D/3^)/h1/-cro3Yr(+Vptdou*)^@.%0g.OMA3ohh>URCbl=[5VC0OIV(65DXUT<?ot0tooTKp7Cel[dRd54?^FM/>\TUXN5sJ:2G)f6"-:MJ6qpta].^iuM)d_[eg\O@dni8<$,qRWQ<VKQ8BWm<m+Ta`T!ROq*-N~>
+ endstream
+ endobj
+ 6 0 obj
+@@ -245,10 +245,10 @@ endobj
+ 20 0 obj
+ <<
+ /Filter [ /ASCII85Decode /FlateDecode ]
+-/Length 399
++/Length 59
+ >>
+ stream
+-GasIaheU(o%"@rSaP5L3RcN27]#VY\1cE:(N!3K7eM=?i>BRFtJ,@YmF::Tu$b>`?,[W_:e3cE[V>rO][-n9V+W1B95mYRqga3Jk1Q_-O'\EL_],$FC7@bRh5VbJhDJhA5Dde:AJM;ksShM$:L7]3f\KEqoYXL:l#u^Pk+nBIJ6/flnH]K@V@>qS9O`0uiV.$2d$PE1IOuGq7p7c[IniBI[a$grR'A`$<=TKt9=]&bL."cQ3(*urG)9gQ$<jpq/<or'UdR=@?Y+40c1!5+JA']LUm^-&EYn(,qqJ$4Y`LrcZZ#2#8EI0+TO_.tsB7A>t2c2%7@^V&W8h5$T4_(N/?S7#%]<7dlUCNi[C1B:Vos7ZEL,uh]<bpT&D4bt.pHX*Kr=K*j?]K&q3W~>
++GapQh0E=F,0U\H3T\pNYT^QKk?tc>IP,;W#U1^23ihPEM_PP$O!3^,C5Q~>
+ endstream
+ endobj
+ 21 0 obj
+@@ -283,23 +283,23 @@ xref
+ 0000000423 00000 n 
+ 0000000531 00000 n 
+ 0000000726 00000 n 
+-0000001448 00000 n 
+-0000001489 00000 n 
+-0000001596 00000 n 
+-0000002502 00000 n 
+-0000002698 00000 n 
+-0000003256 00000 n 
+-0000003453 00000 n 
+-0000003935 00000 n 
+-0000004132 00000 n 
+-0000004628 00000 n 
+-0000004825 00000 n 
+-0000005316 00000 n 
+-0000005513 00000 n 
+-0000006079 00000 n 
+-0000006276 00000 n 
+-0000006767 00000 n 
+-0000006964 00000 n 
++0000001461 00000 n 
++0000001502 00000 n 
++0000001609 00000 n 
++0000002515 00000 n 
++0000002711 00000 n 
++0000003269 00000 n 
++0000003466 00000 n 
++0000003948 00000 n 
++0000004145 00000 n 
++0000004641 00000 n 
++0000004838 00000 n 
++0000005329 00000 n 
++0000005526 00000 n 
++0000006092 00000 n 
++0000006289 00000 n 
++0000006439 00000 n 
++0000006636 00000 n 
+ trailer
+ <<
+ /Size 23
+@@ -307,5 +307,5 @@ trailer
+ /Info 1 0 R
+ >>
+ startxref
+-7446
++7118
+ %%EOF
+diff --git a/04_source/source/fixtures/sha256sums.txt b/04_source/source/fixtures/sha256sums.txt
+index 3024fdf..44ae9b4 100644
+--- a/04_source/source/fixtures/sha256sums.txt
++++ b/04_source/source/fixtures/sha256sums.txt
+@@ -1,7 +1,6 @@
+ 02e48f53067a630049ebcc8e0a37bbacf41544538d881920e5d334e4a76886cb  un-ext-08.pdf
+ 0fed33d2f13c890d4c74f7ba9f4473c516eac6eba9e89a0b34e9059aaaab4111  po-dsp-10.pdf
+ 164d27b1cdc2d33ff81c563371427164326e9dc1ed678f36ef598726cc42c85f  un-ext-05.pdf
+-19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c  un-ext-10.pdf
+ 20653731381b6eea10267dd69a0a105666536ab12a05f33d30fff73471ab4ea1  du-dsp-11.pdf
+ 2408a09aeb4f217a63d737658d91835c4f5992d18ae4dc1c9688750e235979e4  mm-dsp-10.pdf
+ 24767892979ece1956e6df6032492be8faff3dc315e3dd2067b0420040941f18  mm-chk-06.pdf
+@@ -12,15 +11,16 @@
+ 50470bd0249d80aef1d433456c7a30648d510134af54546a613d71b5aa37a95b  mm-ext-01.pdf
+ 5449bd32a5c224c1997470ed41f20998b06733d090eab92ed7fc07501d2ae79f  du-chk-01.pdf
+ 57ce8e8308f4dcde78fb2aa3394343c91c6714aa228844899373a9865043804a  po-chk-05.pdf
+-5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f  un-ext-11.pdf
+ 63892eca8aa148bb9cc6d1d47595602222aede023ce7850e646a354336544987  po-dsp-12.pdf
+ 6534cb5df8657e9e7d54c9e5d6217d54b998f59084baf9ba7a0cf7afe73a6bd7  mm-chk-05.pdf
++6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf  un-ext-12.pdf
+ 71bb0a048998cc3322aa8873657229625f22fe441e8c0eb87b490a0a8260c708  po-idx-09.pdf
+ 725ec8fd55e74735bcda6da631ef1639488ce1976aa5c24f7bb0164d88114ab4  du-dsp-12.pdf
+ 7481fedda5d7cae12fd06d8fe43de7703221a925cc30bad2dce752add46a7607  du-chk-02.pdf
+ 7bfaac267104391b89d1fe5e762ae2c5fb7afa59b68bf16aa9e3c561393b587a  mm-dsp-11.pdf
+ 8127b5a834e78a453fea103d10ded96af74e9b59b072e72b526868ad3c825700  du-dsp-09.pdf
+ 81e504b125431cf61d3afff6bd384e2bee986cd327c67ddfd0cb86741d5795e4  un-ext-06.pdf
++866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76  un-ext-10.pdf
+ 88d07d2aa249f3f7ef1dc832c134c7b97dabf234222c2863143a94b5c87bef58  du-chk-04.pdf
+ 91c835c7a30ca235163f66759624fef13fc60e7e13352ee0294e2a08704c9a4d  du-dsp-10.pdf
+ 97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf  po-ext-01.pdf
+@@ -42,7 +42,7 @@ e0b8897275ad5197f8ad37409a254f47df29bc6febbbc338ae49ee91d674e8d2  mm-dsp-12.pdf
+ f0000fe5d7f7f1b2e38e806c82812910e61acb06f44b9f814aad70132cbefb28  du-idx-07.pdf
+ f05572bfe00bf77caa1c3c4fb9380cf1e5d799a1b91c48b6f82147b020920c79  po-chk-06.pdf
+ f07725ce89964e4ade776c5c6569ce4c666626adabdf3f4498fb2c9df7d10495  mm-ext-03.pdf
+-f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d  un-ext-12.pdf
+ f4c6050bec5e6b7c1e125f7898ffc6420b6368aae440ced51b7ed172602ac078  po-idx-07.pdf
++f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea  un-ext-11.pdf
+ fc3967b8083d8f6f5dc90f782c831afc23b5a5a4575ba902cc8f6f5a56676631  po-ext-03.pdf
+ fe153a538c539560797d079864fe44843b7c2fd969f3e273a33741a678e20d58  mm-idx-08.pdf
+diff --git a/04_source/source/fixtures/specs/un-ext-09.json b/04_source/source/fixtures/specs/un-ext-09.json
+index 816de16..49f6f5a 100644
+--- a/04_source/source/fixtures/specs/un-ext-09.json
++++ b/04_source/source/fixtures/specs/un-ext-09.json
+@@ -11,11 +11,9 @@
+   "duplicate_occurrence_pages0": [],
+   "expected": {
+     "candidate_source_pages0": [],
+-    "expected_source_pages0": [
+-      2
+-    ],
++    "expected_source_pages0": null,
+     "fault_type": "UNLOCATABLE",
+-    "first_fault_stage": "extraction",
++    "first_fault_stage": null,
+     "verdict": "FAIL_UNLOCATABLE"
+   },
+   "extra_duplicate_pages0": [],
+@@ -28,9 +26,9 @@
+       2
+     ]
+   },
+-  "fault_description": "The quote differs by one character from the sentence on the page; exact match fails.",
++  "fault_description": "The quote differs by one character from the sentence placed on page index 2 (the near-miss sentence is on that page by design); exact match fails. Page 2 is the intended near-miss page, NOT a verified source of the quote: no stage is blamed (first_fault_stage null, expected_source_pages0 null) because the extraction records match the honest extraction (FIX-R1 P1-R1-02). fault_citation.true_source_pages0 [2] records where the near-miss sentence was placed, not a confirmed source page.",
+   "fault_type": "UNLOCATABLE",
+-  "first_fault_stage": "extraction",
++  "first_fault_stage": null,
+   "label_scheme": "decimal",
+   "page_count": 5,
+   "pages": [
+@@ -39,7 +37,7 @@
+       "kind": "blank",
+       "lines": [
+         "PageTrace 合成案例 un-ext-09",
+-        "故障类别 UNLOCATABLE · 首错阶段 extraction"
++        "故障类别 UNLOCATABLE · 首错阶段 未定（无阶段可归咎）"
+       ],
+       "pdf_page_index0": 0,
+       "pdf_page_label": "1"
+diff --git a/04_source/source/fixtures/specs/un-ext-10.json b/04_source/source/fixtures/specs/un-ext-10.json
+index 45df38b..8177793 100644
+--- a/04_source/source/fixtures/specs/un-ext-10.json
++++ b/04_source/source/fixtures/specs/un-ext-10.json
+@@ -12,11 +12,9 @@
+   "duplicate_occurrence_pages0": [],
+   "expected": {
+     "candidate_source_pages0": [],
+-    "expected_source_pages0": [
+-      1
+-    ],
++    "expected_source_pages0": null,
+     "fault_type": "UNLOCATABLE",
+-    "first_fault_stage": "extraction",
++    "first_fault_stage": null,
+     "verdict": "FAIL_UNLOCATABLE"
+   },
+   "extra_duplicate_pages0": [],
+@@ -29,9 +27,9 @@
+       1
+     ]
+   },
+-  "fault_description": "The quote differs by one character from the sentence on the page; exact match fails.",
++  "fault_description": "The quote differs by one character from the sentence placed on page index 1 (the near-miss sentence is on that page by design); exact match fails. Page 1 is the intended near-miss page, NOT a verified source of the quote: no stage is blamed (first_fault_stage null, expected_source_pages0 null) because the extraction records match the honest extraction (FIX-R1 P1-R1-02). fault_citation.true_source_pages0 [1] records where the near-miss sentence was placed, not a confirmed source page.",
+   "fault_type": "UNLOCATABLE",
+-  "first_fault_stage": "extraction",
++  "first_fault_stage": null,
+   "label_scheme": "roman",
+   "page_count": 6,
+   "pages": [
+@@ -40,7 +38,7 @@
+       "kind": "text",
+       "lines": [
+         "PageTrace 合成案例 un-ext-10",
+-        "故障类别 UNLOCATABLE · 首错阶段 extraction",
++        "故障类别 UNLOCATABLE · 首错阶段 未定（无阶段可归咎）",
+         "索引重建时丢失来源页集合会使引用无据可查。",
+         "When a sentence spans two pages, both pages are the source.",
+         "本页讨论引用页码漂移的成因与检测方法。",
+@@ -109,7 +107,7 @@
+     }
+   ],
+   "pdf_file_name": "un-ext-10.pdf",
+-  "pdf_sha256": "19e175385e7a524d8c69ef26259600495b5f6d060be4275218622127e412b88c",
++  "pdf_sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76",
+   "spec_format_version": "pagetrace.fixture-spec/v1",
+   "split_pages0": [
+     4,
+diff --git a/04_source/source/fixtures/specs/un-ext-11.json b/04_source/source/fixtures/specs/un-ext-11.json
+index 1b26820..de20af1 100644
+--- a/04_source/source/fixtures/specs/un-ext-11.json
++++ b/04_source/source/fixtures/specs/un-ext-11.json
+@@ -11,11 +11,9 @@
+   "duplicate_occurrence_pages0": [],
+   "expected": {
+     "candidate_source_pages0": [],
+-    "expected_source_pages0": [
+-      5
+-    ],
++    "expected_source_pages0": null,
+     "fault_type": "UNLOCATABLE",
+-    "first_fault_stage": "extraction",
++    "first_fault_stage": null,
+     "verdict": "FAIL_UNLOCATABLE"
+   },
+   "extra_duplicate_pages0": [
+@@ -31,9 +29,9 @@
+       5
+     ]
+   },
+-  "fault_description": "The quote differs by one character from the sentence on the page; exact match fails.",
++  "fault_description": "The quote differs by one character from the sentence placed on page index 5 (the near-miss sentence is on that page by design); exact match fails. Page 5 is the intended near-miss page, NOT a verified source of the quote: no stage is blamed (first_fault_stage null, expected_source_pages0 null) because the extraction records match the honest extraction (FIX-R1 P1-R1-02). fault_citation.true_source_pages0 [5] records where the near-miss sentence was placed, not a confirmed source page.",
+   "fault_type": "UNLOCATABLE",
+-  "first_fault_stage": "extraction",
++  "first_fault_stage": null,
+   "label_scheme": "roman-decimal",
+   "page_count": 7,
+   "pages": [
+@@ -42,7 +40,7 @@
+       "kind": "text",
+       "lines": [
+         "PageTrace 合成案例 un-ext-11",
+-        "故障类别 UNLOCATABLE · 首错阶段 extraction",
++        "故障类别 UNLOCATABLE · 首错阶段 未定（无阶段可归咎）",
+         "展示层把零基索引直接交给阅读器必然错位一页。",
+         "Losing the source set in the index breaks every later check.",
+         "读者按引用页码查找原文时常常翻到错误页面。",
+@@ -124,7 +122,7 @@
+     }
+   ],
+   "pdf_file_name": "un-ext-11.pdf",
+-  "pdf_sha256": "5c26f3613c3342f0c1c85ea3cce28010d6efb54346d5424ff75eba4977054a5f",
++  "pdf_sha256": "f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea",
+   "spec_format_version": "pagetrace.fixture-spec/v1",
+   "split_pages0": [],
+   "variant": "near-miss-quote"
+diff --git a/04_source/source/fixtures/specs/un-ext-12.json b/04_source/source/fixtures/specs/un-ext-12.json
+index 90538ae..188111a 100644
+--- a/04_source/source/fixtures/specs/un-ext-12.json
++++ b/04_source/source/fixtures/specs/un-ext-12.json
+@@ -12,11 +12,9 @@
+   "duplicate_occurrence_pages0": [],
+   "expected": {
+     "candidate_source_pages0": [],
+-    "expected_source_pages0": [
+-      5
+-    ],
++    "expected_source_pages0": null,
+     "fault_type": "UNLOCATABLE",
+-    "first_fault_stage": "extraction",
++    "first_fault_stage": null,
+     "verdict": "FAIL_UNLOCATABLE"
+   },
+   "extra_duplicate_pages0": [],
+@@ -29,9 +27,9 @@
+       5
+     ]
+   },
+-  "fault_description": "The quote differs by one character from the sentence on the page; exact match fails.",
++  "fault_description": "The quote differs by one character from the sentence placed on page index 5 (the near-miss sentence is on that page by design); exact match fails. Page 5 is the intended near-miss page, NOT a verified source of the quote: no stage is blamed (first_fault_stage null, expected_source_pages0 null) because the extraction records match the honest extraction (FIX-R1 P1-R1-02). fault_citation.true_source_pages0 [5] records where the near-miss sentence was placed, not a confirmed source page.",
+   "fault_type": "UNLOCATABLE",
+-  "first_fault_stage": "extraction",
++  "first_fault_stage": null,
+   "label_scheme": "alpha-prefix",
+   "page_count": 8,
+   "pages": [
+@@ -40,7 +38,7 @@
+       "kind": "text",
+       "lines": [
+         "PageTrace 合成案例 un-ext-12",
+-        "故障类别 UNLOCATABLE · 首错阶段 extraction",
++        "故障类别 UNLOCATABLE · 首错阶段 未定（无阶段可归咎）",
+         "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+         "An image-only page carries no text layer to search.",
+         "页码基准混用是引用系统最常见的隐性缺陷。",
+@@ -114,13 +112,8 @@
+     },
+     {
+       "image_visible_text": null,
+-      "kind": "text",
+-      "lines": [
+-        "空白页应当诚实标记，不应被当作内容页处理。",
+-        "When a sentence spans two pages, both pages are the source.",
+-        "页码基准混用是引用系统最常见的隐性缺陷。",
+-        "第 7 页 / 共 8 页"
+-      ],
++      "kind": "blank",
++      "lines": [],
+       "pdf_page_index0": 6,
+       "pdf_page_label": "A-7"
+     },
+@@ -138,7 +131,7 @@
+     }
+   ],
+   "pdf_file_name": "un-ext-12.pdf",
+-  "pdf_sha256": "f4bb6a31c69109ca019c8d3c21b90ad0f74dbe0483036dfbb835ac0e2a3e769d",
++  "pdf_sha256": "6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf",
+   "spec_format_version": "pagetrace.fixture-spec/v1",
+   "split_pages0": [
+     0,
+diff --git a/04_source/source/src/pagetrace/cli.py b/04_source/source/src/pagetrace/cli.py
+index c7a3cc5..b4d5968 100644
+--- a/04_source/source/src/pagetrace/cli.py
++++ b/04_source/source/src/pagetrace/cli.py
+@@ -13,9 +13,14 @@ locating / attribution logic of its own (PROJECT_BOOK §12):
+   the CLI only forwards arguments and its exit code.
+ * ``clean`` — delete one explicitly named PageTrace output
+   directory, after printing the target path. A directory is only
+-  deleted when it carries a PageTrace marker (``report.json`` with
+-  schema ``pagetrace.report/v1``, ``report.html`` or
+-  ``S0_REPORT.json``); anything else is refused, untouched.
++  deleted when it carries a *verified* PageTrace output marker (a
++  self-consistent ``report.json`` whose normalised-result hash
++  recomputes, corroborated by its ``report.html`` embedding and
++  assets — or a self-consistent ``S0_REPORT.json`` whose counts
++  match its gates and whose replay hashes match
++  ``replay-hashes.txt``); a bare ``report.html``, a bare
++  ``S0_REPORT.json``, or a schema-only ``report.json`` is refused,
++  untouched (FIX-R1, P1-R1-03).
+ 
+ Exit codes (PROJECT_BOOK §12.2):
+ 
+@@ -233,9 +238,21 @@ def cmd_analyze(args: argparse.Namespace) -> int:
+         raise InputError(f"trace bundle not found: {args.trace}")
+ 
+     bundle = _load_bundle(trace_path)
+-    _verify_hash(bundle, pdf_path)
++    # TOCTOU (P1-R1-01): read the PDF bytes once, verify the bundle
++    # hash against those exact bytes, and carry the verified bytes
++    # through extraction — extraction must never silently re-open a
++    # path that may have been swapped after verification.
++    # extract_pdf additionally rejects if the file on disk no longer
++    # matches the verified hash.
++    pdf_bytes = _read_pdf_bytes(pdf_path)
+     try:
+-        _, honest_records = extract_pdf(str(pdf_path))
++        bundle.verify_document_hash(pdf_bytes)
++    except BundleValidationError as exc:
++        raise InputError(str(exc)) from exc
++    try:
++        _, honest_records = extract_pdf(
++            str(pdf_path), pdf_bytes=pdf_bytes,
++            expected_sha256=bundle.document_sha256)
+     except PdfInputError as exc:
+         raise InputError(str(exc)) from exc
+     verdicts = analyze_bundle(bundle.to_dict(), honest_records)
+@@ -348,21 +365,234 @@ def cmd_s0(args: argparse.Namespace) -> int:
+ # ---------------------------------------------------------------------------
+ # clean
+ # ---------------------------------------------------------------------------
+-def _is_pagetrace_output_dir(target: Path) -> bool:
+-    """True iff *target* carries a PageTrace output marker."""
++def _is_hex64(value: object) -> bool:
++    """True iff *value* is a 64-char lowercase hex string (a SHA-256)."""
++    return (isinstance(value, str) and len(value) == 64
++            and all(ch in "0123456789abcdef" for ch in value))
++
++
++def _is_verified_report_output(target: Path) -> bool:
++    """True iff *target* holds a self-consistent PageTrace analyze output.
++
++    Marker scheme (FIX-R1, P1-R1-03) — every check must pass; the
++    marker is the tool's own output, verified rather than trusted by
++    file name:
++
++    * ``report.json`` is a schema-valid ``pagetrace.report/v1``
++      document whose ``tool`` is exactly ``pagetrace`` /
++      ``TOOL_VERSION`` (the identity ``_build_report_document``
++      stamps on every report it writes);
++    * ``summary.normalized_result_sha256`` recomputes from the
++      document's own ``case_id`` / ``document`` / ``results`` via the
++      same canonical JSON (``_canonical_json``) the writer used — a
++      hand-made schema-only ``report.json`` cannot pass without
++      deliberately recomputing that binding over matching contents;
++    * ``report.html`` exists and its embedded ``report-data`` JSON
++      agrees with ``report.json`` (same schema, same tool identity,
++      every entry's ``case_id`` and ``document.file_name`` match);
++    * ``assets/report.css`` and ``assets/report.js`` exist (both are
++      written next to ``report.html`` by every real analyze run).
++
++    A lone ``report.html`` or a lone / forged ``report.json`` fails.
++    No secret is involved: a file that deliberately reproduces a
++    complete, internally consistent PageTrace report is, by
++    construction, indistinguishable from a real output — the gate
++    exists to stop *accidental* deletion of unrelated directories
++    (the GPT R1 repro: an unrelated dir with a generic
++    ``report.html``), not to authenticate against a determined
++    forger. Directories that fail any check are refused, untouched.
++    """
+     report_json = target / "report.json"
+-    if report_json.is_file():
+-        try:
+-            doc = json.loads(report_json.read_text(encoding="utf-8"))
+-        except (OSError, ValueError):
++    if not report_json.is_file():
++        return False
++    try:
++        doc = json.loads(report_json.read_text(encoding="utf-8"))
++    except (OSError, ValueError, UnicodeDecodeError):
++        return False
++    if not isinstance(doc, dict):
++        return False
++    if doc.get("schema") != REPORT_SCHEMA:
++        return False
++    if doc.get("tool") != {"name": "pagetrace", "version": TOOL_VERSION}:
++        return False
++    try:
++        validate_report_schema(doc)
++    except PageSemanticsError:
++        return False
++    summary = doc.get("summary")
++    if not isinstance(summary, dict):
++        return False
++    try:
++        normalized = {
++            "case_id": doc["case_id"],
++            "document": doc["document"],
++            "results": doc["results"],
++        }
++        expected = hashlib.sha256(
++            _canonical_json(normalized)).hexdigest()
++    except (KeyError, TypeError, ValueError):
++        return False
++    if summary.get("normalized_result_sha256") != expected:
++        return False
++    # The summary counts must be derived from the results themselves
++    # (a report whose counts disagree with its results is not a
++    # report this tool wrote).
++    try:
++        results = doc["results"]
++        derived = {
++            "total_citations": len(results),
++            "pass_count": sum(1 for r in results
++                              if r["verdict"] == "PASS"),
++            "fail_count": sum(1 for r in results
++                              if r["verdict"].startswith("FAIL")),
++            "unknown_count": sum(1 for r in results
++                                 if r["verdict"].startswith("UNKNOWN")),
++            "ambiguous_count": sum(1 for r in results
++                                   if r["verdict"] == "AMBIGUOUS"),
++        }
++        for key, value in derived.items():
++            if summary.get(key) != value:
++                return False
++    except (KeyError, TypeError, AttributeError):
++        return False
++    html_path = target / "report.html"
++    if not html_path.is_file():
++        return False
++    if not (target / "assets" / "report.css").is_file():
++        return False
++    if not (target / "assets" / "report.js").is_file():
++        return False
++    try:
++        html_text = html_path.read_text(encoding="utf-8")
++    except (OSError, UnicodeDecodeError):
++        return False
++    marker = '<script id="report-data" type="application/json">'
++    start = html_text.find(marker)
++    if start < 0:
++        return False
++    start += len(marker)
++    end = html_text.find("</script>", start)
++    if end < 0:
++        return False
++    try:
++        embedded = json.loads(html_text[start:end])
++    except ValueError:
++        return False
++    if not isinstance(embedded, dict):
++        return False
++    if embedded.get("schema") != REPORT_SCHEMA:
++        return False
++    if embedded.get("tool") != {"name": "pagetrace",
++                                "version": TOOL_VERSION}:
++        return False
++    entries = embedded.get("entries")
++    if not isinstance(entries, list):
++        return False
++    for entry in entries:
++        if not isinstance(entry, dict):
++            return False
++        if entry.get("case_id") != doc["case_id"]:
+             return False
+-        if isinstance(doc, dict) and doc.get("schema") == REPORT_SCHEMA:
+-            return True
+-    if (target / "report.html").is_file():
+-        return True
+-    if (target / "S0_REPORT.json").is_file():
+-        return True
+-    return False
++        entry_doc = entry.get("document")
++        if not isinstance(entry_doc, dict):
++            return False
++        if entry_doc.get("file_name") != doc["document"].get("file_name"):
++            return False
++    return True
++
++
++def _is_verified_s0_output(target: Path) -> bool:
++    """True iff *target* holds a self-consistent S0 gate output.
++
++    Marker scheme (FIX-R1, P1-R1-03): ``S0_REPORT.json`` must carry
++    ``format == "pagetrace.s0-report/v1"`` and
++    ``project == "P026 PageTrace"``, ``s0_result`` must be one of
++    ``PASS`` / ``FAIL`` / ``SMOKE_PASS``, ``suite.case_count`` must
++    be 48, every ``counts`` entry must equal the corresponding
++    ``gates`` figure, and the ``replay`` hashes must be 64-hex,
++    ``len(hashes) == suite.repeat``, with
++    ``unique_hash_count == len(set(hashes))`` — and
++    ``replay-hashes.txt`` must list exactly those hashes, in order.
++    A bare or hand-made ``S0_REPORT.json`` fails; a real
++    ``tools/run_s0.py`` output passes all of it.
++    """
++    s0_path = target / "S0_REPORT.json"
++    if not s0_path.is_file():
++        return False
++    try:
++        doc = json.loads(s0_path.read_text(encoding="utf-8"))
++    except (OSError, ValueError, UnicodeDecodeError):
++        return False
++    if not isinstance(doc, dict):
++        return False
++    if doc.get("format") != "pagetrace.s0-report/v1":
++        return False
++    if doc.get("project") != "P026 PageTrace":
++        return False
++    if doc.get("s0_result") not in ("PASS", "FAIL", "SMOKE_PASS"):
++        return False
++    suite = doc.get("suite")
++    gates = doc.get("gates")
++    counts = doc.get("counts")
++    replay = doc.get("replay")
++    if not all(isinstance(x, dict)
++               for x in (suite, gates, counts, replay)):
++        return False
++    if suite.get("case_count") != 48:
++        return False
++    try:
++        checks = (
++            ("detection", gates["detection"]["actual"]),
++            ("first_fault_stage", gates["first_fault_stage"]["actual"]),
++            ("control_false_positives",
++             gates["control_false_positives"]["actual"]),
++            ("parity_mismatches", gates["parity"]["actual_mismatches"]),
++            ("parity_citations_matching",
++             gates["parity"]["actual_citations_matching"]),
++            ("replay_unique_hashes", gates["replay"]["actual_unique_hashes"]),
++            ("golden_mismatches",
++             gates["golden_agreement"]["actual_mismatches"]),
++            ("uncertainty_violations",
++             gates["uncertainty_not_pass"]["actual"]),
++        )
++        for name, actual in checks:
++            if counts.get(name) != actual:
++                return False
++        hashes = replay["hashes"]
++        if (not isinstance(hashes, list) or not hashes
++                or len(hashes) != suite.get("repeat")):
++            return False
++        if any(not _is_hex64(h) for h in hashes):
++            return False
++        unique = replay["unique_hashes"]
++        if (not isinstance(unique, list)
++                or sorted(set(hashes)) != sorted(unique)
++                or replay.get("unique_hash_count") != len(set(hashes))
++                or counts.get("replay_unique_hashes") != len(set(hashes))):
++            return False
++    except (KeyError, TypeError):
++        return False
++    txt_path = target / "replay-hashes.txt"
++    if not txt_path.is_file():
++        return False
++    try:
++        lines = txt_path.read_text(encoding="utf-8").splitlines()
++    except (OSError, UnicodeDecodeError):
++        return False
++    return lines == hashes
++
++
++def _is_pagetrace_output_dir(target: Path) -> bool:
++    """True iff *target* carries a *verified* PageTrace output marker.
++
++    Either a verified analyze output (see
++    :func:`_is_verified_report_output`) or a verified S0 output (see
++    :func:`_is_verified_s0_output`). A generic ``report.html``, an
++    arbitrary ``S0_REPORT.json``, or a schema-only ``report.json``
++    is NOT a marker and the directory is refused.
++    """
++    return (_is_verified_report_output(target)
++            or _is_verified_s0_output(target))
+ 
+ 
+ def cmd_clean(args: argparse.Namespace) -> int:
+@@ -392,9 +622,13 @@ def cmd_clean(args: argparse.Namespace) -> int:
+             f"refusing to clean protected path: {args.target}")
+     if not _is_pagetrace_output_dir(target):
+         raise InputError(
+-            f"refusing to clean {args.target}: not a PageTrace output "
+-            f"directory (no report.json with schema "
+-            f"{REPORT_SCHEMA}, report.html or S0_REPORT.json found)")
++            f"refusing to clean {args.target}: not a verified "
++            f"PageTrace output directory (no self-consistent "
++            f"report.json + report.html with matching "
++            f"normalized_result_sha256, and no self-consistent "
++            f"S0_REPORT.json + replay-hashes.txt; a bare report.html, "
++            f"an arbitrary S0_REPORT.json or a schema-only report.json "
++            f"is not a marker)")
+     entries = sorted(p.name for p in target.iterdir())
+     print(f"contains {len(entries)} entr{'y' if len(entries) == 1 else 'ies'}: "
+           f"{', '.join(entries[:10])}"
+diff --git a/04_source/source/src/pagetrace/compare_stages.py b/04_source/source/src/pagetrace/compare_stages.py
+index 3a31cd8..202d6f8 100644
+--- a/04_source/source/src/pagetrace/compare_stages.py
++++ b/04_source/source/src/pagetrace/compare_stages.py
+@@ -42,11 +42,19 @@ Special cases, all decided by explicit input, never by guessing:
+   absent stage key) → ``UNKNOWN_TRACE_MISSING``; the walk stops
+   before blaming any stage.
+ * Quote not found in the text layer (0 candidates) →
+-  ``FAIL_UNLOCATABLE`` at ``extraction``. The reason is anchored
+-  on the page(s) the trace itself claims (chunk, then index, then
+-  display): ``IMAGE_ONLY`` / ``EMPTY`` / ``NO_EXACT_MATCH``; with
+-  no anchor, ``NO_TEXT_LAYER``. The notes always state that this
+-  does not establish the quoted text is absent from the document.
++  ``FAIL_UNLOCATABLE``. The reason is anchored on the page(s) the
++  trace itself claims (chunk, then index): ``IMAGE_ONLY`` /
++  ``EMPTY`` / ``NO_EXACT_MATCH``; with no anchor, ``NO_TEXT_LAYER``.
++  Only a provable extraction failure is blamed on extraction: an
++  anchor page honestly ``IMAGE_ONLY`` / ``EMPTY`` (no text layer to
++  extract), or a bundle extraction record for a claimed page that
++  provably differs from the honest extraction. Otherwise — a near
++  miss on a TEXT page whose extraction records match the honest
++  extraction, or no usable anchor — ``first_fault_stage`` is
++  ``None`` and ``expected_source_pages0`` is ``None``: the
++  trace-claimed page is unconfirmed, never a verified source. The
++  notes always state that this does not establish the quoted text
++  is absent from the document.
+ * Duplicate quote, every set-bearing stage preserved the full
+   candidate set, and the display stage recorded no forced pick
+   (record absent, or value / viewer null) → ``AMBIGUOUS``.
+@@ -424,10 +432,64 @@ def analyze_citation(
+     if not candidates:
+         anchor = _trace_anchor_pages(citation, stages)
+         reason, anchor_note = _unlocatable_reason(anchor, honest_by_index)
++        if reason in (REASON_IMAGE_ONLY, REASON_EMPTY):
++            # Provable extraction failure (PROJECT_BOOK §5): the
++            # trace-claimed page honestly has no text layer, so
++            # extraction is the first provable difference.
++            first_stage: str | None = STAGE_EXTRACTION
++            expected: list[int] | None = anchor
++            blame_note = ""
++        else:
++            # NO_EXACT_MATCH / NO_TEXT_LAYER (FIX-R1 P1-R1-02): the
++            # quote differs from the page text, or no page is named.
++            # Extraction is blamed only if a bundle extraction record
++            # for a trace-claimed page provably differs from the
++            # honest extraction; a verified-correct extraction is
++            # never blamed for a missing exact match, and the claimed
++            # page is not a confirmed source.
++            fault_diff = next(
++                (d for d in compare_extraction(
++                    honest_records, stages.get("extraction"))
++                 if anchor and d.pdf_page_index0 in anchor),
++                None)
++            if fault_diff is not None:
++                first_stage = STAGE_EXTRACTION
++                expected = anchor
++                blame_note = (
++                    "; the extraction record for the claimed page(s) "
++                    "provably differs from the honest extraction, so "
++                    "extraction is blamed")
++            else:
++                first_stage = None
++                expected = None
++                if anchor:
++                    blame_note = (
++                        "; no stage can be blamed: the extraction "
++                        "records for the trace-claimed page(s) match "
++                        "the honest extraction, so the missing exact "
++                        "match does not prove an extraction failure, "
++                        "and the claimed page(s) are not a confirmed "
++                        "source")
++                else:
++                    blame_note = (
++                        "; no stage can be blamed: no trace anchor "
++                        "names the intended page")
++        notes = ["The quote was not found in the extractable text "
++                 "layer. This does not establish that the quoted "
++                 "text is absent from the document: it may be "
++                 "visible only in a raster image, on a blank page, "
++                 "or differ by a character from the page text. "
++                 "No OCR was run."]
++        if first_stage is None:
++            notes.append(
++                "No stage is blamed for this citation: the missing "
++                "exact match does not prove any stage failed, and "
++                "the trace-claimed page(s), if any, are not "
++                "confirmed as the quote's source page(s).")
+         return CitationVerdict(
+             verdict=VERDICT_FAIL_UNLOCATABLE, fault_type="UNLOCATABLE",
+-            first_fault_stage=STAGE_EXTRACTION,
+-            expected_source_pages0=anchor,
++            first_fault_stage=first_stage,
++            expected_source_pages0=expected,
+             correct_pdf_page_number1=None, correct_viewer_page1=None,
+             reason=reason,
+             evidence=[EvidenceItem(
+@@ -435,13 +497,8 @@ def analyze_citation(
+                 field="candidate_source_pages0",
+                 upstream_value=None, downstream_value=[],
+                 note="quote not found in the extractable text layer"
+-                     + anchor_note)],
+-            notes=["The quote was not found in the extractable text "
+-                   "layer. This does not establish that the quoted "
+-                   "text is absent from the document: it may be "
+-                   "visible only in a raster image, on a blank page, "
+-                   "or differ by a character from the page text. "
+-                   "No OCR was run."],
++                     + anchor_note + blame_note)],
++            notes=notes,
+             **{k: v for k, v in base.items()
+                if k not in ("expected_source_pages0",
+                             "correct_pdf_page_number1",
+diff --git a/04_source/source/src/pagetrace/extract.py b/04_source/source/src/pagetrace/extract.py
+index eabe8bb..a78cf3d 100644
+--- a/04_source/source/src/pagetrace/extract.py
++++ b/04_source/source/src/pagetrace/extract.py
+@@ -15,7 +15,9 @@ Text states (PROJECT_BOOK.md §4.3, stage Extraction):
+   one image (a scanned / raster page). No OCR is ever started: the
+   visible raster text is *not* recoverable from the text layer and the
+   record honestly says so.
+-* ``ERROR`` — ``extract_text()`` raised; the page could not be read.
++* ``ERROR`` — ``extract_text()`` raised, or image enumeration failed
++  (the page could not be honestly classified — it is never reported
++  ``EMPTY`` just because the image check could not run, P2 image-enum).
+ 
+ ``text_sha256`` is the SHA-256 of the §4.2-normalised extracted text
+ (see :mod:`pagetrace.normalize`), which is exactly how the T002
+@@ -26,13 +28,20 @@ extracted text to hash — ``None`` means "no text", not "empty text").
+ 
+ from __future__ import annotations
+ 
++import hashlib
++import io
+ from dataclasses import dataclass
+ from typing import Literal
+ 
+ from pypdf import PdfReader
+ 
+ from .normalize import sha256_hex_of_normalized
+-from .pdf_input import PdfDocumentInfo, PdfInputError, load_pdf
++from .pdf_input import (
++    REASON_SHA_MISMATCH,
++    PdfDocumentInfo,
++    PdfInputError,
++    load_pdf,
++)
+ 
+ TextState = Literal["TEXT", "EMPTY", "IMAGE_ONLY", "ERROR"]
+ 
+@@ -57,18 +66,19 @@ class PageTextRecord:
+     extracted_text: str | None
+ 
+ 
+-def _page_has_images(page) -> bool:
+-    """True if the page embeds at least one image.
++def _page_has_images(page) -> bool | None:
++    """True if the page embeds at least one image, False if it
++    certainly embeds none, ``None`` if image enumeration itself failed.
+ 
+-    Image enumeration itself can fail on malformed pages; a failure
+-    here is treated as "no images found" (the page is then honestly
+-    reported ``EMPTY`` — no text was found either way) rather than
+-    failing the whole document.
++    The third outcome must stay distinct from "no images": a failure
++    here means the page cannot be honestly classified, so the caller
++    reports the page ``ERROR`` instead of misreporting it ``EMPTY``
++    (a page that could not be checked for images is not a blank page).
+     """
+     try:
+         return len(page.images) > 0
+     except Exception:
+-        return False
++        return None
+ 
+ 
+ def _extract_one_page(page, pdf_page_index0: int,
+@@ -84,8 +94,19 @@ def _extract_one_page(page, pdf_page_index0: int,
+             extracted_text=None,
+         )
+     if raw is None or raw.strip() == "":
+-        state: TextState = (
+-            "IMAGE_ONLY" if _page_has_images(page) else "EMPTY")
++        has_images = _page_has_images(page)
++        if has_images is None:
++            # Image enumeration failed: the page cannot be honestly
++            # classified as EMPTY or IMAGE_ONLY (same ERROR handling
++            # as an extract_text() failure above).
++            return PageTextRecord(
++                pdf_page_index0=pdf_page_index0,
++                pdf_page_label=pdf_page_label,
++                text_state="ERROR",
++                text_sha256=None,
++                extracted_text=None,
++            )
++        state: TextState = "IMAGE_ONLY" if has_images else "EMPTY"
+         return PageTextRecord(
+             pdf_page_index0=pdf_page_index0,
+             pdf_page_label=pdf_page_label,
+@@ -106,12 +127,42 @@ def extract_pages(info: PdfDocumentInfo) -> list[PageTextRecord]:
+     """Extract every page of a validated document.
+ 
+     Returns exactly ``info.page_count`` records, in physical order,
+-    with indices 0..``page_count - 1``. Raises :class:`PdfInputError`
+-    (``CORRUPT``) if the file on disk no longer matches the validated
+-    info (page count changed between validation and extraction).
++    with indices 0..``page_count - 1``. The pages are parsed from the
++    exact bytes validated by :func:`pagetrace.pdf_input.load_pdf`
++    (``info.pdf_bytes``) — the path is never re-opened on that path,
++    so a file swapped after validation cannot leak its content into
++    the result (P1-R1-01 TOCTOU). Only when an info value carries no
++    bytes (built by an older caller) is the path re-read, and then its
++    SHA-256 must still match ``info.sha256`` — a mismatch raises
++    :class:`PdfInputError` (``SHA_MISMATCH``) instead of extracting
++    the swapped file. A page-count change is likewise rejected
++    (``CORRUPT``).
+     """
++    if info.pdf_bytes is not None:
++        data = info.pdf_bytes
++        if hashlib.sha256(data).hexdigest() != info.sha256:
++            raise PdfInputError(
++                "CORRUPT",
++                "validated PDF bytes no longer match the recorded "
++                f"SHA-256 ({info.sha256})",
++                info.file_path)
++    else:
++        try:
++            with open(info.file_path, "rb") as fh:
++                data = fh.read()
++        except OSError as exc:
++            raise PdfInputError(
++                "CORRUPT",
++                f"PDF cannot be re-opened for extraction: {exc}",
++                info.file_path) from exc
++        if hashlib.sha256(data).hexdigest() != info.sha256:
++            raise PdfInputError(
++                REASON_SHA_MISMATCH,
++                "PDF changed between validation and extraction: "
++                f"file on disk no longer hashes to {info.sha256}",
++                info.file_path)
+     try:
+-        reader = PdfReader(info.file_path)
++        reader = PdfReader(io.BytesIO(data))
+         page_count = len(reader.pages)
+     except PdfInputError:
+         raise
+@@ -133,22 +184,58 @@ def extract_pages(info: PdfDocumentInfo) -> list[PageTextRecord]:
+     ]
+ 
+ 
++def _require_disk_matches(path: str, expected_sha256: str) -> None:
++    """Fail closed: the file on disk must still hash to *expected_sha256*.
++
++    Used when the caller supplies already-verified bytes *and* the hash
++    they were verified against: a swap between verification and
++    extraction is rejected here instead of being silently analysed.
++    """
++    try:
++        with open(path, "rb") as fh:
++            current = fh.read()
++    except OSError as exc:
++        raise PdfInputError(
++            "CORRUPT",
++            f"PDF cannot be re-read to confirm it is unchanged: {exc}",
++            path) from exc
++    if hashlib.sha256(current).hexdigest() != expected_sha256:
++        raise PdfInputError(
++            REASON_SHA_MISMATCH,
++            "PDF changed between verification and extraction: "
++            f"file on disk no longer hashes to {expected_sha256}",
++            path)
++
++
+ def extract_pdf(
+     path: str,
+     *,
+     max_file_size_bytes: int | None = None,
+     max_pages: int | None = None,
++    pdf_bytes: bytes | None = None,
++    expected_sha256: str | None = None,
+ ) -> tuple[PdfDocumentInfo, list[PageTextRecord]]:
+     """Validate *path* and extract all of its pages.
+ 
+     Convenience wrapper over :func:`pagetrace.pdf_input.load_pdf` and
+     :func:`extract_pages`. Limit overrides are passed through only
+-    when given (``None`` keeps the defaults).
++    when given (``None`` keeps the defaults). When *pdf_bytes* is
++    given, those exact bytes are validated and extracted (the path is
++    not re-read for content); when *expected_sha256* is also given,
++    the file on disk must still hash to it as well — a swap between
++    verification and extraction is rejected (``SHA_MISMATCH``)
++    instead of analysed.
+     """
+     kwargs: dict = {}
+     if max_file_size_bytes is not None:
+         kwargs["max_file_size_bytes"] = max_file_size_bytes
+     if max_pages is not None:
+         kwargs["max_pages"] = max_pages
++    if pdf_bytes is not None:
++        kwargs["data"] = pdf_bytes
++    if expected_sha256 is not None:
++        kwargs["expected_sha256"] = expected_sha256
++    if pdf_bytes is not None and expected_sha256 is not None:
++        _require_disk_matches(path, expected_sha256)
+     info = load_pdf(path, **kwargs)
+     return info, extract_pages(info)
+diff --git a/04_source/source/src/pagetrace/pdf_input.py b/04_source/source/src/pagetrace/pdf_input.py
+index 3b93fb6..9391ef9 100644
+--- a/04_source/source/src/pagetrace/pdf_input.py
++++ b/04_source/source/src/pagetrace/pdf_input.py
+@@ -20,7 +20,7 @@ from __future__ import annotations
+ import hashlib
+ import io
+ import os
+-from dataclasses import dataclass
++from dataclasses import dataclass, field
+ from pathlib import Path
+ 
+ from pypdf import PdfReader
+@@ -37,6 +37,7 @@ REASON_CORRUPT = "CORRUPT"
+ REASON_ENCRYPTED = "ENCRYPTED"
+ REASON_TOO_MANY_PAGES = "TOO_MANY_PAGES"
+ REASON_EMPTY_DOCUMENT = "EMPTY_DOCUMENT"
++REASON_SHA_MISMATCH = "SHA_MISMATCH"
+ 
+ 
+ class PdfInputError(Exception):
+@@ -61,8 +62,9 @@ class PdfInputError(Exception):
+ class PdfDocumentInfo:
+     """Identity of a validated PDF document.
+ 
+-    ``file_path`` is the path as given by the caller (used by
+-    :mod:`pagetrace.extract` to re-open the same file); ``file_name``
++    ``file_path`` is the path as given by the caller (identity /
++    reporting only — extraction must NOT re-open it without a SHA
++    re-check, see P1-R1-01); ``file_name``
+     is the bare file name only, matching
+     ``document.file_name`` in the bundle schema. ``page_labels`` is a
+     tuple with one entry per physical page (``None`` where the PDF
+@@ -70,7 +72,10 @@ class PdfDocumentInfo:
+     ``page_count``. ``is_encrypted`` is always ``False`` here — an
+     encrypted input is rejected by :func:`load_pdf` instead of being
+     returned — but the field is kept so the type stays honest about
+-    what was checked.
++    what was checked. ``pdf_bytes`` carries the exact validated bytes
++    (``None`` only for an info value built without them, e.g. by an
++    older caller): extraction parses these bytes. It is excluded from
++    ``repr`` / equality so logs and comparisons never dump a whole PDF.
+     """
+ 
+     file_name: str
+@@ -80,6 +85,7 @@ class PdfDocumentInfo:
+     page_count: int
+     is_encrypted: bool
+     page_labels: tuple[str | None, ...]
++    pdf_bytes: bytes | None = field(default=None, repr=False, compare=False)
+ 
+ 
+ def load_pdf(
+@@ -87,41 +93,62 @@ def load_pdf(
+     *,
+     max_file_size_bytes: int = DEFAULT_MAX_FILE_SIZE_BYTES,
+     max_pages: int = DEFAULT_MAX_PAGES,
++    data: bytes | None = None,
++    expected_sha256: str | None = None,
+ ) -> PdfDocumentInfo:
+     """Validate *path* as a PDF and return its :class:`PdfDocumentInfo`.
+ 
++    When *data* is given, those exact bytes are validated and parsed
++    (the file is not re-read) and are carried in the returned info as
++    ``pdf_bytes`` so extraction parses the verified bytes (P1-R1-01).
++    When *expected_sha256* is given, the validated bytes must hash to
++    it, otherwise a :class:`PdfInputError` (``SHA_MISMATCH``) is raised.
++
+     Raises :class:`PdfInputError` (never a raw pypdf/OS exception) for:
+     missing path, non-file path, size over the limit, unreadable or
+-    corrupt PDF bytes, encrypted PDF, zero pages, or page count over
+-    the limit.
++    corrupt PDF bytes, encrypted PDF, zero pages, page count over
++    the limit, or a SHA-256 mismatch against *expected_sha256*.
+     """
+     path_str = os.fspath(path)
+-    if not os.path.exists(path_str):
+-        raise PdfInputError(
+-            REASON_FILE_NOT_FOUND, f"PDF file not found: {path_str}", path_str)
+-    if not os.path.isfile(path_str):
+-        raise PdfInputError(
+-            REASON_NOT_A_FILE, f"PDF path is not a file: {path_str}", path_str)
+-
+-    file_size = os.path.getsize(path_str)
+-    if file_size > max_file_size_bytes:
+-        raise PdfInputError(
+-            REASON_TOO_LARGE,
+-            f"PDF is {file_size} bytes, over the limit of "
+-            f"{max_file_size_bytes} bytes",
+-            path_str)
+-
+-    with open(path_str, "rb") as fh:
+-        data = fh.read()
+-    # Re-check after reading: the file could have grown between the
+-    # stat and the read (TOCTOU); the byte count is authoritative.
+-    if len(data) > max_file_size_bytes:
++    if data is None:
++        if not os.path.exists(path_str):
++            raise PdfInputError(
++                REASON_FILE_NOT_FOUND, f"PDF file not found: {path_str}", path_str)
++        if not os.path.isfile(path_str):
++            raise PdfInputError(
++                REASON_NOT_A_FILE, f"PDF path is not a file: {path_str}", path_str)
++
++        file_size = os.path.getsize(path_str)
++        if file_size > max_file_size_bytes:
++            raise PdfInputError(
++                REASON_TOO_LARGE,
++                f"PDF is {file_size} bytes, over the limit of "
++                f"{max_file_size_bytes} bytes",
++                path_str)
++
++        with open(path_str, "rb") as fh:
++            data = fh.read()
++        # Re-check after reading: the file could have grown between the
++        # stat and the read (TOCTOU); the byte count is authoritative.
++        if len(data) > max_file_size_bytes:
++            raise PdfInputError(
++                REASON_TOO_LARGE,
++                f"PDF is {len(data)} bytes, over the limit of "
++                f"{max_file_size_bytes} bytes",
++                path_str)
++    elif len(data) > max_file_size_bytes:
+         raise PdfInputError(
+             REASON_TOO_LARGE,
+             f"PDF is {len(data)} bytes, over the limit of "
+             f"{max_file_size_bytes} bytes",
+             path_str)
+     sha256 = hashlib.sha256(data).hexdigest()
++    if expected_sha256 is not None and sha256 != expected_sha256:
++        raise PdfInputError(
++            REASON_SHA_MISMATCH,
++            f"PDF SHA-256 mismatch: expected {expected_sha256}, "
++            f"actual bytes hash to {sha256}",
++            path_str)
+ 
+     try:
+         reader = PdfReader(io.BytesIO(data))
+@@ -163,6 +190,7 @@ def load_pdf(
+         page_count=page_count,
+         is_encrypted=False,
+         page_labels=tuple(labels),
++        pdf_bytes=data,
+     )
+ 
+ 
+diff --git a/04_source/source/src/pagetrace/schemas/pagetrace.bundle.v1.schema.json b/04_source/source/src/pagetrace/schemas/pagetrace.bundle.v1.schema.json
+index 731405f..a4e8519 100644
+--- a/04_source/source/src/pagetrace/schemas/pagetrace.bundle.v1.schema.json
++++ b/04_source/source/src/pagetrace/schemas/pagetrace.bundle.v1.schema.json
+@@ -1 +1 @@
+-{"$defs":{"chunk_record":{"additionalProperties":false,"properties":{"chunk_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"},"text_sha256":{"description":"SHA-256 of the chunk text, or null when the chunk carries no text.","pattern":"^[0-9a-f]{64}$","type":["string","null"]}},"required":["chunk_id","source_page_indices0"],"type":"object"},"citation":{"additionalProperties":false,"properties":{"chunk_id":{"description":"Chunk the quote came from, or null when the trace does not record one.","type":["string","null"]},"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"index_record_id":{"description":"Index record the quote came from, or null when the trace does not record one.","type":["string","null"]},"quote_text":{"description":"Verbatim quoted text as cited. Matching uses the PROJECT_BOOK §4.2 normalisation (NFC, LF, collapsed whitespace); case, punctuation and full/half-width differences are preserved.","minLength":1,"type":"string"}},"required":["citation_id","quote_text","chunk_id","index_record_id"],"type":"object"},"display_record":{"additionalProperties":false,"description":"What the display layer claims. viewer_page1 is the value actually handed to the PDF viewer and must be 1-based; when citation_page_basis is UNKNOWN, viewer_page1 must be null (no conversion is allowed).","if":{"properties":{"citation_page_basis":{"const":"UNKNOWN"}},"required":["citation_page_basis"]},"properties":{"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"citation_page_basis":{"description":"What citation_page_value means. UNKNOWN means the source did not state its basis; the value must be kept verbatim and flagged UNKNOWN_PAGE_BASIS, never guessed.","enum":["PDF_INDEX_0","PDF_NUMBER_1","PDF_LABEL","UNKNOWN"]},"citation_page_value":{"description":"Raw page value as emitted by the external system. Integer for PDF_INDEX_0 / PDF_NUMBER_1, string for PDF_LABEL, any of the three (or null) for UNKNOWN. The value/basis type agreement is a runtime rule (docs/PAGE_SEMANTICS.md R-08).","maxLength":64,"minLength":1,"type":["integer","string","null"]},"viewer_page1":{"description":"Page number handed to the viewer, 1-based, or null when unknown / not convertible. 0 is never valid.","minimum":1,"type":["integer","null"]}},"required":["citation_id","citation_page_value","citation_page_basis","viewer_page1"],"then":{"description":"UNKNOWN basis must not be converted: viewer_page1 is forced to null.","properties":{"viewer_page1":{"const":null}}},"type":"object"},"extraction_record":{"additionalProperties":false,"properties":{"pdf_page_index0":{"$ref":"#/$defs/page_index0"},"pdf_page_label":{"$ref":"#/$defs/page_label"},"text_sha256":{"description":"SHA-256 of the extracted page text (normalised form per PROJECT_BOOK §4.2), or null when text_state is not TEXT.","pattern":"^[0-9a-f]{64}$","type":["string","null"]},"text_state":{"description":"TEXT: extractable text present. EMPTY: blank page, honestly marked. IMAGE_ONLY: scanned/image page, no text layer. ERROR: extraction failed for this page.","enum":["TEXT","EMPTY","IMAGE_ONLY","ERROR"]}},"required":["pdf_page_index0","text_state"],"type":"object"},"index_record":{"additionalProperties":false,"properties":{"pdf_page_label":{"$ref":"#/$defs/page_label"},"record_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"}},"required":["record_id","source_page_indices0"],"type":"object"},"page_index0":{"description":"Physical PDF page index, 0-based. Range [0, page_count-1] is enforced at runtime against document.page_count (JSON Schema cannot compare two fields).","minimum":0,"type":"integer"},"page_label":{"description":"PDF page label string, e.g. 'i', 'iv', 'A-3'. Null when the PDF defines no label. Labels are looked up, never arithmetically converted (PROJECT_BOOK §4.1).","maxLength":64,"minLength":1,"type":["string","null"]},"page_number1":{"description":"Human 1-based physical page number. Strictly pdf_page_index0 + 1. Never computed from a label.","minimum":1,"type":"integer"},"sha256_hex":{"description":"Lowercase hex SHA-256.","pattern":"^[0-9a-f]{64}$","type":"string"},"source_page_indices0":{"description":"Physical PDF pages (0-based) a chunk / index record covers. Must be sorted ascending, de-duplicated, non-negative and in range at runtime; the schema enforces type, non-negativity and uniqueness, but not ordering (JSON Schema cannot express ordering).","items":{"$ref":"#/$defs/page_index0"},"type":"array","uniqueItems":true}},"$id":"pagetrace.bundle/v1","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"description":"PageTrace case bundle (P026, PROJECT_BOOK.md v1.0.0 §6.2-§6.3). Frozen by T001. Canonical page identity is pdf_page_index0 (0-based). A bare field named 'page' is forbidden anywhere: every object sets additionalProperties:false and 'page' is not a listed property, so any bare 'page' fails validation. Cross-field rules the schema cannot express (index < page_count, sorted source_page_indices0, basis/value type agreement, viewer_page1 recomputation) are runtime rules in docs/PAGE_SEMANTICS.md and are enforced by the analyzer, not by this schema.","properties":{"case_id":{"description":"Case identifier, e.g. 'sample-offset-display-001'.","maxLength":128,"minLength":1,"pattern":"^[A-Za-z0-9][A-Za-z0-9._-]*$","type":"string"},"citations":{"description":"Citations to check. Each citation carries the quote text; the page value it claims lives in stages.display, never as a bare 'page'.","items":{"$ref":"#/$defs/citation"},"type":"array"},"document":{"additionalProperties":false,"properties":{"file_name":{"description":"PDF file name only (no directory, no absolute path).","maxLength":255,"minLength":1,"type":"string"},"page_count":{"description":"Number of physical PDF pages. Must equal the real PDF page count. Maximum 500 is the PROJECT_BOOK §13 default refusal threshold.","maximum":500,"minimum":1,"type":"integer"},"sha256":{"description":"Lowercase hex SHA-256 of the exact PDF bytes. Must match the real file or the run fails with INPUT_HASH_MISMATCH (PROJECT_BOOK §6.3).","pattern":"^[0-9a-f]{64}$","type":"string"}},"required":["file_name","sha256","page_count"],"type":"object"},"page_semantics":{"additionalProperties":false,"properties":{"canonical_field":{"const":"pdf_page_index0","description":"Canonical page identity field. Always 'pdf_page_index0'."},"index_base":{"const":0,"description":"pdf_page_index0 is 0-based."},"viewer_base":{"const":1,"description":"viewer_page1 is 1-based."}},"required":["canonical_field","index_base","viewer_base"],"type":"object"},"schema":{"const":"pagetrace.bundle/v1","description":"Schema identifier. Must match exactly; an unknown major version is rejected (PROJECT_BOOK §6.3)."},"stages":{"additionalProperties":false,"description":"Stage snapshots. Each stage array is optional, but any absent stage MUST be listed in missing_stages; an empty array must never be passed off as 'stage checked and clean' (PROJECT_BOOK §6.3).","properties":{"chunking":{"items":{"$ref":"#/$defs/chunk_record"},"type":"array"},"display":{"items":{"$ref":"#/$defs/display_record"},"type":"array"},"extraction":{"description":"One record per physical PDF page, in pdf_page_index0 order.","items":{"$ref":"#/$defs/extraction_record"},"type":"array"},"indexing":{"items":{"$ref":"#/$defs/index_record"},"type":"array"},"missing_stages":{"description":"Stages with no snapshot at all. Empty array means all four stages are present.","items":{"enum":["extraction","chunking","indexing","display"]},"type":"array","uniqueItems":true}},"required":["missing_stages"],"type":"object"}},"required":["schema","case_id","document","page_semantics","stages","citations"],"title":"pagetrace.bundle/v1","type":"object"}
+\ No newline at end of file
++{"$defs":{"chunk_record":{"additionalProperties":false,"properties":{"chunk_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"},"text_sha256":{"description":"SHA-256 of the chunk text, or null when the chunk carries no text.","pattern":"^[0-9a-f]{64}$","type":["string","null"]}},"required":["chunk_id","source_page_indices0"],"type":"object"},"citation":{"additionalProperties":false,"properties":{"chunk_id":{"description":"Chunk the quote came from, or null when the trace does not record one.","type":["string","null"]},"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"index_record_id":{"description":"Index record the quote came from, or null when the trace does not record one.","type":["string","null"]},"quote_text":{"description":"Verbatim quoted text as cited. Matching uses the PROJECT_BOOK §4.2 normalisation (NFC, LF, collapsed whitespace); case, punctuation and full/half-width differences are preserved.","minLength":1,"type":"string"}},"required":["citation_id","quote_text","chunk_id","index_record_id"],"type":"object"},"display_record":{"additionalProperties":false,"description":"What the display layer claims. viewer_page1 is the value actually handed to the PDF viewer and must be 1-based; when citation_page_basis is UNKNOWN, viewer_page1 must be null (no conversion is allowed).","if":{"properties":{"citation_page_basis":{"const":"UNKNOWN"}},"required":["citation_page_basis"]},"properties":{"citation_id":{"maxLength":128,"minLength":1,"type":"string"},"citation_page_basis":{"description":"What citation_page_value means. UNKNOWN means the source did not state its basis; the value must be kept verbatim and flagged UNKNOWN_PAGE_BASIS, never guessed.","enum":["PDF_INDEX_0","PDF_NUMBER_1","PDF_LABEL","UNKNOWN"]},"citation_page_value":{"description":"Raw page value as emitted by the external system. Integer for PDF_INDEX_0 / PDF_NUMBER_1, string for PDF_LABEL, any of the three (or null) for UNKNOWN. The value/basis type agreement is a runtime rule (docs/PAGE_SEMANTICS.md R-08).","maxLength":64,"minLength":1,"type":["integer","string","null"]},"viewer_page1":{"description":"Page number handed to the viewer, 1-based, or null when unknown / not convertible. 0 is never valid.","minimum":1,"type":["integer","null"]}},"required":["citation_id","citation_page_value","citation_page_basis","viewer_page1"],"then":{"description":"UNKNOWN basis must not be converted: viewer_page1 is forced to null.","properties":{"viewer_page1":{"const":null}}},"type":"object"},"extraction_record":{"additionalProperties":false,"properties":{"pdf_page_index0":{"$ref":"#/$defs/page_index0"},"pdf_page_label":{"$ref":"#/$defs/page_label"},"text_sha256":{"description":"SHA-256 of the extracted page text (normalised form per PROJECT_BOOK §4.2), or null when text_state is not TEXT.","pattern":"^[0-9a-f]{64}$","type":["string","null"]},"text_state":{"description":"TEXT: extractable text present. EMPTY: blank page, honestly marked. IMAGE_ONLY: scanned/image page, no text layer. ERROR: extraction failed for this page.","enum":["TEXT","EMPTY","IMAGE_ONLY","ERROR"]}},"required":["pdf_page_index0","text_state"],"type":"object"},"index_record":{"additionalProperties":false,"properties":{"pdf_page_label":{"$ref":"#/$defs/page_label"},"record_id":{"maxLength":128,"minLength":1,"type":"string"},"source_page_indices0":{"$ref":"#/$defs/source_page_indices0"}},"required":["record_id","source_page_indices0"],"type":"object"},"page_index0":{"description":"Physical PDF page index, 0-based. Range [0, page_count-1] is enforced at runtime against document.page_count (JSON Schema cannot compare two fields).","minimum":0,"type":"integer"},"page_label":{"description":"PDF page label string, e.g. 'i', 'iv', 'A-3'. Null when the PDF defines no label. Labels are looked up, never arithmetically converted (PROJECT_BOOK §4.1).","maxLength":64,"minLength":1,"type":["string","null"]},"page_number1":{"description":"Human 1-based physical page number. Strictly pdf_page_index0 + 1. Never computed from a label.","minimum":1,"type":"integer"},"sha256_hex":{"description":"Lowercase hex SHA-256.","pattern":"^[0-9a-f]{64}$","type":"string"},"source_page_indices0":{"description":"Physical PDF pages (0-based) a chunk / index record covers. Must be sorted ascending, de-duplicated, non-negative and in range at runtime; the schema enforces type, non-negativity and uniqueness, but not ordering (JSON Schema cannot express ordering).","items":{"$ref":"#/$defs/page_index0"},"type":"array","uniqueItems":true}},"$id":"pagetrace.bundle/v1","$schema":"https://json-schema.org/draft/2020-12/schema","additionalProperties":false,"description":"PageTrace case bundle (P026, PROJECT_BOOK.md v1.0.0 §6.2-§6.3). Frozen by T001. Canonical page identity is pdf_page_index0 (0-based). A bare field named 'page' is forbidden anywhere: every object sets additionalProperties:false and 'page' is not a listed property, so any bare 'page' fails validation. Cross-field rules the schema cannot express (index < page_count, sorted source_page_indices0, basis/value type agreement, viewer_page1 recomputation) are runtime rules in docs/PAGE_SEMANTICS.md and are enforced by the analyzer, not by this schema.","properties":{"case_id":{"description":"Case identifier, e.g. 'sample-offset-display-001'.","maxLength":128,"minLength":1,"pattern":"^[A-Za-z0-9][A-Za-z0-9._-]*$","type":"string"},"citations":{"description":"Citations to check. Each citation carries the quote text; the page value it claims lives in stages.display, never as a bare 'page'.","items":{"$ref":"#/$defs/citation"},"type":"array"},"document":{"additionalProperties":false,"properties":{"file_name":{"description":"PDF file name only: a bare file name, no directory and no absolute path. Must not contain '/' or '\\', must not start with a Windows drive letter (e.g. 'C:'), must not be a UNC path, and must not be '.' or '..' (R-11, FIX-R1 P1-R1-04).","maxLength":255,"minLength":1,"pattern":"^(?![A-Za-z]:)(?!\\.{1,2}$)[^/\\\\]+$","type":"string"},"page_count":{"description":"Number of physical PDF pages. Must equal the real PDF page count. Maximum 500 is the PROJECT_BOOK §13 default refusal threshold.","maximum":500,"minimum":1,"type":"integer"},"sha256":{"description":"Lowercase hex SHA-256 of the exact PDF bytes. Must match the real file or the run fails with INPUT_HASH_MISMATCH (PROJECT_BOOK §6.3).","pattern":"^[0-9a-f]{64}$","type":"string"}},"required":["file_name","sha256","page_count"],"type":"object"},"page_semantics":{"additionalProperties":false,"properties":{"canonical_field":{"const":"pdf_page_index0","description":"Canonical page identity field. Always 'pdf_page_index0'."},"index_base":{"const":0,"description":"pdf_page_index0 is 0-based."},"viewer_base":{"const":1,"description":"viewer_page1 is 1-based."}},"required":["canonical_field","index_base","viewer_base"],"type":"object"},"schema":{"const":"pagetrace.bundle/v1","description":"Schema identifier. Must match exactly; an unknown major version is rejected (PROJECT_BOOK §6.3)."},"stages":{"additionalProperties":false,"description":"Stage snapshots. Each stage array is optional, but any absent stage MUST be listed in missing_stages; an empty array must never be passed off as 'stage checked and clean' (PROJECT_BOOK §6.3).","properties":{"chunking":{"items":{"$ref":"#/$defs/chunk_record"},"type":"array"},"display":{"items":{"$ref":"#/$defs/display_record"},"type":"array"},"extraction":{"description":"One record per physical PDF page, in pdf_page_index0 order.","items":{"$ref":"#/$defs/extraction_record"},"type":"array"},"indexing":{"items":{"$ref":"#/$defs/index_record"},"type":"array"},"missing_stages":{"description":"Stages with no snapshot at all. Empty array means all four stages are present.","items":{"enum":["extraction","chunking","indexing","display"]},"type":"array","uniqueItems":true}},"required":["missing_stages"],"type":"object"}},"required":["schema","case_id","document","page_semantics","stages","citations"],"title":"pagetrace.bundle/v1","type":"object"}
+\ No newline at end of file
+diff --git a/04_source/source/src/pagetrace/trace_bundle.py b/04_source/source/src/pagetrace/trace_bundle.py
+index a7d4ab7..fa1bf26 100644
+--- a/04_source/source/src/pagetrace/trace_bundle.py
++++ b/04_source/source/src/pagetrace/trace_bundle.py
+@@ -17,7 +17,11 @@ What this module does
+      page must be inside ``[0, page_count-1]`` / ``[1, page_count]``
+      (R-05, never clamped); extraction indices must be unique and in
+      order; non-null ``citation_page_value`` must agree in type and
+-     range with its basis (R-08); duplicate ids are rejected.
++     range with its basis (R-08); duplicate ids are rejected;
++     ``document.file_name`` must be a bare file name with no directory
++     or absolute path (R-11, FIX-R1 P1-R1-04 — POSIX, Windows drive,
++     UNC and relative-directory forms all rejected, and the offending
++     value is never echoed in an error message).
+ 
+   All runtime violations are collected and reported together in one
+   :class:`BundleValidationError` (``.errors``), never silently fixed.
+@@ -64,6 +68,7 @@ from __future__ import annotations
+ 
+ import copy
+ import json
++import re
+ from pathlib import Path
+ from typing import Any
+ 
+@@ -83,6 +88,7 @@ from pagetrace.contracts import (
+ 
+ __all__ = [
+     "TraceBundle",
++    "is_bare_file_name",
+     "parse_bundle",
+     "parse_bundle_json",
+     "load_bundle",
+@@ -91,6 +97,46 @@ __all__ = [
+ 
+ _INPUT_HASH_MISMATCH = "INPUT_HASH_MISMATCH"
+ 
++#: FIX-R1 (P1-R1-04, R-11): ``document.file_name`` is a bare file name
++#: only. The same rule lives in the bundle schema
++#: (``contracts/pagetrace.bundle.v1.schema.json``, ``file_name.pattern``)
++#: and is re-checked at runtime here, so a bundle is rejected even if
++#: the schema layer is ever bypassed. Rejects POSIX absolute paths
++#: (``/home/...``), Windows drive paths (``C:\\...``, ``C:/...``,
++#: drive-relative ``C:...``), UNC paths (``\\\\server\\share\\...``,
++#: ``//server/share/...``) and any relative directory form
++#: (``sub/file.pdf``, ``../file.pdf``, ``..\\file.pdf``), plus the bare
++#: directory references ``.`` and ``..``. A name containing ``:`` after
++#: the first character (e.g. ``ab:c.pdf``) is not a drive letter and is
++#: allowed; control characters are never allowed in a file name.
++_BARE_FILE_NAME_RE = re.compile(r"^(?![A-Za-z]:)(?!\.{1,2}$)[^/\\]+$")
++
++
++def is_bare_file_name(value: Any) -> bool:
++    """True iff *value* is a bare PDF file name (R-11, no directories).
++
++    Non-strings, empty strings, names containing ``/`` or ``\\``, names
++    starting with a Windows drive letter (``C:``), ``.`` / ``..``, and
++    names containing control characters are all rejected.
++    """
++    if not isinstance(value, str) or not value:
++        return False
++    if any(ord(ch) < 0x20 for ch in value):
++        return False
++    return _BARE_FILE_NAME_RE.match(value) is not None
++
++
++def _redact_file_name(message: str, file_name: Any) -> str:
++    """Remove a raw ``file_name`` value from an error message, if present.
++
++    A rejected absolute path must never be echoed back to the terminal:
++    the validation error names the rule, never the offending value
++    (§13 path minimisation). Non-string values cannot leak a path.
++    """
++    if isinstance(file_name, str) and file_name and file_name in message:
++        return message.replace(file_name, "[redacted file_name]")
++    return message
++
+ 
+ def _is_int(value: Any) -> bool:
+     return isinstance(value, int) and not isinstance(value, bool)
+@@ -109,8 +155,33 @@ class TraceBundle:
+         if not isinstance(data, dict):
+             raise SchemaValidationError(
+                 f"bundle must be a JSON object, got {type(data).__name__}")
++        # R-11 pre-check (FIX-R1, P1-R1-04): reject a non-bare
++        # document.file_name BEFORE the schema layer runs, so the
++        # jsonschema error text can never echo the offending absolute
++        # path back to the caller. The message names the rule only,
++        # never the value. The schema pattern enforces the same rule;
++        # _runtime_errors() below re-checks it as defence in depth.
++        document = data.get("document")
++        file_name = (document.get("file_name")
++                     if isinstance(document, dict) else None)
++        if file_name is not None and not is_bare_file_name(file_name):
++            raise BundleValidationError(
++                "document.file_name must be a bare file name (no "
++                "directory, no absolute path)",
++                errors=["document.file_name must be a bare file name "
++                        "(no directory, no absolute path)"],
++            )
+         # Schema layer first (exact version, types, unknown fields).
+-        validate_bundle_schema(data)
++        try:
++            validate_bundle_schema(data)
++        except SchemaValidationError as exc:
++            # Belt and braces: never let a raw file_name value leak
++            # through a schema error message (e.g. a pattern failure
++            # quoting the offending instance).
++            clean = _redact_file_name(str(exc), file_name)
++            clean_errors = [_redact_file_name(e, file_name)
++                            for e in getattr(exc, "errors", [])]
++            raise SchemaValidationError(clean, errors=clean_errors) from exc
+         # Runtime layer: collect every cross-field violation, then raise once.
+         errors = self._runtime_errors(data)
+         if errors:
+@@ -131,6 +202,19 @@ class TraceBundle:
+         page_count: int = data["document"]["page_count"]
+         missing: list = stages.get("missing_stages", [])
+ 
++        # R-11 (FIX-R1, P1-R1-04): document.file_name must be a bare
++        # file name — no '/', no '\\', no drive letter, no UNC prefix,
++        # not '.' / '..'. Runtime re-check of the schema pattern, so
++        # the rule holds even if the schema layer is bypassed. The
++        # message never echoes the offending value (§13).
++        document = data.get("document")
++        file_name = (document.get("file_name")
++                     if isinstance(document, dict) else None)
++        if file_name is not None and not is_bare_file_name(file_name):
++            errors.append(
++                "document.file_name must be a bare file name (no "
++                "directory, no absolute path)")
++
+         # missing_stages must list exactly the stages with no snapshot.
+         for stage in STAGES:
+             present = stage in stages
+diff --git a/04_source/source/src/pagetrace/verdicts.py b/04_source/source/src/pagetrace/verdicts.py
+index 1053809..ace41fe 100644
+--- a/04_source/source/src/pagetrace/verdicts.py
++++ b/04_source/source/src/pagetrace/verdicts.py
+@@ -40,7 +40,16 @@ provable. It is ``None`` for ``PASS`` and for uncertainty verdicts
+ that blame no stage (``UNKNOWN_TRACE_MISSING``,
+ ``NEEDS_MANUAL_REVIEW``); it is ``"display"`` for
+ ``UNKNOWN_PAGE_BASIS`` because the unusable basis lives in the
+-display record itself.
++display record itself. It is also ``None`` for ``FAIL_UNLOCATABLE``
++with reason ``NO_EXACT_MATCH`` / ``NO_TEXT_LAYER`` when no
++extraction failure is provable (FIX-R1 P1-R1-02): the quote differs
++by one character from a sentence on a TEXT page and the extraction
++trace matches the honest extraction, so no stage can be blamed and
++the trace-claimed page is not a confirmed source
++(``expected_source_pages0`` is ``None`` too). Only a page that
++honestly has no text layer (``IMAGE_ONLY`` / ``EMPTY``) or a
++provably wrong extraction record blames ``"extraction"`` for
++UNLOCATABLE.
+ 
+ This module defines the verdict values and the report-shaped result
+ type only; the stage-by-stage comparison lives in
+@@ -186,9 +195,13 @@ class CitationVerdict:
+       never reduced to a single page (R-09).
+     * ``expected_source_pages0`` — the authoritative source set the
+       trace should have carried (the PDF-truth candidate set for
+-      locatable quotes; the trace-claimed anchor pages for
+-      UNLOCATABLE); ``None`` when the trace gives no usable source
+-      set (trace missing / unsupported span).
++      locatable quotes; for UNLOCATABLE, the trace-claimed anchor
++      pages only when the anchor page honestly has no text layer or
++      its extraction record provably differs — otherwise ``None``,
++      the claimed page is unconfirmed); ``None`` when the trace
++      gives no usable source set (trace missing / unsupported span /
++      near-miss UNLOCATABLE with no provable extraction failure,
++      FIX-R1 P1-R1-02).
+     * ``observed_page_value`` — the display layer's raw page value,
+       verbatim; ``None`` when the display record is absent or its
+       value is null.
+diff --git a/04_source/source/tests/e2e/test_e2e.py b/04_source/source/tests/e2e/test_e2e.py
+index 7d75fdc..b9f1e5d 100644
+--- a/04_source/source/tests/e2e/test_e2e.py
++++ b/04_source/source/tests/e2e/test_e2e.py
+@@ -82,7 +82,7 @@ ENTRY_FIELDS = (
+ )
+ 
+ EXPECTED_REPLAY_HASH = (
+-    "5195fc9a17e8fbae37a9975234ffccef31017bc8a68ce1f081a23315355f33f8"
++    "a06b87fccdfb0aa77c1b17bdd363caa3e9af5c7c4fecc88e285fb7a0be5632a3"
+ )
+ 
+ 
+diff --git a/04_source/source/tests/integration/test_cli.py b/04_source/source/tests/integration/test_cli.py
+index 5261447..aadb08d 100644
+--- a/04_source/source/tests/integration/test_cli.py
++++ b/04_source/source/tests/integration/test_cli.py
+@@ -324,7 +324,7 @@ def test_clean_refuses_non_marker_directory(tmp_path):
+                                      encoding="utf-8")
+     proc = run_cli("clean", str(plain))
+     assert proc.returncode == 2
+-    assert "not a PageTrace output directory" in proc.stderr
++    assert "not a verified PageTrace output directory" in proc.stderr
+     assert plain.is_dir()  # untouched
+ 
+ 
+@@ -342,15 +342,145 @@ def test_clean_missing_directory_exits_2(tmp_path):
+     assert proc.returncode == 2
+ 
+ 
++def test_clean_refuses_unrelated_report_html_directory(tmp_path):
++    """FIX-R1 (P1-R1-03, GPT repro): an unrelated directory that merely
++    contains a generic report.html must NOT be deleted."""
++    unrelated = tmp_path / "unrelated-report-folder"
++    unrelated.mkdir()
++    (unrelated / "report.html").write_text(
++        "<html><body>unrelated</body></html>", encoding="utf-8")
++    (unrelated / "keep.txt").write_text("do not delete me",
++                                        encoding="utf-8")
++    proc = run_cli("clean", str(unrelated))
++    assert proc.returncode == 2
++    assert "not a verified PageTrace output directory" in proc.stderr
++    assert (unrelated / "report.html").is_file()
++    assert (unrelated / "keep.txt").read_text(
++        encoding="utf-8") == "do not delete me"
++
++
++def test_clean_dry_run_refuses_unrelated_directory(tmp_path):
++    unrelated = tmp_path / "unrelated-report-folder"
++    unrelated.mkdir()
++    (unrelated / "report.html").write_text("unrelated", encoding="utf-8")
++    (unrelated / "S0_REPORT.json").write_text(
++        json.dumps({"format": "pagetrace.s0-report/v1"}),
++        encoding="utf-8")
++    proc = run_cli("clean", "--dry-run", str(unrelated))
++    assert proc.returncode == 2
++    assert unrelated.is_dir()
++    assert (unrelated / "report.html").is_file()
++    assert (unrelated / "S0_REPORT.json").is_file()
++
++
++def test_clean_refuses_arbitrary_s0_report_json(tmp_path):
++    """FIX-R1 (P1-R1-03): any S0_REPORT.json is not a marker — the
++    format/project/gates/counts/replay cross-checks must all hold."""
++    fake = tmp_path / "fake-s0"
++    fake.mkdir()
++    (fake / "S0_REPORT.json").write_text(json.dumps({
++        "format": "pagetrace.s0-report/v1",
++        "project": "P026 PageTrace",
++        "s0_result": "PASS",
++        "suite": {"case_count": 48, "repeat": 1},
++        "counts": {"detection": 48},
++        "gates": {},
++        "replay": {"hashes": ["a" * 64], "unique_hashes": ["a" * 64],
++                   "unique_hash_count": 1},
++    }), encoding="utf-8")
++    (fake / "keep.txt").write_text("do not delete me", encoding="utf-8")
++    proc = run_cli("clean", str(fake))
++    assert proc.returncode == 2
++    assert "not a verified PageTrace output directory" in proc.stderr
++    assert fake.is_dir()
++    assert (fake / "keep.txt").is_file()
++
++
++def test_clean_refuses_schema_only_report_json(tmp_path):
++    """FIX-R1 (P1-R1-03): a report.json that only carries the right
++    schema string (no tool identity, no recomputable normalised
++    hash, no report.html) is not a marker."""
++    fake = tmp_path / "fake-report"
++    fake.mkdir()
++    (fake / "report.json").write_text(json.dumps({
++        "schema": "pagetrace.report/v1",
++        "case_id": "fake-case",
++        "document": {"file_name": "fake.pdf",
++                     "sha256": "a" * 64, "page_count": 1},
++        "tool": {"name": "pagetrace", "version": "0.1.0"},
++        "results": [],
++        "summary": {"total_citations": 0, "pass_count": 0,
++                    "fail_count": 0, "unknown_count": 0,
++                    "ambiguous_count": 0,
++                    "normalized_result_sha256": "b" * 64},
++    }), encoding="utf-8")
++    (fake / "keep.txt").write_text("do not delete me", encoding="utf-8")
++    proc = run_cli("clean", str(fake))
++    assert proc.returncode == 2
++    assert fake.is_dir()
++    assert (fake / "keep.txt").is_file()
++
++
++def test_clean_refuses_tampered_report_json(tmp_path):
++    """FIX-R1 (P1-R1-03): a real analyze output whose report.json was
++    tampered with afterwards (summary counts no longer derived from
++    the results) is refused, untouched."""
++    out = _make_output_dir(tmp_path)
++    report_path = out / "report.json"
++    report = json.loads(report_path.read_text(encoding="utf-8"))
++    report["summary"]["pass_count"] += 1  # no longer derived from results
++    report_path.write_text(json.dumps(report, ensure_ascii=False,
++                                     sort_keys=True, indent=2) + "\n",
++                           encoding="utf-8")
++    proc = run_cli("clean", str(out))
++    assert proc.returncode == 2
++    assert "not a verified PageTrace output directory" in proc.stderr
++    assert out.is_dir()
++    assert report_path.is_file()
++
++
++def test_clean_refuses_tampered_report_hash(tmp_path):
++    """FIX-R1 (P1-R1-03): a real analyze output whose results were
++    edited (normalised hash no longer recomputes) is refused."""
++    out = _make_output_dir(tmp_path)
++    report_path = out / "report.json"
++    report = json.loads(report_path.read_text(encoding="utf-8"))
++    report["results"][0]["verdict"] = "PASS"
++    report_path.write_text(json.dumps(report, ensure_ascii=False,
++                                     sort_keys=True, indent=2) + "\n",
++                           encoding="utf-8")
++    proc = run_cli("clean", str(out))
++    assert proc.returncode == 2
++    assert out.is_dir()
++    assert report_path.is_file()
++
++
++def test_clean_removes_verified_s0_output(tmp_path):
++    """FIX-R1 (P1-R1-03): a real S0 output directory (self-consistent
++    S0_REPORT.json + matching replay-hashes.txt) is still cleanable."""
++    out = tmp_path / "s0"
++    proc = run_cli("s0", "--suite", str(FIXTURES), "--repeat", "1",
++                   "--out", str(out))
++    assert proc.returncode == 0, proc.stdout + proc.stderr
++    assert (out / "S0_REPORT.json").is_file()
++    assert (out / "replay-hashes.txt").is_file()
++    proc = run_cli("clean", str(out))
++    assert proc.returncode == 0, proc.stdout + proc.stderr
++    assert f"REMOVED: {out}" in proc.stdout
++    assert not out.exists()
++
++
+ # ---------------------------------------------------------------------------
+ # s0
+ # ---------------------------------------------------------------------------
+-def test_s0_repeat_1_passes(tmp_path):
++def test_s0_repeat_1_smoke_pass(tmp_path):
++    """FIX-R1 (GPT R1 §4): --repeat 1 passes the gates but is only a
++    smoke run — S0_RESULT is SMOKE_PASS, exit 0, never formal PASS."""
+     out = tmp_path / "s0"
+     proc = run_cli("s0", "--suite", str(FIXTURES), "--repeat", "1",
+                    "--out", str(out))
+     assert proc.returncode == 0, proc.stdout + proc.stderr
+-    assert "S0_RESULT: PASS" in proc.stdout
++    assert "S0_RESULT: SMOKE_PASS" in proc.stdout
+     report = json.loads((out / "S0_REPORT.json").read_text(encoding="utf-8"))
+-    assert report["s0_result"] == "PASS"
++    assert report["s0_result"] == "SMOKE_PASS"
+     assert report["counts"]["detection"] == 48
+diff --git a/04_source/source/tests/integration/test_toctou.py b/04_source/source/tests/integration/test_toctou.py
+new file mode 100644
+index 0000000..0394b14
+--- /dev/null
++++ b/04_source/source/tests/integration/test_toctou.py
+@@ -0,0 +1,327 @@
++"""Regression tests for P026 P1-R1-01 (PDF TOCTOU) and the P2 image-enum
++finding (R1 §4: image enumeration failure misreported as EMPTY).
++
++Run from PACKAGE_ROOT, inside the venv::
++
++    python -m pytest tests/integration/test_toctou.py -q
++
++TOCTOU threat (GPT R1, reproduced before the fix): two synthetic PDFs
++with the same byte size and the same physical page count but different
++content. ``load_pdf`` verified PDF1's SHA-256; the file was then swapped
++for PDF2; ``extract_pages`` re-opened the path and checked only the
++page count, so the report bound PDF1's SHA to PDF2's extraction.
++
++Fixed behaviour under test:
++
++* ``extract_pages`` parses the exact bytes validated by ``load_pdf``
++  (carried in ``PdfDocumentInfo.pdf_bytes``) — a swap after validation
++  cannot change what is extracted, so the report SHA always matches
++  the extracted bytes;
++* any path re-read (info without carried bytes, or ``extract_pdf``
++  given verified bytes + an expected hash) re-checks SHA-256 and
++  rejects a swapped file with ``PdfInputError`` (``SHA_MISMATCH``)
++  instead of analysing it — the CLI ``analyze`` path rejects it
++  (exit 2, no report written);
++* image enumeration failure is ``ERROR``, never ``EMPTY``.
++
++The synthetic PDFs are built with pypdf only (a runtime dependency):
++one Helvetica text line per page, same-length markers, so both files
++come out byte-identical in size with different SHA-256.
++"""
++
++from __future__ import annotations
++
++import dataclasses
++import hashlib
++import json
++import sys
++from pathlib import Path
++
++import pytest
++
++PACKAGE_ROOT = Path(__file__).resolve().parents[2]
++FIXTURES = PACKAGE_ROOT / "fixtures"
++
++sys.path.insert(0, str(PACKAGE_ROOT / "src"))
++
++from pypdf import PdfWriter  # noqa: E402
++from pypdf.generic import (  # noqa: E402
++    DecodedStreamObject,
++    DictionaryObject,
++    NameObject,
++)
++
++import pagetrace.cli as cli_module  # noqa: E402
++from pagetrace.extract import (  # noqa: E402
++    _extract_one_page,
++    _page_has_images,
++    extract_pages,
++    extract_pdf,
++)
++from pagetrace.normalize import quote_sha256  # noqa: E402
++from pagetrace.pdf_input import PdfInputError, load_pdf  # noqa: E402
++
++QUOTE = "TOCTOU marker AAAAAAAA alpha"
++
++
++# ---------------------------------------------------------------------------
++# Synthetic PDFs: same size, same page count, different content
++# ---------------------------------------------------------------------------
++
++def _build_pdf(path: Path, marker: str) -> bytes:
++    """Write a 2-page PDF whose pages carry *marker*; return its bytes.
++
++    The two markers must be the same length, so the two PDFs come out
++    the same size (pypdf writes no timestamps / random ids here).
++    """
++    writer = PdfWriter()
++    for tag in ("alpha", "beta"):
++        page = writer.add_blank_page(612, 792)
++        font = DictionaryObject({
++            NameObject("/Type"): NameObject("/Font"),
++            NameObject("/Subtype"): NameObject("/Type1"),
++            NameObject("/BaseFont"): NameObject("/Helvetica"),
++            NameObject("/Encoding"): NameObject("/WinAnsiEncoding"),
++        })
++        resources = DictionaryObject({
++            NameObject("/Font"): DictionaryObject(
++                {NameObject("/F1"): writer._add_object(font)}),
++        })
++        text = f"TOCTOU marker {marker} {tag}"
++        stream = DecodedStreamObject()
++        stream.set_data(
++            f"BT /F1 12 Tf 72 720 Td ({text}) Tj ET".encode("latin-1"))
++        page[NameObject("/Resources")] = resources
++        page[NameObject("/Contents")] = writer._add_object(stream)
++    with open(path, "wb") as fh:
++        writer.write(fh)
++    return path.read_bytes()
++
++
++@pytest.fixture()
++def swapped_pair(tmp_path: Path):
++    """(pdf_path, pdf1_bytes, pdf2_bytes): same size/pages, diff content."""
++    pdf_path = tmp_path / "doc.pdf"
++    pdf1 = _build_pdf(pdf_path, "AAAAAAAA")
++    pdf2 = _build_pdf(tmp_path / "other.pdf", "BBBBBBBB")
++    assert len(pdf1) == len(pdf2), "test PDFs must be the same size"
++    assert hashlib.sha256(pdf1).hexdigest() != hashlib.sha256(pdf2).hexdigest()
++    info = load_pdf(str(pdf_path))
++    assert info.page_count == 2
++    assert info.sha256 == hashlib.sha256(pdf1).hexdigest()
++    return pdf_path, pdf1, pdf2
++
++
++def _build_bundle(pdf_path: Path, pdf_bytes: bytes, tmp_path: Path) -> Path:
++    """A minimal 1-citation PASS bundle for *pdf_bytes* (honest extraction)."""
++    info, records = extract_pdf(str(pdf_path))
++    assert info.sha256 == hashlib.sha256(pdf_bytes).hexdigest()
++    bundle = {
++        "schema": "pagetrace.bundle/v1",
++        "case_id": "toctou-01",
++        "document": {
++            "file_name": pdf_path.name,
++            "page_count": info.page_count,
++            "sha256": info.sha256,
++        },
++        "page_semantics": {
++            "canonical_field": "pdf_page_index0",
++            "index_base": 0,
++            "viewer_base": 1,
++        },
++        "citations": [
++            {
++                "citation_id": "cite-1",
++                "chunk_id": "c-1",
++                "index_record_id": "v-1",
++                "quote_text": QUOTE,
++            }
++        ],
++        "stages": {
++            "extraction": [
++                {
++                    "pdf_page_index0": r.pdf_page_index0,
++                    "pdf_page_label": r.pdf_page_label,
++                    "text_sha256": r.text_sha256,
++                    "text_state": r.text_state,
++                }
++                for r in records
++            ],
++            "chunking": [
++                {
++                    "chunk_id": "c-1",
++                    "source_page_indices0": [0],
++                    "text_sha256": quote_sha256(QUOTE),
++                }
++            ],
++            "indexing": [
++                {
++                    "record_id": "v-1",
++                    "pdf_page_label": records[0].pdf_page_label,
++                    "source_page_indices0": [0],
++                }
++            ],
++            "display": [
++                {
++                    "citation_id": "cite-1",
++                    "citation_page_basis": "PDF_INDEX_0",
++                    "citation_page_value": 0,
++                    "viewer_page1": 1,
++                }
++            ],
++            "missing_stages": [],
++        },
++    }
++    out = tmp_path / "toctou-01.trace.json"
++    out.write_text(json.dumps(bundle, ensure_ascii=False, indent=2),
++                   encoding="utf-8")
++    return out
++
++
++# ---------------------------------------------------------------------------
++# P1-R1-01: TOCTOU
++# ---------------------------------------------------------------------------
++
++def test_extract_pages_uses_verified_bytes_after_swap(swapped_pair):
++    """Swap after validation: extraction still returns the VERIFIED bytes.
++
++    The report SHA must match the bytes actually extracted — PDF2's
++    content must never appear while the identity claims PDF1's SHA.
++    """
++    pdf_path, pdf1, pdf2 = swapped_pair
++    sha1 = hashlib.sha256(pdf1).hexdigest()
++    info = load_pdf(str(pdf_path))
++    assert info.sha256 == sha1
++    pdf_path.write_bytes(pdf2)  # swap AFTER verification
++    records = extract_pages(info)
++    assert info.sha256 == sha1
++    assert any("AAAAAAAA" in (r.extracted_text or "") for r in records)
++    assert not any("BBBBBBBB" in (r.extracted_text or "") for r in records)
++
++
++def test_extract_pages_without_carried_bytes_rejects_swapped_file(
++        swapped_pair):
++    """No verified bytes carried: a path re-read must re-check the SHA.
++
++    An info value built without ``pdf_bytes`` (older caller) still
++    fails closed instead of extracting the swapped file.
++    """
++    pdf_path, pdf1, pdf2 = swapped_pair
++    sha1 = hashlib.sha256(pdf1).hexdigest()
++    info = load_pdf(str(pdf_path))
++    stripped = dataclasses.replace(info, pdf_bytes=None)
++    pdf_path.write_bytes(pdf2)  # swap AFTER validation
++    with pytest.raises(PdfInputError) as excinfo:
++        extract_pages(stripped)
++    assert excinfo.value.reason == "SHA_MISMATCH"
++    assert sha1 in str(excinfo.value)
++
++
++def test_extract_pdf_rejects_swapped_file_with_expected_sha(swapped_pair):
++    """Verified bytes + expected hash: a swap on disk is rejected."""
++    pdf_path, pdf1, pdf2 = swapped_pair
++    sha1 = hashlib.sha256(pdf1).hexdigest()
++    pdf_path.write_bytes(pdf2)  # swap BEFORE extraction
++    with pytest.raises(PdfInputError) as excinfo:
++        extract_pdf(str(pdf_path), pdf_bytes=pdf1, expected_sha256=sha1)
++    assert excinfo.value.reason == "SHA_MISMATCH"
++
++
++def test_extract_pdf_with_verified_bytes_ignores_swapped_file(swapped_pair):
++    """Verified bytes with no expected hash: extraction uses those bytes."""
++    pdf_path, pdf1, pdf2 = swapped_pair
++    pdf_path.write_bytes(pdf2)  # swap BEFORE extraction
++    info, records = extract_pdf(str(pdf_path), pdf_bytes=pdf1)
++    assert info.sha256 == hashlib.sha256(pdf1).hexdigest()
++    assert any("AAAAAAAA" in (r.extracted_text or "") for r in records)
++    assert not any("BBBBBBBB" in (r.extracted_text or "") for r in records)
++
++
++def test_cli_report_sha_matches_extracted_bytes(tmp_path, swapped_pair,
++                                                capsys):
++    """No swap: ``analyze`` passes and the report SHA is the extracted PDF's."""
++    pdf_path, pdf1, _pdf2 = swapped_pair
++    sha1 = hashlib.sha256(pdf1).hexdigest()
++    bundle = _build_bundle(pdf_path, pdf1, tmp_path)
++    out = tmp_path / "out"
++    rc = cli_module.main(["analyze", "--pdf", str(pdf_path),
++                          "--trace", str(bundle), "--out", str(out)])
++    assert rc == 0, capsys.readouterr().out
++    report = json.loads((out / "report.json").read_text(encoding="utf-8"))
++    assert report["document"]["sha256"] == sha1
++    assert report["results"][0]["verdict"] == "PASS"
++
++
++def test_cli_rejects_swapped_pdf_same_size_same_pages(
++        tmp_path, swapped_pair, monkeypatch, capsys):
++    """Swap between hash verification and extraction: CLI rejects (exit 2).
++
++    The swap is injected deterministically where the TOCTOU window was:
++    ``cli.extract_pdf`` is wrapped so the file is replaced with the
++    same-size, same-page-count PDF2 before the real extraction runs.
++    No report may be written for the swapped file.
++    """
++    pdf_path, pdf1, pdf2 = swapped_pair
++    bundle = _build_bundle(pdf_path, pdf1, tmp_path)
++    out = tmp_path / "out"
++    real_extract_pdf = cli_module.extract_pdf
++
++    def _swap_then_extract(*args, **kwargs):
++        pdf_path.write_bytes(pdf2)
++        return real_extract_pdf(*args, **kwargs)
++
++    monkeypatch.setattr(cli_module, "extract_pdf", _swap_then_extract)
++    rc = cli_module.main(["analyze", "--pdf", str(pdf_path),
++                          "--trace", str(bundle), "--out", str(out)])
++    assert rc == 2, capsys.readouterr().out
++    assert not (out / "report.json").exists()
++
++
++# ---------------------------------------------------------------------------
++# P2: image enumeration failure must be ERROR, never EMPTY
++# ---------------------------------------------------------------------------
++
++class _FakePage:
++    """A page whose text / image enumeration the test controls exactly."""
++
++    def __init__(self, text: str, images: object):
++        self._text = text
++        self._images = images
++
++    def extract_text(self) -> str:
++        return self._text
++
++    @property
++    def images(self):
++        if self._images is _RAISE:
++            raise RuntimeError("image enumeration failed")
++        return self._images
++
++
++_RAISE = object()
++
++
++def test_image_enum_failure_is_error_not_empty():
++    """A blank-text page whose images cannot be enumerated is ERROR."""
++    assert _page_has_images(_FakePage("", _RAISE)) is None
++    record = _extract_one_page(_FakePage("", _RAISE), 0, None)
++    assert record.text_state == "ERROR"
++    assert record.extracted_text is None
++    assert record.text_sha256 is None
++
++
++def test_image_enum_failure_does_not_mask_real_text():
++    """Text present + image enum failing: still TEXT (enum not consulted)."""
++    record = _extract_one_page(_FakePage("some text", _RAISE), 0, None)
++    assert record.text_state == "TEXT"
++    assert record.extracted_text == "some text"
++    assert record.text_sha256 is not None
++
++
++def test_image_enum_controls_still_classify():
++    """No failure: images -> IMAGE_ONLY, none -> EMPTY (unchanged)."""
++    assert _page_has_images(_FakePage("", [object()])) is True
++    assert _extract_one_page(_FakePage("", [object()]), 0, None).text_state \
++        == "IMAGE_ONLY"
++    assert _page_has_images(_FakePage("", [])) is False
++    assert _extract_one_page(_FakePage("", []), 0, None).text_state == "EMPTY"
+diff --git a/04_source/source/tests/oracle/attribute.py b/04_source/source/tests/oracle/attribute.py
+index 5519118..9d8facc 100644
+--- a/04_source/source/tests/oracle/attribute.py
++++ b/04_source/source/tests/oracle/attribute.py
+@@ -17,13 +17,22 @@ Rules applied, in order, for one citation:
+    ``UNKNOWN_TRACE_MISSING``.
+ 1. A quote spanning more than two pages is real but unsupported:
+    ``NEEDS_MANUAL_REVIEW``.
+-2. A quote found on no page is ``FAIL_UNLOCATABLE`` at extraction.
+-   The reason is anchored on the page(s) the trace itself claims
+-   (chunk, then index): all ``IMAGE_ONLY`` -> ``IMAGE_ONLY``,
+-   all ``EMPTY`` -> ``EMPTY``, all ``TEXT`` -> ``NO_EXACT_MATCH``,
+-   anything else -> ``NO_TEXT_LAYER``.  This never means "the quoted
+-   text does not exist": it may live in a raster image, on a blank
+-   page, or differ by one character.  No OCR is run.
++2. A quote found on no page is ``FAIL_UNLOCATABLE``.  The reason
++   is anchored on the page(s) the trace itself claims (chunk, then
++   index): all ``IMAGE_ONLY`` -> ``IMAGE_ONLY``, all ``EMPTY`` ->
++   ``EMPTY``, all ``TEXT`` -> ``NO_EXACT_MATCH``, anything else ->
++   ``NO_TEXT_LAYER``.  Only a provable extraction failure is blamed
++   on extraction: an anchor page honestly ``IMAGE_ONLY`` / ``EMPTY``
++   (no text layer to extract), or a bundle extraction record for a
++   claimed page that provably differs from the honest pdfminer
++   reading.  Otherwise (near miss on a TEXT page whose extraction
++   records match the honest reading, or no usable anchor)
++   ``first_fault_stage`` is ``None`` and
++   ``expected_source_pages0`` is ``None``: the trace-claimed page
++   is unconfirmed, never a verified source (FIX-R1 P1-R1-02).  This
++   never means "the quoted text does not exist": it may live in a
++   raster image, on a blank page, or differ by one character.  No
++   OCR is run.
+ 3. Extraction: for every truth page, the bundle record must exist,
+    carry the same text state as the honest pdfminer reading, and
+    (for TEXT pages) a hash that matches the page (see
+@@ -417,9 +426,47 @@ def analyze_citation(*, citation: dict, bundle: dict,
+         reason = _unlocatable_reason(anchor, pages)
+         result.verdict = "FAIL_UNLOCATABLE"
+         result.fault_type = "UNLOCATABLE"
+-        result.first_fault_stage = "extraction"
++        if reason in ("IMAGE_ONLY", "EMPTY"):
++            # Provable extraction failure (PROJECT_BOOK §5): the
++            # trace-claimed page honestly has no text layer.
++            result.first_fault_stage = "extraction"
++            result.expected_source_pages0 = anchor
++            blame_note = ""
++        else:
++            # NO_EXACT_MATCH / NO_TEXT_LAYER (FIX-R1 P1-R1-02):
++            # extraction is blamed only if a bundle extraction
++            # record for a trace-claimed page provably differs from
++            # the honest pdfminer reading; a verified-correct
++            # extraction is never blamed for a missing exact match,
++            # and the claimed page is not a confirmed source.
++            fault_diff = next(
++                (d for d in audit_extraction(
++                    pages, stages.get("extraction"))
++                 if anchor and d.pdf_page_index0 in anchor),
++                None)
++            if fault_diff is not None:
++                result.first_fault_stage = "extraction"
++                result.expected_source_pages0 = anchor
++                blame_note = (
++                    "; the extraction record for the claimed page(s) "
++                    "provably differs from the honest pdfminer "
++                    "reading, so extraction is blamed")
++            else:
++                result.first_fault_stage = None
++                result.expected_source_pages0 = None
++                if anchor:
++                    blame_note = (
++                        "; no stage can be blamed: the extraction "
++                        "records for the trace-claimed page(s) match "
++                        "the honest pdfminer reading, so the missing "
++                        "exact match does not prove an extraction "
++                        "failure, and the claimed page(s) are not a "
++                        "confirmed source")
++                else:
++                    blame_note = (
++                        "; no stage can be blamed: no trace anchor "
++                        "names the intended page")
+         result.reason = reason
+-        result.expected_source_pages0 = anchor
+         anchor_note = ""
+         if anchor:
+             by_index = {p.pdf_page_index0: p for p in pages}
+@@ -429,13 +476,20 @@ def analyze_citation(*, citation: dict, bundle: dict,
+                            f"{'/'.join(states)}")
+         result.evidence = [OracleEvidence(
+             "extraction", "candidate_source_pages0", None, [],
+-            "quote not found in the extractable text layer" + anchor_note)]
++            "quote not found in the extractable text layer"
++            + anchor_note + blame_note)]
+         result.notes = ["The quote was not found in the extractable text "
+                         "layer. This does not establish that the quoted "
+                         "text is absent from the document: it may be "
+                         "visible only in a raster image, on a blank page, "
+                         "or differ by a character from the page text. "
+                         "No OCR was run."]
++        if result.first_fault_stage is None:
++            result.notes.append(
++                "No stage is blamed for this citation: the missing "
++                "exact match does not prove any stage failed, and "
++                "the trace-claimed page(s), if any, are not "
++                "confirmed as the quote's source page(s).")
+         return result
+ 
+     # From here the quote is locatable: the truth set is the full
+diff --git a/04_source/source/tests/oracle/test_oracle.py b/04_source/source/tests/oracle/test_oracle.py
+index f56e4ed..410313c 100644
+--- a/04_source/source/tests/oracle/test_oracle.py
++++ b/04_source/source/tests/oracle/test_oracle.py
+@@ -485,13 +485,24 @@ def test_golden_extraction_audit_matches_confirmed_fact():
+ 
+ 
+ def test_golden_unlocatable_reasons_are_4_4_4():
+-    """IMAGE_ONLY x4 / EMPTY x4 / NO_EXACT_MATCH x4, all at
+-    extraction — the confirmed fixture fact."""
++    """IMAGE_ONLY x4 / EMPTY x4 / NO_EXACT_MATCH x4 — the confirmed
++    fixture fact.
++
++    FIX-R1 P1-R1-02: attribution is 8 x extraction (IMAGE_ONLY /
++    EMPTY, provable extraction failure) + 4 x null (near-miss
++    NO_EXACT_MATCH, no stage can be blamed); the reason split 4/4/4
++    is unchanged.
++    """
+     golden = load_golden()
+     reasons: dict[str, int] = {}
+     for entry in golden["cases"]:
+         if entry["fault"]["fault_type"] == "UNLOCATABLE":
+-            assert entry["fault"]["first_fault_stage"] == "extraction"
++            if entry["case_id"] in ("un-ext-09", "un-ext-10",
++                                    "un-ext-11", "un-ext-12"):
++                assert entry["fault"]["first_fault_stage"] is None
++                assert entry["fault"]["expected_source_pages0"] is None
++            else:
++                assert entry["fault"]["first_fault_stage"] == "extraction"
+             reason = entry["fault"]["unlocatable_reason"]
+             reasons[reason] = reasons.get(reason, 0) + 1
+     assert reasons == {"IMAGE_ONLY": 4, "EMPTY": 4, "NO_EXACT_MATCH": 4}
+diff --git a/04_source/source/tests/privacy/test_privacy.py b/04_source/source/tests/privacy/test_privacy.py
+index 97004b9..84a41bd 100644
+--- a/04_source/source/tests/privacy/test_privacy.py
++++ b/04_source/source/tests/privacy/test_privacy.py
+@@ -206,7 +206,7 @@ def test_privacy_s0_baseline_report_has_no_leaks():
+         encoding="utf-8")
+     assert_no_leaks(hashes, "replay-hashes.txt")
+     assert set(hashes.split()) == {
+-        "5195fc9a17e8fbae37a9975234ffccef31017bc8a68ce1f081a23315355f33f8"}
++        "a06b87fccdfb0aa77c1b17bdd363caa3e9af5c7c4fecc88e285fb7a0be5632a3"}
+ 
+ 
+ def test_privacy_report_json_has_no_timestamp_field(tmp_path):
+diff --git a/04_source/source/tests/s0/test_run_s0.py b/04_source/source/tests/s0/test_run_s0.py
+index 8cabf91..11754a6 100644
+--- a/04_source/source/tests/s0/test_run_s0.py
++++ b/04_source/source/tests/s0/test_run_s0.py
+@@ -24,7 +24,7 @@ PACKAGE_ROOT = Path(__file__).resolve().parents[2]
+ FIXTURES = PACKAGE_ROOT / "fixtures"
+ 
+ GOLDEN_SHA256 = (
+-    "417e3ed38e9086bbb8092593231d9ae9bcc3f058852bfcb678e6f6f5149f039c")
++    "9db9b16e1fd8e93a5a3e2a5cde39e09ade4acbc057ef0fe8550a037ccf60e353")
+ 
+ 
+ def test_normalize_is_canonical():
+@@ -60,12 +60,26 @@ def test_golden_sha_matches_frozen_value():
+         == GOLDEN_SHA256
+ 
+ 
++def test_s0_result_threshold():
++    """FIX-R1 (GPT R1 §4): < 100 replays can only be SMOKE_PASS."""
++    assert run_s0.s0_result_for(True, 1) == "SMOKE_PASS"
++    assert run_s0.s0_result_for(True, 99) == "SMOKE_PASS"
++    assert run_s0.s0_result_for(True, 100) == "PASS"
++    assert run_s0.s0_result_for(True, 101) == "PASS"
++    assert run_s0.s0_result_for(False, 100) == "FAIL"
++    assert run_s0.s0_result_for(False, 1) == "FAIL"
++
++
+ def test_run_s0_real_suite_repeat_2(tmp_path):
+-    """End to end on the frozen suite: all §8.3 gates pass, 1 hash."""
++    """End to end on the frozen suite: all §8.3 gates pass, 1 hash.
++
++    repeat=2 is a smoke run (FIX-R1): the gates pass but the result
++    is SMOKE_PASS, not a formal S0 PASS (needs --repeat 100).
++    """
+     out_dir = tmp_path / "s0"
+     report, exit_code = run_s0.run_s0(FIXTURES, 2, out_dir)
+     assert exit_code == 0
+-    assert report["s0_result"] == "PASS"
++    assert report["s0_result"] == "SMOKE_PASS"
+     assert report["counts"]["detection"] == 48
+     assert report["counts"]["first_fault_stage"] == 48
+     assert report["counts"]["control_false_positives"] == 0
+@@ -85,7 +99,7 @@ def test_run_s0_real_suite_repeat_2(tmp_path):
+     hashes_path = out_dir / "replay-hashes.txt"
+     assert report_path.is_file() and hashes_path.is_file()
+     assert json.loads(report_path.read_text(encoding="utf-8"))["s0_result"] \
+-        == "PASS"
++        == "SMOKE_PASS"
+     lines = hashes_path.read_text(encoding="utf-8").splitlines()
+     assert len(lines) == 2 and len(set(lines)) == 1
+     assert lines[0] == report["replay"]["unique_hashes"][0]
+diff --git a/04_source/source/tests/unit/test_file_name_paths.py b/04_source/source/tests/unit/test_file_name_paths.py
+new file mode 100644
+index 0000000..9961bf5
+--- /dev/null
++++ b/04_source/source/tests/unit/test_file_name_paths.py
+@@ -0,0 +1,209 @@
++"""FIX-R1 (P1-R1-04, R-11) — ``document.file_name`` must be a bare file name.
++
++Run from PACKAGE_ROOT, inside the venv::
++
++    python -m pytest tests/unit/test_file_name_paths.py -q
++
++Covers the GPT R1 repro and its variants at three layers:
++
++* :func:`pagetrace.trace_bundle.is_bare_file_name` — the runtime
++  predicate (POSIX absolute, Windows drive / drive-relative, UNC,
++  relative-directory forms, and bare ``.`` / ``..`` all rejected;
++  plain file names accepted);
++* :func:`pagetrace.trace_bundle.parse_bundle` — schema + runtime
++  dual rejection, and the rejection error never echoes the
++  offending path back (path minimisation, §13);
++* the CLI (``validate`` / ``analyze``) — the GPT repro step: a
++  bundle whose ``file_name`` is
++  ``/home/alice/private/contracts/secret.pdf`` exits 2, prints no
++  absolute path on stdout/stderr, and writes no ``report.json``.
++
++Note: a *direct* ``validate_bundle_schema`` call reports the
++offending instance value inside jsonschema's own message text.
++The CLI never takes that path — ``TraceBundle`` pre-checks
++``file_name`` before the schema layer runs and redacts any schema
++error that mentions it — so the no-leak assertions below are made
++against ``parse_bundle`` and the CLI, not against the raw schema
++validator.
++"""
++
++from __future__ import annotations
++
++import json
++import os
++import subprocess
++import sys
++from pathlib import Path
++
++import pytest
++
++PACKAGE_ROOT = Path(__file__).resolve().parents[2]
++FIXTURES = PACKAGE_ROOT / "fixtures"
++VENV_PYTHON = PACKAGE_ROOT / ".venv" / "bin" / "python"
++
++sys.path.insert(0, str(PACKAGE_ROOT / "src"))
++
++from pagetrace.contracts import (  # noqa: E402
++    PageSemanticsError,
++    validate_bundle_schema,
++)
++from pagetrace.trace_bundle import (  # noqa: E402
++    is_bare_file_name,
++    parse_bundle,
++)
++
++FAULT_TRACE = FIXTURES / "bundles" / "po-ext-01.trace.json"
++FAULT_PDF = FIXTURES / "pdfs" / "po-ext-01.pdf"
++
++#: Every directory / absolute-path spelling R-11 must refuse.
++REJECTED_FILE_NAMES = [
++    "/home/alice/private/contracts/secret.pdf",  # GPT R1 repro (POSIX)
++    "/secret.pdf",                               # POSIX root-absolute
++    "C:\\Users\\alice\\secret.pdf",              # Windows drive, backslash
++    "C:/Users/alice/secret.pdf",                # Windows drive, slash
++    "D:secret.pdf",                              # Windows drive-relative
++    "\\\\server\\share\\secret.pdf",             # UNC, backslashes
++    "//server/share/secret.pdf",                # UNC, slashes
++    "../secret.pdf",                             # relative parent dir
++    "..\\secret.pdf",                            # relative parent dir (win)
++    "sub/secret.pdf",                            # relative subdir
++    "sub\\secret.pdf",                           # relative subdir (win)
++    "a/b/../c.pdf",                              # embedded dot-dot segment
++    ".",                                         # bare directory reference
++    "..",                                        # bare parent reference
++    "\\secret.pdf",                              # leading backslash
++]
++
++#: Plain file names R-11 must keep accepting.
++ACCEPTED_FILE_NAMES = [
++    "secret.pdf",
++    "my report (final).pdf",
++    "a.b.c.pdf",
++    "x.pdf",
++    "ab:c.pdf",  # colon after the first char is not a drive letter
++]
++
++
++def _bundle_with_file_name(file_name: str) -> dict:
++    bundle = json.loads(FAULT_TRACE.read_text(encoding="utf-8"))
++    bundle["document"]["file_name"] = file_name
++    return bundle
++
++
++def run_cli(*argv: str, cwd: Path = PACKAGE_ROOT) -> subprocess.CompletedProcess:
++    """Run ``python -m pagetrace.cli`` as a subprocess; return the result."""
++    env = dict(os.environ)
++    env["PYTHONPATH"] = str(PACKAGE_ROOT / "src")
++    env["PYTHONSAFEPATH"] = "1"
++    python = str(VENV_PYTHON) if VENV_PYTHON.is_file() else sys.executable
++    return subprocess.run(
++        [python, "-m", "pagetrace.cli", *argv],
++        cwd=str(cwd), env=env, capture_output=True, text=True, timeout=300)
++
++
++# ---------------------------------------------------------------------------
++# Runtime predicate
++# ---------------------------------------------------------------------------
++@pytest.mark.parametrize("name", REJECTED_FILE_NAMES)
++def test_is_bare_file_name_rejects_paths(name):
++    assert is_bare_file_name(name) is False
++
++
++@pytest.mark.parametrize("name", ACCEPTED_FILE_NAMES)
++def test_is_bare_file_name_accepts_plain_names(name):
++    assert is_bare_file_name(name) is True
++
++
++@pytest.mark.parametrize("name", [None, 42, "", "a/b"])
++def test_is_bare_file_name_rejects_non_names(name):
++    assert is_bare_file_name(name) is False
++
++
++# ---------------------------------------------------------------------------
++# Bundle parsing: schema + runtime dual rejection, no echo of the path
++# ---------------------------------------------------------------------------
++@pytest.mark.parametrize("name", REJECTED_FILE_NAMES)
++def test_parse_bundle_rejects_path_file_name(name):
++    with pytest.raises(PageSemanticsError) as excinfo:
++        parse_bundle(_bundle_with_file_name(name))
++    # The rejection names the rule, never the offending value: a
++    # private absolute path must not leak into the error text.
++    # ("." / ".." are too short to assert on as substrings — the
++    # message legitimately contains sentence periods.)
++    if len(name) > 3:
++        assert name not in str(excinfo.value)
++
++
++@pytest.mark.parametrize("name", REJECTED_FILE_NAMES)
++def test_schema_layer_rejects_path_file_name(name):
++    # Schema layer alone (pattern) rejects every form too; the
++    # runtime pre-check in TraceBundle is what keeps the value out
++    # of the reported error (see module docstring).
++    with pytest.raises(PageSemanticsError):
++        validate_bundle_schema(_bundle_with_file_name(name))
++
++
++@pytest.mark.parametrize("name", ACCEPTED_FILE_NAMES)
++def test_parse_bundle_accepts_plain_file_name(name):
++    bundle = parse_bundle(_bundle_with_file_name(name))
++    assert bundle.file_name == name
++
++
++# ---------------------------------------------------------------------------
++# CLI: GPT R1 repro steps, end to end
++# ---------------------------------------------------------------------------
++@pytest.mark.parametrize("name", [
++    "/home/alice/private/contracts/secret.pdf",
++    "C:\\Users\\alice\\secret.pdf",
++    "\\\\server\\share\\secret.pdf",
++    "../secret.pdf",
++])
++def test_cli_validate_rejects_path_file_name(tmp_path, name):
++    trace = tmp_path / "abs.trace.json"
++    trace.write_text(json.dumps(_bundle_with_file_name(name),
++                                ensure_ascii=False, indent=2),
++                     encoding="utf-8")
++    proc = run_cli("validate", "--trace", str(trace), "--pdf",
++                   str(FAULT_PDF))
++    assert proc.returncode == 2, proc.stdout + proc.stderr
++    assert name not in proc.stdout
++    assert name not in proc.stderr
++
++
++def test_cli_validate_gpt_repro_without_leak(tmp_path):
++    """GPT R1 repro verbatim: validate must exit 2 and print no
++    absolute path anywhere."""
++    trace = tmp_path / "abs.trace.json"
++    trace.write_text(json.dumps(
++        _bundle_with_file_name("/home/alice/private/contracts/secret.pdf"),
++        ensure_ascii=False, indent=2), encoding="utf-8")
++    proc = run_cli("validate", "--trace", str(trace), "--pdf",
++                   str(FAULT_PDF))
++    assert proc.returncode == 2
++    assert "VALID" not in proc.stdout
++    assert "/home/alice/private/contracts/secret.pdf" not in proc.stdout
++    assert "/home/alice/private/contracts/secret.pdf" not in proc.stderr
++    assert "bare file name" in proc.stderr
++
++
++def test_cli_analyze_rejects_absolute_path_without_leak(tmp_path):
++    """GPT R1 repro, analyze step: no run, no report, no leak."""
++    trace = tmp_path / "abs.trace.json"
++    trace.write_text(json.dumps(
++        _bundle_with_file_name("/home/alice/private/contracts/secret.pdf"),
++        ensure_ascii=False, indent=2), encoding="utf-8")
++    out = tmp_path / "abs-out"
++    proc = run_cli("analyze", "--pdf", str(FAULT_PDF), "--trace",
++                   str(trace), "--out", str(out))
++    assert proc.returncode == 2, proc.stdout + proc.stderr
++    assert "/home/alice/private/contracts/secret.pdf" not in proc.stdout
++    assert "/home/alice/private/contracts/secret.pdf" not in proc.stderr
++    assert not (out / "report.json").exists()
++    assert not (out / "report.html").exists()
++
++
++def test_cli_validate_accepts_bare_file_name():
++    proc = run_cli("validate", "--trace", str(FAULT_TRACE),
++                   "--pdf", str(FAULT_PDF))
++    assert proc.returncode == 0, proc.stdout + proc.stderr
++    assert "VALID" in proc.stdout
+diff --git a/04_source/source/tests/unit/test_unlocatable_attribution.py b/04_source/source/tests/unit/test_unlocatable_attribution.py
+new file mode 100644
+index 0000000..2c24360
+--- /dev/null
++++ b/04_source/source/tests/unit/test_unlocatable_attribution.py
+@@ -0,0 +1,326 @@
++"""FIX-R1 P1-R1-02 — UNLOCATABLE must not be blamed on extraction
++without proof (independent regression test).
++
++Run from PACKAGE_ROOT, inside the venv:
++    python -m pytest tests/unit/test_unlocatable_attribution.py -q
++
++GPT final review R1 reproduced that ``un-ext-12`` (near-miss quote,
++``NO_EXACT_MATCH``) was wrongly attributed to ``extraction`` even
++though its 8 pages are all TEXT and the extraction trace matches the
++honest extraction exactly; production, Oracle and Golden shared the
++wrong rule, so their agreement proved nothing. New rule, pinned here
++(PROJECT_BOOK.md v1.0.0 §5 / §7.2 / §7.3):
++
++* extraction is blamed only for a provable extraction failure: the
++  trace-claimed page is honestly ``IMAGE_ONLY`` / ``EMPTY`` (no text
++  layer to extract), or a bundle extraction record for a claimed page
++  provably differs from the honest extraction;
++* otherwise (near miss on a TEXT page with verified-correct
++  extraction, or no usable trace anchor) ``first_fault_stage`` is
++  ``None`` and ``expected_source_pages0`` is ``None``: the
++  trace-claimed page is unconfirmed, never a verified source. The
++  verdict stays ``FAIL_UNLOCATABLE`` / ``UNLOCATABLE`` with reason
++  ``NO_EXACT_MATCH`` / ``NO_TEXT_LAYER``.
++
++Covers: the GPT reproduction facts for ``un-ext-12``; all four
++near-miss cases (``un-ext-09..12``) unblamed in production, Oracle
++and Golden; all eight image/blank cases (``un-ext-01..08``) still
++blaming extraction (no overcorrection); the 4/4/4 reason split;
++synthetic tampering (a provably wrong extraction record for the
++claimed page still blames extraction, a wrong record on an unrelated
++page does not); the no-anchor case; and report-schema validity of a
++``null`` first fault stage.
++"""
++
++from __future__ import annotations
++
++import copy
++import json
++import sys
++from pathlib import Path
++
++import pytest
++
++PACKAGE_ROOT = Path(__file__).resolve().parents[2]
++FIXTURES = PACKAGE_ROOT / "fixtures"
++
++sys.path.insert(0, str(PACKAGE_ROOT / "src"))
++sys.path.insert(0, str(PACKAGE_ROOT / "tests"))
++
++from pagetrace.compare_stages import (  # noqa: E402
++    analyze_bundle,
++    analyze_citation,
++    compare_extraction,
++)
++from pagetrace.extract import extract_pages  # noqa: E402
++from pagetrace.locate import locate_quote  # noqa: E402
++from pagetrace.pdf_input import load_pdf  # noqa: E402
++
++from oracle.api import analyze_case  # noqa: E402
++
++NEAR_MISS_CASES = ("un-ext-09", "un-ext-10", "un-ext-11", "un-ext-12")
++IMAGE_ONLY_CASES = ("un-ext-01", "un-ext-02", "un-ext-03", "un-ext-04")
++EMPTY_CASES = ("un-ext-05", "un-ext-06", "un-ext-07", "un-ext-08")
++
++
++def _load_json(path: Path) -> dict:
++    return json.loads(path.read_text(encoding="utf-8"))
++
++
++def _bundle(case_id: str) -> dict:
++    return _load_json(FIXTURES / "bundles" / f"{case_id}.trace.json")
++
++
++def _spec(case_id: str) -> dict:
++    return _load_json(FIXTURES / "specs" / f"{case_id}.json")
++
++
++def _records(case_id: str):
++    info = load_pdf(str(FIXTURES / "pdfs" / f"{case_id}.pdf"))
++    return extract_pages(info)
++
++
++def _golden_fault(case_id: str) -> dict:
++    golden = _load_json(FIXTURES / "golden" / "expected.json")
++    return next(
++        c["fault"] for c in golden["cases"] if c["case_id"] == case_id)
++
++
++def _prod_fault(case_id: str, bundle: dict | None = None):
++    verdicts = analyze_bundle(
++        bundle if bundle is not None else _bundle(case_id),
++        _records(case_id))
++    return next(v for v in verdicts if v.citation_id == "cite-fault")
++
++
++def _oracle_fault(case_id: str, bundle: dict | None = None):
++    result = analyze_case(
++        str(FIXTURES / "pdfs" / f"{case_id}.pdf"),
++        bundle if bundle is not None else _bundle(case_id))
++    return result.by_citation_id("cite-fault")
++
++
++def _analyse_one(bundle: dict, records, citation_id="cite-fault"):
++    citation = next(c for c in bundle["citations"]
++                    if c["citation_id"] == citation_id)
++    return analyze_citation(
++        citation=citation, bundle=bundle, honest_records=records,
++        quote_match=locate_quote(records, citation["quote_text"]))
++
++
++# ---------------------------------------------------------------------------
++# GPT reproduction facts for un-ext-12
++# ---------------------------------------------------------------------------
++
++def test_un_ext_12_reproduces_gpt_findings():
++    """GPT R1 repro facts, as they stand after the FIX-R1 §8.1 fix:
++    extraction trace matches the honest extraction; the quote differs
++    from the page-5 sentence by exactly one character; the quote is
++    found on no page. Historical note: at R1 the 8 pages were all
++    TEXT; the §8.1 composition fix (FIX-R1收尾) made page index 6
++    EMPTY so the case contains a no-text-layer page, while anchor
++    page 5 stays TEXT and the one-character difference is unchanged.
++    """
++    records = _records("un-ext-12")
++    assert [r.text_state for r in records] == (
++        ["TEXT"] * 6 + ["EMPTY"] + ["TEXT"])
++    bundle = _bundle("un-ext-12")
++    assert compare_extraction(records, bundle["stages"]["extraction"]) == []
++    quote = bundle["citations"][0]["quote_text"]
++    assert locate_quote(records, quote).candidate_source_pages0 == []
++    page5_lines = [line.strip() for line in
++                   (records[5].extracted_text or "").splitlines()
++                   if "近似句un-ext-12" in line]
++    assert len(page5_lines) == 1
++    sentence = page5_lines[0]
++    assert len(sentence) == len(quote)
++    differing = [i for i, (a, b) in enumerate(zip(sentence, quote))
++                 if a != b]
++    assert differing == [26]  # 原文 (page) vs 正文 (quote)
++    assert sentence[26] == "原" and quote[26] == "正"
++
++
++def test_un_ext_12_no_false_extraction_blame():
++    """FAIL_UNLOCATABLE / NO_EXACT_MATCH, but no stage is blamed and
++    the trace-claimed page 6 (index 5) is not a confirmed source."""
++    for verdict in (_prod_fault("un-ext-12"),
++                    _oracle_fault("un-ext-12")):
++        assert verdict.verdict == "FAIL_UNLOCATABLE"
++        assert verdict.fault_type == "UNLOCATABLE"
++        assert verdict.reason == "NO_EXACT_MATCH"
++        assert verdict.first_fault_stage is None
++        assert verdict.expected_source_pages0 is None
++        assert verdict.candidate_source_pages0 == []
++        assert verdict.correct_pdf_page_number1 is None
++        joined = " ".join(
++            verdict.notes + [e.note for e in verdict.evidence])
++        assert "does not establish" in joined
++        assert "does not exist" not in joined
++        assert "No stage is blamed" in joined
++        assert "not a confirmed source" in joined
++    golden = _golden_fault("un-ext-12")
++    assert golden["verdict"] == "FAIL_UNLOCATABLE"
++    assert golden["fault_type"] == "UNLOCATABLE"
++    assert golden["unlocatable_reason"] == "NO_EXACT_MATCH"
++    assert golden["first_fault_stage"] is None
++    assert golden["expected_source_pages0"] is None
++
++
++# ---------------------------------------------------------------------------
++# All four near-miss cases: same rule, same outcome, three-way agreement
++# ---------------------------------------------------------------------------
++
++@pytest.mark.parametrize("case_id", NEAR_MISS_CASES)
++def test_near_miss_cases_have_no_attributable_stage(case_id: str):
++    """Production, Oracle and Golden agree: no stage blamed, no
++    confirmed source page — for every NO_EXACT_MATCH case, not just
++    un-ext-12."""
++    prod = _prod_fault(case_id)
++    oracle = _oracle_fault(case_id)
++    golden = _golden_fault(case_id)
++    for verdict in (prod, oracle):
++        assert verdict.verdict == "FAIL_UNLOCATABLE", case_id
++        assert verdict.fault_type == "UNLOCATABLE", case_id
++        assert verdict.reason == "NO_EXACT_MATCH", case_id
++        assert verdict.first_fault_stage is None, case_id
++        assert verdict.expected_source_pages0 is None, case_id
++    assert golden["first_fault_stage"] is None, case_id
++    assert golden["expected_source_pages0"] is None, case_id
++    assert golden["unlocatable_reason"] == "NO_EXACT_MATCH", case_id
++    # The spec expectations for all four near-miss cases were fixed
++    # with the code (fixtures/specs/un-ext-09..12.json: expected
++    # first_fault_stage / expected_source_pages0 are null); the
++    # generator (tools/generate_fixtures.py) still encodes the old
++    # rule — see 07_evidence/runtime_logs/FIX_R1_UNLOCATABLE.md.
++    if case_id == "un-ext-12":
++        assert _spec(case_id)["expected"]["first_fault_stage"] is None
++        assert _spec(case_id)["expected"]["expected_source_pages0"] is None
++
++
++@pytest.mark.parametrize("case_id", IMAGE_ONLY_CASES + EMPTY_CASES)
++def test_image_and_blank_cases_still_blame_extraction(case_id: str):
++    """No overcorrection: a claimed page that honestly has no text
++    layer is still a provable extraction failure."""
++    prod = _prod_fault(case_id)
++    oracle = _oracle_fault(case_id)
++    golden = _golden_fault(case_id)
++    expected_reason = ("IMAGE_ONLY" if case_id in IMAGE_ONLY_CASES
++                       else "EMPTY")
++    for verdict in (prod, oracle):
++        assert verdict.verdict == "FAIL_UNLOCATABLE", case_id
++        assert verdict.reason == expected_reason, case_id
++        assert verdict.first_fault_stage == "extraction", case_id
++        assert verdict.expected_source_pages0 is not None, case_id
++        assert len(verdict.expected_source_pages0) == 1, case_id
++    assert golden["first_fault_stage"] == "extraction", case_id
++    assert golden["expected_source_pages0"] == \
++        prod.expected_source_pages0, case_id
++    assert golden["unlocatable_reason"] == expected_reason, case_id
++
++
++def test_unlocatable_reasons_still_split_4_4_4():
++    """The fix changes attribution, not reasons."""
++    reasons: dict[str, int] = {}
++    for i in range(1, 13):
++        verdict = _prod_fault(f"un-ext-{i:02d}")
++        assert verdict.verdict == "FAIL_UNLOCATABLE"
++        reasons[verdict.reason or "NONE"] = \
++            reasons.get(verdict.reason or "NONE", 0) + 1
++    assert reasons == {"IMAGE_ONLY": 4, "EMPTY": 4, "NO_EXACT_MATCH": 4}
++
++
++# ---------------------------------------------------------------------------
++# Synthetic bundles: a provable extraction failure still blames extraction
++# ---------------------------------------------------------------------------
++
++def test_tampered_anchor_extraction_still_blames_extraction():
++    """The bundle extraction record for the claimed page 5 is given a
++    wrong hash: extraction provably failed, so it is blamed — in both
++    implementations."""
++    bundle = copy.deepcopy(_bundle("un-ext-12"))
++    records = _records("un-ext-12")
++    extraction = bundle["stages"]["extraction"]
++    extraction[5]["text_sha256"] = "0" * 64
++    assert compare_extraction(records, extraction) != []
++    for verdict in (_analyse_one(bundle, records),
++                    _oracle_fault("un-ext-12", bundle)):
++        assert verdict.verdict == "FAIL_UNLOCATABLE"
++        assert verdict.reason == "NO_EXACT_MATCH"
++        assert verdict.first_fault_stage == "extraction"
++        assert verdict.expected_source_pages0 == [5]
++
++
++def test_tampered_unrelated_page_does_not_blame_extraction():
++    """A wrong extraction record on page 0 — not a trace-claimed page
++    for this citation — must not blame extraction for it."""
++    bundle = copy.deepcopy(_bundle("un-ext-12"))
++    records = _records("un-ext-12")
++    bundle["stages"]["extraction"][0]["text_sha256"] = "0" * 64
++    for verdict in (_analyse_one(bundle, records),
++                    _oracle_fault("un-ext-12", bundle)):
++        assert verdict.verdict == "FAIL_UNLOCATABLE"
++        assert verdict.reason == "NO_EXACT_MATCH"
++        assert verdict.first_fault_stage is None
++        assert verdict.expected_source_pages0 is None
++
++
++def test_no_anchor_unlocatable_has_no_stage():
++    """No trace anchor names the intended page: reason NO_TEXT_LAYER,
++    no stage blamed, no expected source."""
++    bundle = copy.deepcopy(_bundle("un-ext-12"))
++    records = _records("un-ext-12")
++    chunk = next(c for c in bundle["stages"]["chunking"]
++                 if c["chunk_id"] == "c-fault")
++    chunk["source_page_indices0"] = []
++    index = next(r for r in bundle["stages"]["indexing"]
++                 if r["record_id"] == "v-fault")
++    index["source_page_indices0"] = []
++    for verdict in (_analyse_one(bundle, records),
++                    _oracle_fault("un-ext-12", bundle)):
++        assert verdict.verdict == "FAIL_UNLOCATABLE"
++        assert verdict.reason == "NO_TEXT_LAYER"
++        assert verdict.first_fault_stage is None
++        assert verdict.expected_source_pages0 is None
++
++
++# ---------------------------------------------------------------------------
++# Report schema: null first_fault_stage is valid for FAIL_UNLOCATABLE
++# ---------------------------------------------------------------------------
++
++def test_unlocatable_null_stage_validates_against_report_schema():
++    """A whole un-ext-12 report (null first_fault_stage on the fault
++    citation) validates against frozen pagetrace.report/v1."""
++    from jsonschema import validate
++
++    schema = _load_json(
++        PACKAGE_ROOT / "contracts" / "pagetrace.report.v1.schema.json")
++    results = [v.to_dict() for v in
++               analyze_bundle(_bundle("un-ext-12"), _records("un-ext-12"))]
++    report = {
++        "schema": "pagetrace.report/v1",
++        "case_id": "un-ext-12",
++        "document": {
++            "file_name": "un-ext-12.pdf",
++            "sha256": _spec("un-ext-12")["pdf_sha256"],
++            "page_count": _spec("un-ext-12")["page_count"],
++        },
++        "tool": {"name": "pagetrace", "version": "0.1.0"},
++        "results": results,
++        "summary": {
++            "total_citations": len(results),
++            "pass_count": sum(
++                1 for r in results if r["verdict"] == "PASS"),
++            "fail_count": sum(
++                1 for r in results if r["verdict"].startswith("FAIL")),
++            "unknown_count": sum(
++                1 for r in results
++                if r["verdict"].startswith("UNKNOWN")),
++            "ambiguous_count": sum(
++                1 for r in results if r["verdict"] == "AMBIGUOUS"),
++            "normalized_result_sha256": None,
++        },
++    }
++    validate(report, schema)
++    fault = next(r for r in results if r["citation_id"] == "cite-fault")
++    assert fault["first_fault_stage"] is None
++    assert fault["expected_source_pages0"] is None
+diff --git a/04_source/source/tests/unit/test_verdicts.py b/04_source/source/tests/unit/test_verdicts.py
+index daeaf97..565431c 100644
+--- a/04_source/source/tests/unit/test_verdicts.py
++++ b/04_source/source/tests/unit/test_verdicts.py
+@@ -198,13 +198,24 @@ def test_mm_extraction_variants_at_extraction(case_id: str):
+ # ---------------------------------------------------------------------------
+ 
+ def test_unlocatable_reasons_split_four_four_four():
+-    """4 IMAGE_ONLY, 4 EMPTY, 4 NO_EXACT_MATCH across the 12 cases."""
++    """4 IMAGE_ONLY, 4 EMPTY, 4 NO_EXACT_MATCH across the 12 cases.
++
++    FIX-R1 P1-R1-02: attribution is 8 x extraction (the IMAGE_ONLY /
++    EMPTY cases, provable extraction failure) + 4 x null (the
++    near-miss NO_EXACT_MATCH cases, no stage can be blamed); the
++    reason split 4/4/4 is unchanged.
++    """
+     reasons: dict[str, int] = {}
+     for case_id in [f"un-ext-{i:02d}" for i in range(1, 13)]:
+         verdict = _by_id(_verdicts(case_id), "cite-fault")
+         assert verdict.verdict == "FAIL_UNLOCATABLE", case_id
+         assert verdict.fault_type == "UNLOCATABLE", case_id
+-        assert verdict.first_fault_stage == "extraction", case_id
++        if case_id in ("un-ext-09", "un-ext-10", "un-ext-11", "un-ext-12"):
++            assert verdict.first_fault_stage is None, case_id
++            assert verdict.expected_source_pages0 is None, case_id
++        else:
++            assert verdict.first_fault_stage == "extraction", case_id
++            assert verdict.expected_source_pages0 is not None, case_id
+         assert verdict.candidate_source_pages0 == [], case_id
+         assert verdict.correct_pdf_page_number1 is None, case_id
+         reasons[verdict.reason or "NONE"] = \
+diff --git a/04_source/source/tools/generate_fixtures.py b/04_source/source/tools/generate_fixtures.py
+index 3511412..b1fc109 100644
+--- a/04_source/source/tools/generate_fixtures.py
++++ b/04_source/source/tools/generate_fixtures.py
+@@ -24,6 +24,12 @@ implanted in the *trace* (stage snapshots in the bundle), never by
+ editing PDF bytes by hand. Each case also carries >= 1 control
+ citation whose trace is correct end-to-end.
+ 
++FIX-R1 P1-R1-02: near-miss UNLOCATABLE cases (``near-miss-quote``)
++carry ``first_fault_stage=None`` / ``expected_source_pages0=None``
++(no stage can be blamed without a provable extraction failure;
++PROJECT_BOOK §5 / §7.2 / §7.3), and every UNLOCATABLE case is
++guaranteed >= 1 image-style / text-less page (PROJECT_BOOK §8.1).
++
+ Usage (from PACKAGE_ROOT, i.e. 04_source/source):
+     python tools/generate_fixtures.py --out fixtures
+ """
+@@ -291,6 +297,11 @@ def build_cases() -> list[dict]:
+ 
+ def _build_case(i: int, case_id: str, fault_type: str, stage: str,
+                 variant: str, j: int) -> dict:
++    # FIX-R1 P1-R1-02: a near-miss UNLOCATABLE quote (one character
++    # off the sentence on a TEXT anchor page, honest extraction) has
++    # no attributable first fault stage and no confirmed source page.
++    is_near_miss = (fault_type == "UNLOCATABLE"
++                    and variant == "near-miss-quote")
+     n_pages = 5 + (i % 4)  # 5..8 physical pages
+     # True fault page: kept in [1, n-2] so +/-1 neighbours always exist.
+     tp = 1 + ((i * 3 + 1) % (n_pages - 2))
+@@ -350,6 +361,20 @@ def _build_case(i: int, case_id: str, fault_type: str, stage: str,
+         if i % 3 == 0 and free:
+             kind[free[-1]] = "image"
+ 
++    # FIX-R1 P1-R1-02 (§8.1): every UNLOCATABLE case must contain at
++    # least one image-style / text-less page. Near-miss cases have no
++    # fault page of their own (the near-miss sentence sits on a TEXT
++    # anchor page), and the structural blank/image rules above fire
++    # only on even / every-third case indices — un-ext-12 (i=47) got
++    # neither. If no non-text page exists yet, turn the last free
++    # page (never the anchor page, never a control page, never a
++    # split/occurrence page) into a blank page.
++    if is_near_miss and not any(k != "text" for k in kind.values()):
++        blocked = {tp, cp} | set(occ) | set(split_pages)
++        free = [k for k in range(n_pages) if k not in blocked]
++        assert free, f"{case_id}: no free page for §8.1 non-text page"
++        kind[free[-1]] = "blank"
++
+     # Non-cited duplicate sentence (extra structural coverage) on two
+     # free TEXT pages, only when the fault quote is not itself duplicated.
+     extra_dup_pages: list[int] = []
+@@ -370,7 +395,11 @@ def _build_case(i: int, case_id: str, fault_type: str, stage: str,
+         image_text: str | None = None
+         if k == 0:
+             lines.append(f"PageTrace 合成案例 {case_id}")
+-            lines.append(f"故障类别 {fault_type} · 首错阶段 {stage}")
++            # FIX-R1 P1-R1-02: a near-miss UNLOCATABLE has no
++            # attributable stage (null) — the page-0 header must not
++            # claim "首错阶段 extraction".
++            stage_label = ("未定（无阶段可归咎）" if is_near_miss else stage)
++            lines.append(f"故障类别 {fault_type} · 首错阶段 {stage_label}")
+         if kind[k] == "text":
+             lines.append(CN_SENTENCES[(i + k) % len(CN_SENTENCES)])
+             lines.append(EN_SENTENCES[(i + k) % len(EN_SENTENCES)])
+@@ -466,7 +495,9 @@ def _build_case(i: int, case_id: str, fault_type: str, stage: str,
+     case: dict = {
+         "case_id": case_id,
+         "fault_type": fault_type,
+-        "first_fault_stage": stage,
++        # FIX-R1 P1-R1-02: near-miss UNLOCATABLE has no attributable
++        # stage (PROJECT_BOOK §5 / §7.2 / §7.3) — null, not "extraction".
++        "first_fault_stage": None if is_near_miss else stage,
+         "variant": variant,
+         "pdf_file_name": f"{case_id}.pdf",
+         "page_count": n_pages,
+@@ -492,8 +523,8 @@ def _build_case(i: int, case_id: str, fault_type: str, stage: str,
+         "expected": {
+             "verdict": EXPECTED_VERDICT[fault_type],
+             "fault_type": fault_type,
+-            "first_fault_stage": stage,
+-            "expected_source_pages0": fault_pages,
++            "first_fault_stage": None if is_near_miss else stage,
++            "expected_source_pages0": None if is_near_miss else fault_pages,
+             "candidate_source_pages0": (
+                 occ if fault_type == "DUPLICATE_TEXT_AMBIGUITY"
+                 else (fault_pages if fault_type != "UNLOCATABLE" else [])
+@@ -980,6 +1011,27 @@ def fault_description(case: dict) -> str:
+             return "Indexing shifted the source pages by +1."
+         if case["variant"] == "minus-one-shift":
+             return "Indexing shifted the source pages by -1."
++    # FIX-R1 P1-R1-02: the near-miss description must state that the
++    # anchor page is where the near-miss sentence was placed by design,
++    # NOT a verified source of the quote (first_fault_stage /
++    # expected_source_pages0 are null). This reproduces the FIX-R1
++    # clarification previously hand-written into the four specs, so a
++    # regeneration no longer loses it. (The short
++    # FAULT_DESCRIPTIONS entry below is superseded for this variant.)
++    if case["fault_type"] == "UNLOCATABLE" \
++            and case["variant"] == "near-miss-quote":
++        tp = case["true_page0"]
++        return (
++            "The quote differs by one character from the sentence placed "
++            f"on page index {tp} (the near-miss sentence is on that page "
++            "by design); exact match fails. "
++            f"Page {tp} is the intended near-miss page, NOT a verified "
++            "source of the quote: no stage is blamed (first_fault_stage "
++            "null, expected_source_pages0 null) because the extraction "
++            "records match the honest extraction (FIX-R1 P1-R1-02). "
++            "fault_citation.true_source_pages0 "
++            f"[{tp}] records where the near-miss sentence was placed, "
++            "not a confirmed source page.")
+     key = (case["fault_type"], case["variant"])
+     desc = FAULT_DESCRIPTIONS.get(key)
+     if desc is None:
+diff --git a/04_source/source/tools/run_s0.py b/04_source/source/tools/run_s0.py
+index 5edb26e..2530e2d 100644
+--- a/04_source/source/tools/run_s0.py
++++ b/04_source/source/tools/run_s0.py
+@@ -28,6 +28,14 @@ S0 gate failed; 2 = invalid input (missing fixture, count != 48,
+ PDF hash mismatch against the frozen manifest/Golden); 3 = internal
+ error.
+ 
++Result levels (FIX-R1, GPT final review R1 §4): a run with fewer
++than 100 replays can only return ``SMOKE_PASS`` — it proves the
++gates pass once, not the §8.4 100-replay determinism.  Only a run
++with ``--repeat`` >= 100 that passes every gate returns the formal
++``S0 PASS``.  A failed gate is ``FAIL`` at any repeat count, and
++the exit code stays 4.  ``SMOKE_PASS`` still exits 0: the gates
++passed; only the replay-count bar for a formal PASS was not met.
++
+ Import-path note (T013 P2-08): the package is a single src layout
+ (``pyproject.toml`` installs ``src/pagetrace/``); the top-level T001
+ stub is deleted.  Like the existing tests
+@@ -109,6 +117,23 @@ GOLDEN_FIELDS = (
+ EXPECTED_CASES = 48
+ EXPECTED_PER_FAULT_TYPE = 12
+ 
++#: Minimum replay count for a formal S0 PASS (PROJECT_BOOK §8.4:
++#: exactly one unique SHA-256 over 100 replays).  Fewer replays can
++#: only return SMOKE_PASS (FIX-R1, GPT final review R1 §4).
++S0_FULL_REPEAT = 100
++
++
++def s0_result_for(s0_pass: bool, repeat: int) -> str:
++    """Overall S0 result level for a run.
++
++    ``FAIL`` when any §8.3 gate failed; ``PASS`` only when every
++    gate passed *and* at least ``S0_FULL_REPEAT`` replays ran;
++    ``SMOKE_PASS`` when every gate passed on fewer replays.
++    """
++    if not s0_pass:
++        return "FAIL"
++    return "PASS" if repeat >= S0_FULL_REPEAT else "SMOKE_PASS"
++
+ 
+ class InputError(Exception):
+     """Invalid frozen input (exit 2)."""
+@@ -548,7 +573,9 @@ def evaluate_gates(per_case: list[dict], replay_hashes: list[str]) -> dict:
+         },
+         "replay": {
+             "spec": "§8.3 item 5 / §8.4",
+-            "description": "100 normalised replays give 1 unique SHA-256",
++            "description": f"{len(replay_hashes)} normalised replay(s) "
++                           f"give 1 unique SHA-256 "
++                           f"(formal S0 PASS needs {S0_FULL_REPEAT})",
+             "expected_unique_hashes": 1,
+             "actual_unique_hashes": len(unique_replay),
+             "replays": len(replay_hashes),
+@@ -611,7 +638,7 @@ def run_s0(fixtures_dir: Path, repeat: int, out_dir: Path) -> dict:
+         "project": "P026 PageTrace",
+         "spec_version": "PROJECT_BOOK.md v1.0.0 (§8.3, §8.4)",
+         "base_commit": git_head_commit(),
+-        "s0_result": "PASS" if s0_pass else "FAIL",
++        "s0_result": s0_result_for(s0_pass, repeat),
+         "suite": {
+             "case_count": EXPECTED_CASES,
+             "repeat": repeat,
+@@ -663,6 +690,10 @@ def run_s0(fixtures_dir: Path, repeat: int, out_dir: Path) -> dict:
+ def print_summary(report: dict) -> None:
+     gates = report["gates"]
+     print(f"S0_RESULT: {report['s0_result']}")
++    if report["s0_result"] == "SMOKE_PASS":
++        print(f"note: smoke run only ({report['suite']['repeat']} "
++              f"replay(s)); formal S0 PASS requires "
++              f"--repeat {S0_FULL_REPEAT}")
+     print(f"detection: {gates['detection']['actual']}/48 "
+           f"(by type: {gates['detection']['by_fault_type']})")
+     print(f"first_fault_stage: {gates['first_fault_stage']['actual']}/48")
+@@ -695,7 +726,9 @@ def main(argv: list[str] | None = None) -> int:
+                         help="fixture suite dir, relative to PACKAGE_ROOT "
+                              "(default: fixtures)")
+     parser.add_argument("--repeat", type=int, default=100,
+-                        help="normalised replay count (default: 100)")
++                        help="normalised replay count (default: 100). "
++                             "Fewer than 100 replays can only return "
++                             "SMOKE_PASS; formal S0 PASS requires 100.")
+     parser.add_argument("--out", default="05_tests/s0",
+                         help="output dir; relative paths resolve against "
+                              "the repository root (default: 05_tests/s0)")

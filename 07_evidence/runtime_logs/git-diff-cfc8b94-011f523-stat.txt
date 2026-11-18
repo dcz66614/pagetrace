@@ -1,0 +1,23 @@
+ 00_control/CHANGELOG.md                            |  12 +
+ 00_control/DECISIONS.md                            |  14 +
+ 00_control/HANDOFF.md                              |  16 +
+ 00_control/PROJECT_STATE.json                      |   2 +-
+ 00_control/TASKBOARD.csv                           |   2 +-
+ 04_source/SHA256SUMS.txt                           |   2 +
+ 04_source/SOURCE_MANIFEST.csv                      | 253 +++++++++++++++
+ 04_source/source-release.zip                       | Bin 0 -> 1125629 bytes
+ 05_tests/s0-release/S0_REPORT.json                 |   1 +
+ 05_tests/s0-release/replay-hashes.txt              | 100 ++++++
+ 06_reviews/GPT_FINAL_REVIEW.md                     | 101 ++++++
+ 07_evidence/REVIEW_PACKS/RELEASE_REVIEW_INDEX.md   |  59 ++++
+ .../REVIEW_PACKS/RELEASE_REVIEW_SHA256SUMS.txt     |  14 +
+ 07_evidence/REVIEW_PACKS/REVIEW_PACK_RELEASE_01.md | 353 +++++++++++++++++++++
+ 07_evidence/REVIEW_PACKS/REVIEW_PACK_RELEASE_02.md | 141 ++++++++
+ 07_evidence/runtime_logs/clean-copy-t014.log       |  65 ++++
+ 07_evidence/runtime_logs/pytest-t014.log           |  11 +
+ 07_evidence/runtime_logs/s0-release.log            |   9 +
+ 07_evidence/runtime_logs/t014-build-release.py     |  98 ++++++
+ 08_release/HOW_TO_REPRODUCE.md                     | 161 ++++++++++
+ 08_release/README.md                               | 124 ++++++++
+ 08_release/USER_GUIDE.md                           | 164 ++++++++++
+ 22 files changed, 1700 insertions(+), 2 deletions(-)
