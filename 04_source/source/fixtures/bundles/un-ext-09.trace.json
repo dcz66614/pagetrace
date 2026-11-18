@@ -1,0 +1,109 @@
+{
+  "case_id": "un-ext-09",
+  "citations": [
+    {
+      "chunk_id": "c-fault",
+      "citation_id": "cite-fault",
+      "index_record_id": "v-fault",
+      "quote_text": "近似句un-ext-09：引用页码漂移会误导读者定位正文。"
+    },
+    {
+      "chunk_id": "c-control",
+      "citation_id": "cite-control",
+      "index_record_id": "v-control",
+      "quote_text": "对照引文un-ext-09：本页引用页码正确无误。"
+    }
+  ],
+  "document": {
+    "file_name": "un-ext-09.pdf",
+    "page_count": 5,
+    "sha256": "be632f97afa2b688d3fe85c9c747666a05a8a62eaed1239c1774315189193955"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-fault",
+        "source_page_indices0": [
+          2
+        ],
+        "text_sha256": "c12c23ab51eaf7af923c3204f0845366cbf7b7c51d84bc6de7138f7adbdfe195"
+      },
+      {
+        "chunk_id": "c-control",
+        "source_page_indices0": [
+          4
+        ],
+        "text_sha256": "cfba8aed438f5b6154ad97db2d876a068649ae8925ff858008bdf5c2fdd41dda"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "viewer_page1": 3
+      },
+      {
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "viewer_page1": 5
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 0,
+        "pdf_page_label": "1",
+        "text_sha256": null,
+        "text_state": "EMPTY"
+      },
+      {
+        "pdf_page_index0": 1,
+        "pdf_page_label": "2",
+        "text_sha256": "f4cdd5edd0acde325d7c9f653fd16d4605b901ecd6b8b7093f22016f8b792189",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 2,
+        "pdf_page_label": "3",
+        "text_sha256": "e2a67f464f1e5a906867a0042961cdd833b3af9f0c736422534ab96a4a5706e1",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 3,
+        "pdf_page_label": "4",
+        "text_sha256": "3bd2b8b4363ab37ef3a53f8989627211b15740b2a2c96b838ecba2963bea85d1",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 4,
+        "pdf_page_label": "5",
+        "text_sha256": "f808fba2488d9db3b4fa537ae178784370dabfe52aa40a9439d6a5747d747a9f",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "3",
+        "record_id": "v-fault",
+        "source_page_indices0": [
+          2
+        ]
+      },
+      {
+        "pdf_page_label": "5",
+        "record_id": "v-control",
+        "source_page_indices0": [
+          4
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

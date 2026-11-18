@@ -1,0 +1,1529 @@
+{
+  "case_count": 48,
+  "cases": [
+    {
+      "case_id": "po-ext-01",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-ext-01：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 3,
+      "fault_quote_text": "关键引文po-ext-01：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "extraction",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "po-ext-01.pdf",
+      "pdf_sha256": "97d1f68a573e09c9b6fc519dde6d37ee25158ee4f6673488770e2debef7cb9cf",
+      "variant": "plus-one-shift"
+    },
+    {
+      "case_id": "po-ext-02",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 0,
+      "fault_quote_text": "关键引文po-ext-02：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "po-ext-02.pdf",
+      "pdf_sha256": "cd21f24937ef8668acdc6f935767a98ba649b3cfc0c31c22ff52a58e78648a8f",
+      "variant": "minus-one-shift"
+    },
+    {
+      "case_id": "po-ext-03",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-ext-03：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        5
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 6,
+      "fault_quote_text": "关键引文po-ext-03：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        3
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "po-ext-03.pdf",
+      "pdf_sha256": "fc3967b8083d8f6f5dc90f782c831afc23b5a5a4575ba902cc8f6f5a56676631",
+      "variant": "swap-with-distant-page"
+    },
+    {
+      "case_id": "po-chk-04",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 6,
+      "fault_quote_text": "关键引文po-chk-04：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "chunking",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "po-chk-04.pdf",
+      "pdf_sha256": "db5b66c3454033e6307fdae6944f2c0543b62c557fa20b5a628093747fb68fae",
+      "variant": "number1-used-as-index0"
+    },
+    {
+      "case_id": "po-chk-05",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-chk-05：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 1,
+      "fault_quote_text": "关键引文po-chk-05：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "chunking",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "po-chk-05.pdf",
+      "pdf_sha256": "57ce8e8308f4dcde78fb2aa3394343c91c6714aa228844899373a9865043804a",
+      "variant": "index0-minus-one"
+    },
+    {
+      "case_id": "po-chk-06",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 2,
+      "fault_quote_text": "关键引文po-chk-06：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "chunking",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "po-chk-06.pdf",
+      "pdf_sha256": "f05572bfe00bf77caa1c3c4fb9380cf1e5d799a1b91c48b6f82147b020920c79",
+      "variant": "roman-label-read-as-number"
+    },
+    {
+      "case_id": "po-idx-07",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-idx-07：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        0
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 6,
+      "fault_quote_text": "关键引文po-idx-07：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "indexing",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "po-idx-07.pdf",
+      "pdf_sha256": "f4c6050bec5e6b7c1e125f7898ffc6420b6368aae440ced51b7ed172602ac078",
+      "variant": "plus-one-shift"
+    },
+    {
+      "case_id": "po-idx-08",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 4,
+      "fault_quote_text": "关键引文po-idx-08：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "indexing",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "po-idx-08.pdf",
+      "pdf_sha256": "bd1b630ba15b274e5c8bd3bb81be793dee7699af49a643368516fc4a422a416e",
+      "variant": "minus-one-shift"
+    },
+    {
+      "case_id": "po-idx-09",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-idx-09：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 3,
+      "fault_quote_text": "关键引文po-idx-09：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "indexing",
+      "label_scheme": "alpha-prefix",
+      "page_count": 5,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5"
+      ],
+      "pdf_file_name": "po-idx-09.pdf",
+      "pdf_sha256": "71bb0a048998cc3322aa8873657229625f22fe441e8c0eb87b490a0a8260c708",
+      "variant": "label-A3-read-as-index3"
+    },
+    {
+      "case_id": "po-dsp-10",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 1,
+      "fault_quote_text": "关键引文po-dsp-10：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "display",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "po-dsp-10.pdf",
+      "pdf_sha256": "0fed33d2f13c890d4c74f7ba9f4473c516eac6eba9e89a0b34e9059aaaab4111",
+      "variant": "index0-passed-to-viewer"
+    },
+    {
+      "case_id": "po-dsp-11",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文po-dsp-11：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 3,
+      "fault_quote_text": "关键引文po-dsp-11：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "display",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "po-dsp-11.pdf",
+      "pdf_sha256": "c98b1adf1cac0eabf405a17c4edb20820032dc69cec96d96e88cd34e853d1bfc",
+      "variant": "plus-one-extra"
+    },
+    {
+      "case_id": "po-dsp-12",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        3,
+        4
+      ],
+      "expected_verdict": "FAIL_PAGE_OFFSET",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 0,
+      "fault_quote_text": "关键引文po-dsp-12：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        0
+      ],
+      "fault_type": "PAGE_OFFSET",
+      "first_fault_stage": "display",
+      "label_scheme": "label-7",
+      "page_count": 8,
+      "page_labels": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "pdf_file_name": "po-dsp-12.pdf",
+      "pdf_sha256": "63892eca8aa148bb9cc6d1d47595602222aede023ce7850e646a354336544987",
+      "variant": "label-7-read-as-number1"
+    },
+    {
+      "case_id": "mm-ext-01",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-ext-01：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-ext-01：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "extraction",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-ext-01.pdf",
+      "pdf_sha256": "50470bd0249d80aef1d433456c7a30648d510134af54546a613d71b5aa37a95b",
+      "variant": "record-text-state-error"
+    },
+    {
+      "case_id": "mm-ext-02",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-ext-02：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "mm-ext-02.pdf",
+      "pdf_sha256": "b2dd1081419cc1f90dd813ead93acc9d28937b02ed6df08c4216993ad7e1dd0b",
+      "variant": "record-hash-omitted"
+    },
+    {
+      "case_id": "mm-ext-03",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-ext-03：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        6
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-ext-03：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        4
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-ext-03.pdf",
+      "pdf_sha256": "f07725ce89964e4ade776c5c6569ce4c666626adabdf3f4498fb2c9df7d10495",
+      "variant": "record-omitted"
+    },
+    {
+      "case_id": "mm-chk-04",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-chk-04：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "chunking",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "mm-chk-04.pdf",
+      "pdf_sha256": "bc0002709017a5e1a20a94ff95089e5c3dddefbabaaea40ba5038e7cca48c9b9",
+      "variant": "source-pages-emptied"
+    },
+    {
+      "case_id": "mm-chk-05",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-chk-05：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-chk-05：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "chunking",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-chk-05.pdf",
+      "pdf_sha256": "6534cb5df8657e9e7d54c9e5d6217d54b998f59084baf9ba7a0cf7afe73a6bd7",
+      "variant": "chunk-record-absent"
+    },
+    {
+      "case_id": "mm-chk-06",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-chk-06：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "chunking",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "mm-chk-06.pdf",
+      "pdf_sha256": "24767892979ece1956e6df6032492be8faff3dc315e3dd2067b0420040941f18",
+      "variant": "chunk-text-hash-omitted"
+    },
+    {
+      "case_id": "mm-idx-07",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-idx-07：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        3
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-idx-07：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "indexing",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-idx-07.pdf",
+      "pdf_sha256": "2fb020331c8ef7f86578c321ea11291e4bb6a1f9ca14eec53e2c868dd1e374a6",
+      "variant": "source-pages-emptied"
+    },
+    {
+      "case_id": "mm-idx-08",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-idx-08：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "indexing",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "mm-idx-08.pdf",
+      "pdf_sha256": "fe153a538c539560797d079864fe44843b7c2fd969f3e273a33741a678e20d58",
+      "variant": "index-record-absent"
+    },
+    {
+      "case_id": "mm-idx-09",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-idx-09：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-idx-09：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "indexing",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-idx-09.pdf",
+      "pdf_sha256": "c8659d1d7d36d599fc61e84b77487247f9379f5b35a7f69eeecf49c6f2c3538a",
+      "variant": "label-dropped-on-rebuild"
+    },
+    {
+      "case_id": "mm-dsp-10",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-dsp-10：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "display",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "mm-dsp-10.pdf",
+      "pdf_sha256": "2408a09aeb4f217a63d737658d91835c4f5992d18ae4dc1c9688750e235979e4",
+      "variant": "display-record-absent"
+    },
+    {
+      "case_id": "mm-dsp-11",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文mm-dsp-11：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        5
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-dsp-11：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        3
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "display",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "mm-dsp-11.pdf",
+      "pdf_sha256": "7bfaac267104391b89d1fe5e762ae2c5fb7afa59b68bf16aa9e3c561393b587a",
+      "variant": "page-value-missing"
+    },
+    {
+      "case_id": "mm-dsp-12",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_METADATA_MISSING",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文mm-dsp-12：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "PAGE_METADATA_MISSING",
+      "first_fault_stage": "display",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "mm-dsp-12.pdf",
+      "pdf_sha256": "e0b8897275ad5197f8ad37409a254f47df29bc6febbbc338ae49ee91d674e8d2",
+      "variant": "viewer-page-missing"
+    },
+    {
+      "case_id": "du-chk-01",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-chk-01：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 2,
+      "fault_quote_text": "重复句du-chk-01：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        2,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "chunking",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-chk-01.pdf",
+      "pdf_sha256": "5449bd32a5c224c1997470ed41f20998b06733d090eab92ed7fc07501d2ae79f",
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-chk-02",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-chk-02：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        3
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 4,
+      "fault_quote_text": "重复句du-chk-02：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        1,
+        3,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "chunking",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "du-chk-02.pdf",
+      "pdf_sha256": "7481fedda5d7cae12fd06d8fe43de7703221a925cc30bad2dce752add46a7607",
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-chk-03",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-chk-03：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        0
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 5,
+      "fault_quote_text": "重复句du-chk-03：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        0,
+        5
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "chunking",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-chk-03.pdf",
+      "pdf_sha256": "3f752602d9f9164ae769f7fbb251e67e59ac6469290efe986d3e5df68c3bc979",
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-chk-04",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-chk-04：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        7
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 0,
+      "fault_quote_text": "重复句du-chk-04：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        0,
+        5,
+        7
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "chunking",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "du-chk-04.pdf",
+      "pdf_sha256": "88d07d2aa249f3f7ef1dc832c134c7b97dabf234222c2863143a94b5c87bef58",
+      "variant": "reduce-to-first-again"
+    },
+    {
+      "case_id": "du-idx-05",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-idx-05：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 2,
+      "fault_quote_text": "重复句du-idx-05：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        2,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "indexing",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-idx-05.pdf",
+      "pdf_sha256": "40ae4fe8e9c1e02b3018f1b839bb29b6426798f6449b64b3df3fdfe59a5c655e",
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-idx-06",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-idx-06：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        3
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 4,
+      "fault_quote_text": "重复句du-idx-06：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        1,
+        3,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "indexing",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "du-idx-06.pdf",
+      "pdf_sha256": "d53443ff8dbb27610a33ea550d31b5639636d30da31b3a894fb848e28775ef65",
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-idx-07",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-idx-07：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 4,
+      "fault_quote_text": "重复句du-idx-07：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        2,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "indexing",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-idx-07.pdf",
+      "pdf_sha256": "f0000fe5d7f7f1b2e38e806c82812910e61acb06f44b9f814aad70132cbefb28",
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-idx-08",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-idx-08：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        7
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 7,
+      "fault_quote_text": "重复句du-idx-08：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        0,
+        5,
+        7
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "indexing",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "du-idx-08.pdf",
+      "pdf_sha256": "a28dcd898032f3a518c980751ab0dfd6ed0f47849569769f23e9c0a0a68ee56f",
+      "variant": "reduce-to-last-again"
+    },
+    {
+      "case_id": "du-dsp-09",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-dsp-09：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 2,
+      "fault_quote_text": "重复句du-dsp-09：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        2,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "display",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-dsp-09.pdf",
+      "pdf_sha256": "8127b5a834e78a453fea103d10ded96af74e9b59b072e72b526868ad3c825700",
+      "variant": "reduce-to-first"
+    },
+    {
+      "case_id": "du-dsp-10",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-dsp-10：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        3
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 4,
+      "fault_quote_text": "重复句du-dsp-10：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        1,
+        3,
+        4
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "display",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "du-dsp-10.pdf",
+      "pdf_sha256": "91c835c7a30ca235163f66759624fef13fc60e7e13352ee0294e2a08704c9a4d",
+      "variant": "reduce-to-last"
+    },
+    {
+      "case_id": "du-dsp-11",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-dsp-11：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        6
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 6,
+      "fault_quote_text": "重复句du-dsp-11：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        4,
+        6
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "display",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "du-dsp-11.pdf",
+      "pdf_sha256": "20653731381b6eea10267dd69a0a105666536ab12a05f33d30fff73471ab4ea1",
+      "variant": "reduce-to-middle"
+    },
+    {
+      "case_id": "du-dsp-12",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文du-dsp-12：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        7
+      ],
+      "expected_verdict": "FAIL_AMBIGUOUS",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": 0,
+      "fault_quote_text": "重复句du-dsp-12：本句在多页出现，须保留全部候选页。",
+      "fault_true_source_pages0": [
+        0,
+        5,
+        7
+      ],
+      "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+      "first_fault_stage": "display",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "du-dsp-12.pdf",
+      "pdf_sha256": "725ec8fd55e74735bcda6da631ef1639488ce1976aa5c24f7bb0164d88114ab4",
+      "variant": "reduce-to-first-again"
+    },
+    {
+      "case_id": "un-ext-01",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-01：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-01：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-01.pdf",
+      "pdf_sha256": "ae451bd6f4a4a616c57af583c91f7b6f04a92407dbcb375c6aef91bda2b0be07",
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-02",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-02：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "un-ext-02.pdf",
+      "pdf_sha256": "df9894b04a5ce9aacc38bee6bb62c32c1e9f0d4a9bb5b2a17d235bcb5cac1608",
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-03",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-03：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        3
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-03：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-03.pdf",
+      "pdf_sha256": "b87fddf4858caea467758dac1748b4b41a41ef655fcbca11fdbec75253d95f36",
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-04",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-04：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "un-ext-04.pdf",
+      "pdf_sha256": "436e3232431b9638e140592161f89f5d3be10709b151f9e009b8400fd952b324",
+      "variant": "image-only-page"
+    },
+    {
+      "case_id": "un-ext-05",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-05：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-05：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-05.pdf",
+      "pdf_sha256": "164d27b1cdc2d33ff81c563371427164326e9dc1ed678f36ef598726cc42c85f",
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-06",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-06：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "un-ext-06.pdf",
+      "pdf_sha256": "81e504b125431cf61d3afff6bd384e2bee986cd327c67ddfd0cb86741d5795e4",
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-07",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-07：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        5
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-07：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        3
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-07.pdf",
+      "pdf_sha256": "c147598c9bb5af2c00453a711706a486c6316982ba8171dde3aa02e26a04ab1e",
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-08",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "关键引文un-ext-08：页码漂移误导定位。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": "extraction",
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "un-ext-08.pdf",
+      "pdf_sha256": "02e48f53067a630049ebcc8e0a37bbacf41544538d881920e5d334e4a76886cb",
+      "variant": "blank-page"
+    },
+    {
+      "case_id": "un-ext-09",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-09：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        4
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "近似句un-ext-09：引用页码漂移会误导读者定位正文。",
+      "fault_true_source_pages0": [
+        2
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": null,
+      "label_scheme": "decimal",
+      "page_count": 5,
+      "page_labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-09.pdf",
+      "pdf_sha256": "be632f97afa2b688d3fe85c9c747666a05a8a62eaed1239c1774315189193955",
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-10",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        4,
+        5
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "近似句un-ext-10：引用页码漂移会误导读者定位正文。",
+      "fault_true_source_pages0": [
+        1
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": null,
+      "label_scheme": "roman",
+      "page_count": 6,
+      "page_labels": [
+        "i",
+        "ii",
+        "iii",
+        "iv",
+        "v",
+        "vi"
+      ],
+      "pdf_file_name": "un-ext-10.pdf",
+      "pdf_sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76",
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-11",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "对照引文un-ext-11：本页引用页码正确无误。",
+      "control_true_source_pages0": [
+        0
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "近似句un-ext-11：引用页码漂移会误导读者定位正文。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": null,
+      "label_scheme": "roman-decimal",
+      "page_count": 7,
+      "page_labels": [
+        "i",
+        "ii",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "pdf_file_name": "un-ext-11.pdf",
+      "pdf_sha256": "f65caccf698abf159dc9177302f6565083f7e696a2ca37cc6bddbb0cef0bc3ea",
+      "variant": "near-miss-quote"
+    },
+    {
+      "case_id": "un-ext-12",
+      "control_citation_id": "cite-control",
+      "control_quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+      "control_true_source_pages0": [
+        0,
+        1
+      ],
+      "expected_verdict": "FAIL_UNLOCATABLE",
+      "fault_citation_id": "cite-fault",
+      "fault_claimed_page0": null,
+      "fault_quote_text": "近似句un-ext-12：引用页码漂移会误导读者定位正文。",
+      "fault_true_source_pages0": [
+        5
+      ],
+      "fault_type": "UNLOCATABLE",
+      "first_fault_stage": null,
+      "label_scheme": "alpha-prefix",
+      "page_count": 8,
+      "page_labels": [
+        "A-1",
+        "A-2",
+        "A-3",
+        "A-4",
+        "A-5",
+        "A-6",
+        "A-7",
+        "A-8"
+      ],
+      "pdf_file_name": "un-ext-12.pdf",
+      "pdf_sha256": "6bb8eb975bfb134b29ca2e38c441902cf08c4e7a49e7c5f2889ffe15fdce29bf",
+      "variant": "near-miss-quote"
+    }
+  ],
+  "counts_by_fault_type": {
+    "DUPLICATE_TEXT_AMBIGUITY": 12,
+    "PAGE_METADATA_MISSING": 12,
+    "PAGE_OFFSET": 12,
+    "UNLOCATABLE": 12
+  },
+  "coverage": {
+    "control_citations_total": 48,
+    "label_schemes_used": [
+      "alpha-prefix",
+      "decimal",
+      "label-7",
+      "roman",
+      "roman-decimal"
+    ],
+    "pdfs_with_blank_page": 25,
+    "pdfs_with_chinese_text": 48,
+    "pdfs_with_cross_page_split": 18,
+    "pdfs_with_duplicate_sentence": 24,
+    "pdfs_with_image_page": 16
+  },
+  "generator": "tools/generate_fixtures.py t002-1.0.0",
+  "manifest_format_version": "pagetrace.fixture-manifest/v1",
+  "schema": "pagetrace.bundle/v1"
+}

@@ -1,0 +1,132 @@
+{
+  "case_id": "du-dsp-10",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文du-dsp-10：本页引用页码正确无误。",
+    "true_source_pages0": [
+      3
+    ]
+  },
+  "duplicate_occurrence_pages0": [
+    1,
+    3,
+    4
+  ],
+  "expected": {
+    "candidate_source_pages0": [
+      1,
+      3,
+      4
+    ],
+    "expected_source_pages0": [
+      1,
+      3,
+      4
+    ],
+    "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+    "first_fault_stage": "display",
+    "verdict": "FAIL_AMBIGUOUS"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      1,
+      3,
+      4
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 4,
+    "quote_text": "重复句du-dsp-10：本句在多页出现，须保留全部候选页。",
+    "true_source_pages0": [
+      1,
+      3,
+      4
+    ]
+  },
+  "fault_description": "The stage reduced the multi-page candidate set to the last occurrence.",
+  "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+  "first_fault_stage": "display",
+  "label_scheme": "roman",
+  "page_count": 6,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 du-dsp-10",
+        "故障类别 DUPLICATE_TEXT_AMBIGUITY · 首错阶段 display",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "A citation is only as good as the page it points to.",
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "第 1 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "i"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "重复句du-dsp-10：本句在多页出现，须保留全部候选页。",
+        "第 2 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "ii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "第 3 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "iii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "重复句du-dsp-10：本句在多页出现，须保留全部候选页。",
+        "对照引文du-dsp-10：本页引用页码正确无误。",
+        "第 4 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "iv"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "When a sentence spans two pages, both pages are the source.",
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "重复句du-dsp-10：本句在多页出现，须保留全部候选页。",
+        "第 5 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "v"
+    },
+    {
+      "image_visible_text": "图像页文字du-dsp-10：本页为扫描图像，无文本层。",
+      "kind": "image",
+      "lines": [],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "vi"
+    }
+  ],
+  "pdf_file_name": "du-dsp-10.pdf",
+  "pdf_sha256": "91c835c7a30ca235163f66759624fef13fc60e7e13352ee0294e2a08704c9a4d",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "reduce-to-last"
+}

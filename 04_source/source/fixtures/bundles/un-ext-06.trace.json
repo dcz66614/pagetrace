@@ -1,0 +1,117 @@
+{
+  "case_id": "un-ext-06",
+  "citations": [
+    {
+      "chunk_id": "c-fault",
+      "citation_id": "cite-fault",
+      "index_record_id": "v-fault",
+      "quote_text": "关键引文un-ext-06：页码漂移误导定位。"
+    },
+    {
+      "chunk_id": "c-control",
+      "citation_id": "cite-control",
+      "index_record_id": "v-control",
+      "quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。"
+    }
+  ],
+  "document": {
+    "file_name": "un-ext-06.pdf",
+    "page_count": 6,
+    "sha256": "81e504b125431cf61d3afff6bd384e2bee986cd327c67ddfd0cb86741d5795e4"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-fault",
+        "source_page_indices0": [
+          1
+        ],
+        "text_sha256": null
+      },
+      {
+        "chunk_id": "c-control",
+        "source_page_indices0": [
+          4,
+          5
+        ],
+        "text_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 2,
+        "viewer_page1": 2
+      },
+      {
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "viewer_page1": 5
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 0,
+        "pdf_page_label": "i",
+        "text_sha256": "05c366c0a9f7795b81213708f93d9b39d19b3a06223aaf7d4bc47438c7f36e3f",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 1,
+        "pdf_page_label": "ii",
+        "text_sha256": null,
+        "text_state": "EMPTY"
+      },
+      {
+        "pdf_page_index0": 2,
+        "pdf_page_label": "iii",
+        "text_sha256": "a59da848b244d0042c468870500a1539e05a244573965b3219835345ae255b69",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 3,
+        "pdf_page_label": "iv",
+        "text_sha256": "e6daf6444f75a5c33739dcb4a67608e0035312e0894b69798add4090c476e2d3",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 4,
+        "pdf_page_label": "v",
+        "text_sha256": "d416b748c7cbd3ab6b863c0041c5acc9e562c6f496824eb55d21b565a58f94b9",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 5,
+        "pdf_page_label": "vi",
+        "text_sha256": "886cb71fb79c693c2a84c91036191ce54cc9d5a9768ca4d891eef0f077a4397c",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "ii",
+        "record_id": "v-fault",
+        "source_page_indices0": [
+          1
+        ]
+      },
+      {
+        "pdf_page_label": "v",
+        "record_id": "v-control",
+        "source_page_indices0": [
+          4,
+          5
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

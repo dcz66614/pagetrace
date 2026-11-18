@@ -1,0 +1,106 @@
+{
+  "case_id": "un-ext-05",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文un-ext-05：本页引用页码正确无误。",
+    "true_source_pages0": [
+      4
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [],
+    "expected_source_pages0": [
+      2
+    ],
+    "fault_type": "UNLOCATABLE",
+    "first_fault_stage": "extraction",
+    "verdict": "FAIL_UNLOCATABLE"
+  },
+  "extra_duplicate_pages0": [
+    0,
+    3
+  ],
+  "fault_citation": {
+    "candidate_source_pages0": [],
+    "citation_id": "cite-fault",
+    "claimed_page0": null,
+    "quote_text": "关键引文un-ext-05：页码漂移误导定位。",
+    "true_source_pages0": [
+      2
+    ]
+  },
+  "fault_description": "The quote appears nowhere; the claimed page is blank (EMPTY).",
+  "fault_type": "UNLOCATABLE",
+  "first_fault_stage": "extraction",
+  "label_scheme": "decimal",
+  "page_count": 5,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 un-ext-05",
+        "故障类别 UNLOCATABLE · 首错阶段 extraction",
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "重复句un-ext-05：本句在多页出现，须保留全部候选页。",
+        "第 1 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "A citation is only as good as the page it points to.",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "第 2 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "重复句un-ext-05：本句在多页出现，须保留全部候选页。",
+        "第 4 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "对照引文un-ext-05：本页引用页码正确无误。",
+        "第 5 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "5"
+    }
+  ],
+  "pdf_file_name": "un-ext-05.pdf",
+  "pdf_sha256": "164d27b1cdc2d33ff81c563371427164326e9dc1ed678f36ef598726cc42c85f",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "blank-page"
+}

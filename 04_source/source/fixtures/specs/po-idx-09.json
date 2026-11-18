@@ -1,0 +1,107 @@
+{
+  "case_id": "po-idx-09",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文po-idx-09：本页引用页码正确无误。",
+    "true_source_pages0": [
+      4
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [
+      2
+    ],
+    "expected_source_pages0": [
+      2
+    ],
+    "fault_type": "PAGE_OFFSET",
+    "first_fault_stage": "indexing",
+    "verdict": "FAIL_PAGE_OFFSET"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      2
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 3,
+    "quote_text": "关键引文po-idx-09：页码漂移误导定位。",
+    "true_source_pages0": [
+      2
+    ]
+  },
+  "fault_description": "Indexing read the numeric suffix of label A-(n+1) as the 0-based index (+1).",
+  "fault_type": "PAGE_OFFSET",
+  "first_fault_stage": "indexing",
+  "label_scheme": "alpha-prefix",
+  "page_count": 5,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [
+        "PageTrace 合成案例 po-idx-09",
+        "故障类别 PAGE_OFFSET · 首错阶段 indexing"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "A-1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "A citation is only as good as the page it points to.",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "第 2 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "A-2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "关键引文po-idx-09：页码漂移误导定位。",
+        "第 3 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "A-3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "第 4 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "A-4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "对照引文po-idx-09：本页引用页码正确无误。",
+        "第 5 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "A-5"
+    }
+  ],
+  "pdf_file_name": "po-idx-09.pdf",
+  "pdf_sha256": "71bb0a048998cc3322aa8873657229625f22fe441e8c0eb87b490a0a8260c708",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "label-A3-read-as-index3"
+}

@@ -1,0 +1,125 @@
+{
+  "case_id": "po-idx-07",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文po-idx-07：本页引用页码正确无误。",
+    "true_source_pages0": [
+      0
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [
+      5
+    ],
+    "expected_source_pages0": [
+      5
+    ],
+    "fault_type": "PAGE_OFFSET",
+    "first_fault_stage": "indexing",
+    "verdict": "FAIL_PAGE_OFFSET"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      5
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 6,
+    "quote_text": "关键引文po-idx-07：页码漂移误导定位。",
+    "true_source_pages0": [
+      5
+    ]
+  },
+  "fault_description": "Indexing shifted the source pages by +1.",
+  "fault_type": "PAGE_OFFSET",
+  "first_fault_stage": "indexing",
+  "label_scheme": "roman-decimal",
+  "page_count": 7,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 po-idx-07",
+        "故障类别 PAGE_OFFSET · 首错阶段 indexing",
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "Losing the source set in the index breaks every later check.",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "对照引文po-idx-07：本页引用页码正确无误。",
+        "第 1 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "i"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "ii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "第 3 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "A citation is only as good as the page it points to.",
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "第 4 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "第 5 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "关键引文po-idx-07：页码漂移误导定位。",
+        "第 6 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "4"
+    },
+    {
+      "image_visible_text": "图像页文字po-idx-07：本页为扫描图像，无文本层。",
+      "kind": "image",
+      "lines": [],
+      "pdf_page_index0": 6,
+      "pdf_page_label": "5"
+    }
+  ],
+  "pdf_file_name": "po-idx-07.pdf",
+  "pdf_sha256": "f4c6050bec5e6b7c1e125f7898ffc6420b6368aae440ced51b7ed172602ac078",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "plus-one-shift"
+}

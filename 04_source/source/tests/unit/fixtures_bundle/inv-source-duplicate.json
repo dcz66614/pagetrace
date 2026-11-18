@@ -1,0 +1,59 @@
+{
+  "case_id": "sample-offset-display-001",
+  "citations": [
+    {
+      "chunk_id": "c-17",
+      "citation_id": "cite-17",
+      "index_record_id": "v-17",
+      "quote_text": "引用中的原文片段"
+    }
+  ],
+  "document": {
+    "file_name": "sample.pdf",
+    "page_count": 8,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-17",
+        "source_page_indices0": [
+          6,
+          6
+        ],
+        "text_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-17",
+        "citation_page_basis": "PDF_INDEX_0",
+        "citation_page_value": 6,
+        "viewer_page1": 6
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 6,
+        "text_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "7",
+        "record_id": "v-17",
+        "source_page_indices0": [
+          6
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

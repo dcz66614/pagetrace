@@ -1,0 +1,58 @@
+# PageTrace (P026) — requirements.lock
+# Frozen by T001, 2026-11-16. DO NOT hand-edit versions: upgrade only via a
+# re-run of the full S0 gate (PROJECT_BOOK.md §11).
+#
+# Environment verified on (see 00_control/ENVIRONMENT.md):
+#   Python 3.12.3, Linux x86_64 (Linux-7.0.0-44-generic), pip 24.0
+#   Install verified in a fresh venv on this VM:
+#     python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+#   All direct dependencies imported OK and reported the pinned versions.
+#   "当时稳定版本" = latest stable on PyPI as observed 2026-11-16 ~23:50 GMT.
+#   No future version is claimed verified.
+#
+# Direct dependencies (PROJECT_BOOK §11, IMPLEMENTATION_PLAN §10.2):
+#   pypdf==7.1.0          BSD-3-Clause (installed METADATA License-Expression)
+#   pdfminer.six==20260107  MIT (installed METADATA License-Expression)
+#   jsonschema==4.26.0    MIT (installed METADATA License-Expression;
+#                         PROJECT_BOOK §11 data-contract validator, dev use)
+#   pytest==9.2.0         MIT (installed METADATA License-Expression)
+# Fixture-generation extra only (T013 P2-09; NOT runtime deps — src/
+# never imports them; tools/generate_fixtures.py + render_previews.py
+# do). Install with `pip install -e ".[fixtures]"` to (re)generate
+# fixtures. Versions unchanged from the T001 freeze.
+#   reportlab==5.1.0      BSD (installed METADATA License field)
+#   Pillow==13.0.0        MIT-CMU — VERIFIED by T013 (see NOTE below);
+#                         plan §10.2 states HPND/PIL License — that is
+#                         the OLD name for the same license text (Pillow
+#                         9.x/10.x/11.x LICENSE wording); 13.0.0's own
+#                         LICENSE file and official docs say MIT-CMU.
+#                         Versions NOT changed; do not rely on the PyPI
+#                         classifier alone.
+# T013 NOTE (Pillow license verification, 2026-11-17): installed
+# Pillow 13.0.0's licenses/LICENSE opens "Like PIL, Pillow is licensed
+# under the open source MIT-CMU License:" and its License-Expression is
+# MIT-CMU; Pillow 13.0.0 official docs (About + release notes) say the
+# same. The lock's MIT-CMU entry is CORRECT for 13.0.0. Recorded in
+# README.md / NOTICE; requirements.lock versions untouched.
+# Transitive dependencies below are the exact versions pip resolved on
+# 2026-11-16 in the venv above (pip freeze). pagetrace itself (0.1.0,
+# editable install) is intentionally not listed.
+attrs==26.1.0
+cffi==2.1.1
+charset-normalizer==3.5.2
+cryptography==50.0.2
+iniconfig==2.3.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+packaging==26.3
+pdfminer.six==20260107
+Pillow==13.0.0
+pluggy==1.7.0
+pycparser==3.12
+Pygments==2.21.0
+pypdf==7.1.0
+pytest==9.2.0
+referencing==0.37.0
+reportlab==5.1.0
+rpds-py==2026.9.1
+typing_extensions==4.16.0

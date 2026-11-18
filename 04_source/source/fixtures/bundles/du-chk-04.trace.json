@@ -1,0 +1,127 @@
+{
+  "case_id": "du-chk-04",
+  "citations": [
+    {
+      "chunk_id": "c-fault",
+      "citation_id": "cite-fault",
+      "index_record_id": "v-fault",
+      "quote_text": "重复句du-chk-04：本句在多页出现，须保留全部候选页。"
+    },
+    {
+      "chunk_id": "c-control",
+      "citation_id": "cite-control",
+      "index_record_id": "v-control",
+      "quote_text": "对照引文du-chk-04：本页引用页码正确无误。"
+    }
+  ],
+  "document": {
+    "file_name": "du-chk-04.pdf",
+    "page_count": 8,
+    "sha256": "88d07d2aa249f3f7ef1dc832c134c7b97dabf234222c2863143a94b5c87bef58"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-fault",
+        "source_page_indices0": [
+          0
+        ],
+        "text_sha256": "3dbf449be4e5f2bf09171c28077caa4db7c9d3955a8fbcd5316dee5b9dbebd4f"
+      },
+      {
+        "chunk_id": "c-control",
+        "source_page_indices0": [
+          7
+        ],
+        "text_sha256": "83547028338e051da4f969db7abd89113d966ce9aa574e4e64f39bd8a8c2252e"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "viewer_page1": 1
+      },
+      {
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 8,
+        "viewer_page1": 8
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 0,
+        "pdf_page_label": "A-1",
+        "text_sha256": "63b46c32cae2f16e4f96feba9f179e65b0fd307f417d460bacac66702cb10d11",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 1,
+        "pdf_page_label": "A-2",
+        "text_sha256": "2cdd0e8b0e1d2bf6a86a34ebc325902f5ef06b4d5f4e16d30294e59249a9a529",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 2,
+        "pdf_page_label": "A-3",
+        "text_sha256": "7f3c8c4c96100935375515028e349efdc819712f9fcc17bf1e7c3bf63b3a7169",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 3,
+        "pdf_page_label": "A-4",
+        "text_sha256": "2b152d53c1abd862eca050987f0902038c7ee48c1c2c974aec2bd171bcc0afe3",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 4,
+        "pdf_page_label": "A-5",
+        "text_sha256": "72fd8def4127735233e5a60b383075378d02b8e9e7929fbfdbfb3a13b7c42a7e",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 5,
+        "pdf_page_label": "A-6",
+        "text_sha256": "136f67918cb0c058659e3708b2a54e578db0af54ce2a1fd393524ab88a834778",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 6,
+        "pdf_page_label": "A-7",
+        "text_sha256": null,
+        "text_state": "IMAGE_ONLY"
+      },
+      {
+        "pdf_page_index0": 7,
+        "pdf_page_label": "A-8",
+        "text_sha256": "9c7cfb7ae6e032da36a14bd738209a06d5f7ad6bf8931cb201b7797a23e117e8",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "A-1",
+        "record_id": "v-fault",
+        "source_page_indices0": [
+          0
+        ]
+      },
+      {
+        "pdf_page_label": "A-8",
+        "record_id": "v-control",
+        "source_page_indices0": [
+          7
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

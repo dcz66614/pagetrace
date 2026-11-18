@@ -1,0 +1,147 @@
+{
+  "case_id": "un-ext-08",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Cross-page citation (R-10): the quote spans two pages.",
+    "quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+    "true_source_pages0": [
+      0,
+      1
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [],
+    "expected_source_pages0": [
+      5
+    ],
+    "fault_type": "UNLOCATABLE",
+    "first_fault_stage": "extraction",
+    "verdict": "FAIL_UNLOCATABLE"
+  },
+  "extra_duplicate_pages0": [
+    2,
+    6
+  ],
+  "fault_citation": {
+    "candidate_source_pages0": [],
+    "citation_id": "cite-fault",
+    "claimed_page0": null,
+    "quote_text": "关键引文un-ext-08：页码漂移误导定位。",
+    "true_source_pages0": [
+      5
+    ]
+  },
+  "fault_description": "The quote appears nowhere; the claimed page is blank (EMPTY).",
+  "fault_type": "UNLOCATABLE",
+  "first_fault_stage": "extraction",
+  "label_scheme": "alpha-prefix",
+  "page_count": 8,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 un-ext-08",
+        "故障类别 UNLOCATABLE · 首错阶段 extraction",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "跨页长句前半部分：引用内容在翻页处断开，",
+        "第 1 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "A-1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "后半部分接续于此，合起来才是一句完整引用。",
+        "第 2 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "A-2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "When a sentence spans two pages, both pages are the source.",
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "重复句un-ext-08：本句在多页出现，须保留全部候选页。",
+        "第 3 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "A-3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "Losing the source set in the index breaks every later check.",
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "第 4 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "A-4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "An image-only page carries no text layer to search.",
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "第 5 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "A-5"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "A-6"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "A citation is only as good as the page it points to.",
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "重复句un-ext-08：本句在多页出现，须保留全部候选页。",
+        "第 7 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 6,
+      "pdf_page_label": "A-7"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "第 8 页 / 共 8 页"
+      ],
+      "pdf_page_index0": 7,
+      "pdf_page_label": "A-8"
+    }
+  ],
+  "pdf_file_name": "un-ext-08.pdf",
+  "pdf_sha256": "02e48f53067a630049ebcc8e0a37bbacf41544538d881920e5d334e4a76886cb",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [
+    0,
+    1
+  ],
+  "variant": "blank-page"
+}

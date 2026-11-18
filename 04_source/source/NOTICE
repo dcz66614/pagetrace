@@ -1,0 +1,68 @@
+# PageTrace (P026) — NOTICE: third-party licenses
+
+PageTrace itself is MIT-licensed (see `LICENSE`).
+
+This file lists every third-party distribution pinned in
+`requirements.lock`, with the license identifier taken from the
+installed distribution's metadata (verified offline by T013 with
+`07_evidence/runtime_logs/license_scan.py`; full report in
+`07_evidence/runtime_logs/license-report.txt` — 19/19 entries at the
+pinned version, 0 problems). "License-Expression" is the SPDX
+expression from the installed METADATA; "License" is the legacy
+METADATA field where no expression is published. No dependency is
+AGPL-licensed and none requires a commercial licence.
+
+## Runtime dependencies (installed by `pip install .`)
+
+| Distribution | Version | License |
+|---|---|---|
+| pypdf | 7.1.0 | BSD-3-Clause |
+| pdfminer.six | 20260107 | MIT |
+| jsonschema | 4.26.0 | MIT |
+
+## Fixture-generation extra only (`pip install -e ".[fixtures]"`)
+
+These are NOT runtime dependencies — production `src/` never imports
+them; only `tools/generate_fixtures.py` and `tools/render_previews.py`
+do (T013 P2-09).
+
+| Distribution | Version | License |
+|---|---|---|
+| reportlab | 5.1.0 | BSD (License field: "BSD license (see license.txt for details), Copyright (c) 2000-2025, ReportLab Inc.") |
+| Pillow | 13.0.0 | MIT-CMU (see note below) |
+
+### Pillow 13.0.0 license note (T012 legacy item, closed by T013)
+
+The frozen plan (§10.2) called Pillow's licence "HPND/PIL License".
+That is the OLD name for the same licence text (Pillow 9.x/10.x/11.x
+LICENSE wording). Pillow 13.0.0's own shipped LICENSE file, line 10,
+says: "Like PIL, Pillow is licensed under the open source MIT-CMU
+License:", its installed METADATA `License-Expression` is `MIT-CMU`,
+and the official 13.0.0 documentation says the same. The lock entry
+`Pillow==13.0.0 — MIT-CMU` is therefore CORRECT for 13.0.0; no version
+was changed. The frozen spec files were not touched for this — the
+correction lives here and in `requirements.lock`'s header comment.
+
+## Development dependency
+
+| Distribution | Version | License |
+|---|---|---|
+| pytest | 9.2.0 | MIT |
+
+## Transitive dependencies (exact versions pip resolved, 2026-11-16)
+
+| Distribution | Version | License |
+|---|---|---|
+| attrs | 26.1.0 | MIT |
+| cffi | 2.1.1 | MIT-0 |
+| charset-normalizer | 3.5.2 | MIT |
+| cryptography | 50.0.2 | Apache-2.0 OR BSD-3-Clause |
+| iniconfig | 2.3.1 | MIT |
+| jsonschema-specifications | 2025.9.1 | MIT |
+| packaging | 26.3 | Apache-2.0 OR BSD-2-Clause |
+| pluggy | 1.7.0 | MIT |
+| pycparser | 3.12 | BSD-3-Clause |
+| Pygments | 2.21.0 | BSD-2-Clause |
+| referencing | 0.37.0 | MIT |
+| rpds-py | 2026.9.1 | MIT |
+| typing_extensions | 4.16.0 | PSF-2.0 |

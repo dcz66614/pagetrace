@@ -1,0 +1,2 @@
+7526f511c66a6e0fcc0f2d38a3159c199660e8cb293dab8df79180d5e12fad6b  04_source/source-release.zip
+b6db053e8e5c11b1bfbd55e1f62e8570c0c84683b1a4191819768224b7fcc33f  04_source/SOURCE_MANIFEST.csv

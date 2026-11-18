@@ -1,0 +1,15 @@
+TASK_ID,TITLE,HOURS,PRIORITY,DEPENDENCIES,STATUS,RESULT_COMMIT,EVIDENCE
+T001,页码字段语义与契约冻结,4,P0,,PASS,a11836d (merge 809a624),
+T002,合成 PDF 生成器与 48 份 Fixture Spec,6,P0,T001,PASS,8308042 (merge 10fd49e),
+T003,pypdf 逐页抽取、Quote 定位与候选页,8,P0,T001;T002,PASS,5c195cb (merge a6111f1),
+T004,四类故障判定与首错阶段归因,6,P0,T003,PASS,48ed273 (merge a9c32d0),
+T005,四栏联动交互原型,6,P1,T004,PASS,039eb93 (merge 75e4c53),
+T006,Golden Fixtures 与独立 Oracle,6,P0,T002;T003;T004;T005,PASS,08af05d (merge b8b0587),
+T007,S0 门禁与 100 次规范化重放,5,P0,T005;T006,PASS,ed550d0 (merge 7455ddf),S0_REPORT.json + replay-hashes.txt：48/48 检出、48/48 阶段、控制 0 误报、parity 96/96、100 重放 1 哈希
+T008,四栏联动 HTML 报告,7,P1,T007 PASS,PASS,09f6fc3 (merge 1a5e0fb),14 tests；demo 5 条 + 全量 96 条报告，离线 0 请求，截图 3 张
+T009,CLI 分析、验证与导出,5,P1,T010,PASS,3df5f6c (merge a6bc9c8),22 tests；help/validate/analyze/s0/clean 退出码与 §12.2 一致
+T010,Bundle 归一化与 Schema 校验,6,P1,T001;T007 PASS,PASS,6780aa3 (merge d9934a2),291 tests；48 T002 + 53 fixture（9 合法/44 非法）
+T011,集成、端到端与隐私回归,7,P0,T008;T009;T010,PASS,5e33a95 (merge 2e7d0f8),639 tests；S0 final PASS，重放 hash 与基线一致
+T012,独立只读代码审查,6,P0,T011 PASS,PASS,5f2219c (merge 9bd5270),0 P0/P1，13 P2 交 T013；639 复现
+T013,缺陷修复、文档、许可证与打包,8,P0,T012,PASS,17e5438 (merge b99a77b),652 tests；S0-r13 PASS 重放 hash 不变 5195fc9a…；13 P2 全部修复或记录，0 P0/P1；wheel sha a674d565…；license 19/19 OK
+T014,最终冻结、发布包与 GPT 审查交接,8,P0,T013,PASS,62d6e8a (merge 28ceb72),ZIP 252 文件 1,125,629 B sha ec4ceae6…；S0-release PASS 重放 hash 不变 5195fc9a…；干净副本 PASS；652 tests

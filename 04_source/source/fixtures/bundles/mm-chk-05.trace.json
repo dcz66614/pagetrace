@@ -1,0 +1,102 @@
+{
+  "case_id": "mm-chk-05",
+  "citations": [
+    {
+      "chunk_id": "c-fault",
+      "citation_id": "cite-fault",
+      "index_record_id": "v-fault",
+      "quote_text": "关键引文mm-chk-05：页码漂移误导定位。"
+    },
+    {
+      "chunk_id": "c-control",
+      "citation_id": "cite-control",
+      "index_record_id": "v-control",
+      "quote_text": "对照引文mm-chk-05：本页引用页码正确无误。"
+    }
+  ],
+  "document": {
+    "file_name": "mm-chk-05.pdf",
+    "page_count": 5,
+    "sha256": "6534cb5df8657e9e7d54c9e5d6217d54b998f59084baf9ba7a0cf7afe73a6bd7"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-control",
+        "source_page_indices0": [
+          4
+        ],
+        "text_sha256": "dfe9292b73b29a1c1e07dcd6bf92538db64d4761d6e300e6411e15a9c5cfc306"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 3,
+        "viewer_page1": 3
+      },
+      {
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "viewer_page1": 5
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 0,
+        "pdf_page_label": "1",
+        "text_sha256": null,
+        "text_state": "EMPTY"
+      },
+      {
+        "pdf_page_index0": 1,
+        "pdf_page_label": "2",
+        "text_sha256": "90b2f42e1c20ee1978e4b224422953c5849704c4f030b3077e8061cb5f757af1",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 2,
+        "pdf_page_label": "3",
+        "text_sha256": "674d57e35b4e30d730e767e0dacab35c5e21d9050a3aedc9a0801d1b2538f82a",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 3,
+        "pdf_page_label": "4",
+        "text_sha256": "79a1864a1602706f2082fc839cec24020fe5cdcd375e8aa67fde0603d6feab46",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 4,
+        "pdf_page_label": "5",
+        "text_sha256": "a91b4e7ad0b3452e4893d3dd422e5ea597989eae6418b9fc6aa6bf2f6123122b",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "3",
+        "record_id": "v-fault",
+        "source_page_indices0": [
+          2
+        ]
+      },
+      {
+        "pdf_page_label": "5",
+        "record_id": "v-control",
+        "source_page_indices0": [
+          4
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

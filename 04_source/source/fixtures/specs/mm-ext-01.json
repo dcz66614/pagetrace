@@ -1,0 +1,102 @@
+{
+  "case_id": "mm-ext-01",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文mm-ext-01：本页引用页码正确无误。",
+    "true_source_pages0": [
+      4
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [
+      2
+    ],
+    "expected_source_pages0": [
+      2
+    ],
+    "fault_type": "PAGE_METADATA_MISSING",
+    "first_fault_stage": "extraction",
+    "verdict": "FAIL_METADATA_MISSING"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      2
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": null,
+    "quote_text": "关键引文mm-ext-01：页码漂移误导定位。",
+    "true_source_pages0": [
+      2
+    ]
+  },
+  "fault_description": "Extraction marked the true page ERROR with no text hash.",
+  "fault_type": "PAGE_METADATA_MISSING",
+  "first_fault_stage": "extraction",
+  "label_scheme": "decimal",
+  "page_count": 5,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [
+        "PageTrace 合成案例 mm-ext-01",
+        "故障类别 PAGE_METADATA_MISSING · 首错阶段 extraction"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "When a sentence spans two pages, both pages are the source.",
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "第 2 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "Losing the source set in the index breaks every later check.",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "关键引文mm-ext-01：页码漂移误导定位。",
+        "第 3 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "3"
+    },
+    {
+      "image_visible_text": "图像页文字mm-ext-01：本页为扫描图像，无文本层。",
+      "kind": "image",
+      "lines": [],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "对照引文mm-ext-01：本页引用页码正确无误。",
+        "第 5 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "5"
+    }
+  ],
+  "pdf_file_name": "mm-ext-01.pdf",
+  "pdf_sha256": "50470bd0249d80aef1d433456c7a30648d510134af54546a613d71b5aa37a95b",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "record-text-state-error"
+}

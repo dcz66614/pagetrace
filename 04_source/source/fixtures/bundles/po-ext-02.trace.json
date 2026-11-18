@@ -1,0 +1,117 @@
+{
+  "case_id": "po-ext-02",
+  "citations": [
+    {
+      "chunk_id": "c-fault",
+      "citation_id": "cite-fault",
+      "index_record_id": "v-fault",
+      "quote_text": "关键引文po-ext-02：页码漂移误导定位。"
+    },
+    {
+      "chunk_id": "c-control",
+      "citation_id": "cite-control",
+      "index_record_id": "v-control",
+      "quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。"
+    }
+  ],
+  "document": {
+    "file_name": "po-ext-02.pdf",
+    "page_count": 6,
+    "sha256": "cd21f24937ef8668acdc6f935767a98ba649b3cfc0c31c22ff52a58e78648a8f"
+  },
+  "page_semantics": {
+    "canonical_field": "pdf_page_index0",
+    "index_base": 0,
+    "viewer_base": 1
+  },
+  "schema": "pagetrace.bundle/v1",
+  "stages": {
+    "chunking": [
+      {
+        "chunk_id": "c-fault",
+        "source_page_indices0": [
+          0
+        ],
+        "text_sha256": "66c49e07d374ef8dbf48925f064c5d4a05eb2b43190b1a75d35cb9618af3784c"
+      },
+      {
+        "chunk_id": "c-control",
+        "source_page_indices0": [
+          4,
+          5
+        ],
+        "text_sha256": "e8c59c081fd863e1b63eb8861805e8bb979cb5c4e72c7174504d948b43b878be"
+      }
+    ],
+    "display": [
+      {
+        "citation_id": "cite-fault",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 1,
+        "viewer_page1": 1
+      },
+      {
+        "citation_id": "cite-control",
+        "citation_page_basis": "PDF_NUMBER_1",
+        "citation_page_value": 5,
+        "viewer_page1": 5
+      }
+    ],
+    "extraction": [
+      {
+        "pdf_page_index0": 0,
+        "pdf_page_label": "i",
+        "text_sha256": "a972030b04c00af4bbd06bfd83e5c324b53a9e0fc0a93440172984f93a30c85e",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 1,
+        "pdf_page_label": "ii",
+        "text_sha256": "8c2f07f920ba3c0844cd25c918cfba6ff6cb5ffb464ad6f910c82f26878d58ff",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 2,
+        "pdf_page_label": "iii",
+        "text_sha256": "b2aca098ef669933c150d4bc80fbcfeebc169dfe2c5cc28694327815ba11cec6",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 3,
+        "pdf_page_label": "iv",
+        "text_sha256": "d4783594cc57814496f2b871f7a7a905eb0db73f6118c8651468a2d0d93927e9",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 4,
+        "pdf_page_label": "v",
+        "text_sha256": "5984449058311335ca27058e4699df893933421f4315ea3b9888abdc3c1acd85",
+        "text_state": "TEXT"
+      },
+      {
+        "pdf_page_index0": 5,
+        "pdf_page_label": "vi",
+        "text_sha256": "8cee3db9a494bb1987a3320ed8b379e00fcd1a11a615735f3ddf91573df1e7a6",
+        "text_state": "TEXT"
+      }
+    ],
+    "indexing": [
+      {
+        "pdf_page_label": "i",
+        "record_id": "v-fault",
+        "source_page_indices0": [
+          0
+        ]
+      },
+      {
+        "pdf_page_label": "v",
+        "record_id": "v-control",
+        "source_page_indices0": [
+          4,
+          5
+        ]
+      }
+    ],
+    "missing_stages": []
+  }
+}

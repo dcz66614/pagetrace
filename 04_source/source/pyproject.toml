@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pagetrace"
+version = "0.1.0"
+description = "PageTrace (P026): PDF citation page-drift detector"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "pypdf==7.1.0",
+    "pdfminer.six==20260107",
+    "jsonschema==4.26.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.2.0",
+]
+# T013 P2-09: Pillow / reportlab are NOT runtime dependencies —
+# production src/ never imports them. They are only used by the
+# fixture generators (tools/generate_fixtures.py,
+# tools/render_previews.py): install with `pip install -e ".[fixtures]"`
+# when (re)generating fixtures. Pinned versions unchanged.
+fixtures = [
+    "reportlab==5.1.0",
+    "Pillow==13.0.0",
+]
+
+# T013 P2-08: single src layout. The top-level pagetrace/ stub (T001
+# contracts) is deleted; the installed package is src/pagetrace/
+# (with its report assets), so `pip install .` followed by
+# `python -m pagetrace.cli` works from any directory with no
+# PYTHONPATH. The sys.path insertions in cli.py / tools/run_s0.py /
+# the tests are kept as a source-checkout fallback.
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pagetrace = ["assets/*", "schemas/*.json"]

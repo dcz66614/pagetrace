@@ -1,0 +1,115 @@
+{
+  "case_id": "du-idx-05",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文du-idx-05：本页引用页码正确无误。",
+    "true_source_pages0": [
+      4
+    ]
+  },
+  "duplicate_occurrence_pages0": [
+    2,
+    4
+  ],
+  "expected": {
+    "candidate_source_pages0": [
+      2,
+      4
+    ],
+    "expected_source_pages0": [
+      2,
+      4
+    ],
+    "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+    "first_fault_stage": "indexing",
+    "verdict": "FAIL_AMBIGUOUS"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      2,
+      4
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 2,
+    "quote_text": "重复句du-idx-05：本句在多页出现，须保留全部候选页。",
+    "true_source_pages0": [
+      2,
+      4
+    ]
+  },
+  "fault_description": "The stage reduced the multi-page candidate set to the first occurrence.",
+  "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+  "first_fault_stage": "indexing",
+  "label_scheme": "decimal",
+  "page_count": 5,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [
+        "PageTrace 合成案例 du-idx-05",
+        "故障类别 DUPLICATE_TEXT_AMBIGUITY · 首错阶段 indexing"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "When a sentence spans two pages, both pages are the source.",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "第 2 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "Losing the source set in the index breaks every later check.",
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "重复句du-idx-05：本句在多页出现，须保留全部候选页。",
+        "第 3 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "An image-only page carries no text layer to search.",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "第 4 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "重复句du-idx-05：本句在多页出现，须保留全部候选页。",
+        "对照引文du-idx-05：本页引用页码正确无误。",
+        "第 5 页 / 共 5 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "5"
+    }
+  ],
+  "pdf_file_name": "du-idx-05.pdf",
+  "pdf_sha256": "40ae4fe8e9c1e02b3018f1b839bb29b6426798f6449b64b3df3fdfe59a5c655e",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "reduce-to-first"
+}

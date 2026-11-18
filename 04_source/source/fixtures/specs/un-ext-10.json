@@ -1,0 +1,117 @@
+{
+  "case_id": "un-ext-10",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Cross-page citation (R-10): the quote spans two pages.",
+    "quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+    "true_source_pages0": [
+      4,
+      5
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [],
+    "expected_source_pages0": null,
+    "fault_type": "UNLOCATABLE",
+    "first_fault_stage": null,
+    "verdict": "FAIL_UNLOCATABLE"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [],
+    "citation_id": "cite-fault",
+    "claimed_page0": null,
+    "quote_text": "近似句un-ext-10：引用页码漂移会误导读者定位正文。",
+    "true_source_pages0": [
+      1
+    ]
+  },
+  "fault_description": "The quote differs by one character from the sentence placed on page index 1 (the near-miss sentence is on that page by design); exact match fails. Page 1 is the intended near-miss page, NOT a verified source of the quote: no stage is blamed (first_fault_stage null, expected_source_pages0 null) because the extraction records match the honest extraction (FIX-R1 P1-R1-02). fault_citation.true_source_pages0 [1] records where the near-miss sentence was placed, not a confirmed source page.",
+  "fault_type": "UNLOCATABLE",
+  "first_fault_stage": null,
+  "label_scheme": "roman",
+  "page_count": 6,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 un-ext-10",
+        "故障类别 UNLOCATABLE · 首错阶段 未定（无阶段可归咎）",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "When a sentence spans two pages, both pages are the source.",
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "第 1 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "i"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "Losing the source set in the index breaks every later check.",
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "近似句un-ext-10：引用页码漂移会误导读者定位原文。",
+        "第 2 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "ii"
+    },
+    {
+      "image_visible_text": "图像页文字un-ext-10：本页为扫描图像，无文本层。",
+      "kind": "image",
+      "lines": [],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "iii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "第 4 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "iv"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "A citation is only as good as the page it points to.",
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "跨页长句前半部分：引用内容在翻页处断开，",
+        "第 5 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "v"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "后半部分接续于此，合起来才是一句完整引用。",
+        "第 6 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "vi"
+    }
+  ],
+  "pdf_file_name": "un-ext-10.pdf",
+  "pdf_sha256": "866399d47a2a8aa8cf27d7d996d1fb7e482d911117478e6e8c29af61c2be7c76",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [
+    4,
+    5
+  ],
+  "variant": "near-miss-quote"
+}

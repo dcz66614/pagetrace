@@ -1,0 +1,139 @@
+{
+  "case_id": "du-dsp-11",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Single-page control citation; trace is correct end-to-end.",
+    "quote_text": "对照引文du-dsp-11：本页引用页码正确无误。",
+    "true_source_pages0": [
+      6
+    ]
+  },
+  "duplicate_occurrence_pages0": [
+    4,
+    6
+  ],
+  "expected": {
+    "candidate_source_pages0": [
+      4,
+      6
+    ],
+    "expected_source_pages0": [
+      4,
+      6
+    ],
+    "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+    "first_fault_stage": "display",
+    "verdict": "FAIL_AMBIGUOUS"
+  },
+  "extra_duplicate_pages0": [],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      4,
+      6
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 6,
+    "quote_text": "重复句du-dsp-11：本句在多页出现，须保留全部候选页。",
+    "true_source_pages0": [
+      4,
+      6
+    ]
+  },
+  "fault_description": "The stage reduced the multi-page candidate set to a middle occurrence.",
+  "fault_type": "DUPLICATE_TEXT_AMBIGUITY",
+  "first_fault_stage": "display",
+  "label_scheme": "roman-decimal",
+  "page_count": 7,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "blank",
+      "lines": [
+        "PageTrace 合成案例 du-dsp-11",
+        "故障类别 DUPLICATE_TEXT_AMBIGUITY · 首错阶段 display"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "i"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "第 2 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "ii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "第 3 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "1"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "When a sentence spans two pages, both pages are the source.",
+        "重复出现的句子必须保留全部候选页，不得猜一页。",
+        "第 4 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "2"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "Losing the source set in the index breaks every later check.",
+        "索引重建时丢失来源页集合会使引用无据可查。",
+        "重复句du-dsp-11：本句在多页出现，须保留全部候选页。",
+        "第 5 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "3"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "An image-only page carries no text layer to search.",
+        "同一句话出现在多页时，消歧需要可靠的页级锚点。",
+        "第 6 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "4"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "Page numbers drift when extraction, chunking and display disagree.",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "重复句du-dsp-11：本句在多页出现，须保留全部候选页。",
+        "对照引文du-dsp-11：本页引用页码正确无误。",
+        "第 7 页 / 共 7 页"
+      ],
+      "pdf_page_index0": 6,
+      "pdf_page_label": "5"
+    }
+  ],
+  "pdf_file_name": "du-dsp-11.pdf",
+  "pdf_sha256": "20653731381b6eea10267dd69a0a105666536ab12a05f33d30fff73471ab4ea1",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [],
+  "variant": "reduce-to-middle"
+}

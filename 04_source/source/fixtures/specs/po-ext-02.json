@@ -1,0 +1,133 @@
+{
+  "case_id": "po-ext-02",
+  "control_citation": {
+    "citation_id": "cite-control",
+    "note": "Cross-page citation (R-10): the quote spans two pages.",
+    "quote_text": "跨页长句前半部分：引用内容在翻页处断开，后半部分接续于此，合起来才是一句完整引用。",
+    "true_source_pages0": [
+      4,
+      5
+    ]
+  },
+  "duplicate_occurrence_pages0": [],
+  "expected": {
+    "candidate_source_pages0": [
+      1
+    ],
+    "expected_source_pages0": [
+      1
+    ],
+    "fault_type": "PAGE_OFFSET",
+    "first_fault_stage": "extraction",
+    "verdict": "FAIL_PAGE_OFFSET"
+  },
+  "extra_duplicate_pages0": [
+    0,
+    2
+  ],
+  "fault_citation": {
+    "candidate_source_pages0": [
+      1
+    ],
+    "citation_id": "cite-fault",
+    "claimed_page0": 0,
+    "quote_text": "关键引文po-ext-02：页码漂移误导定位。",
+    "true_source_pages0": [
+      1
+    ]
+  },
+  "fault_description": "Extraction attached the previous page's text hash to this page's record (-1).",
+  "fault_type": "PAGE_OFFSET",
+  "first_fault_stage": "extraction",
+  "label_scheme": "roman",
+  "page_count": 6,
+  "pages": [
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "PageTrace 合成案例 po-ext-02",
+        "故障类别 PAGE_OFFSET · 首错阶段 extraction",
+        "读者按引用页码查找原文时常常翻到错误页面。",
+        "A citation is only as good as the page it points to.",
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "重复句po-ext-02：本句在多页出现，须保留全部候选页。",
+        "第 1 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 0,
+      "pdf_page_label": "i"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "The viewer expects one-based pages; the index stores zero-based.",
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "关键引文po-ext-02：页码漂移误导定位。",
+        "第 2 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 1,
+      "pdf_page_label": "ii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "物理页与印刷页号本是两套不同的计数体系。",
+        "Roman numerals are labels, not numbers to do arithmetic on.",
+        "页标签只是辅助标识，不能代替物理页身份。",
+        "重复句po-ext-02：本句在多页出现，须保留全部候选页。",
+        "第 3 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 2,
+      "pdf_page_label": "iii"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "扫描件页面没有文本层，引用无法用文本定位。",
+        "A blank page is evidence of nothing, and must be marked as such.",
+        "展示层把零基索引直接交给阅读器必然错位一页。",
+        "第 4 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 3,
+      "pdf_page_label": "iv"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "空白页应当诚实标记，不应被当作内容页处理。",
+        "When a sentence spans two pages, both pages are the source.",
+        "本页讨论引用页码漂移的成因与检测方法。",
+        "跨页长句前半部分：引用内容在翻页处断开，",
+        "第 5 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 4,
+      "pdf_page_label": "v"
+    },
+    {
+      "image_visible_text": null,
+      "kind": "text",
+      "lines": [
+        "跨页断句需要把前后两页都记为来源页集合。",
+        "Losing the source set in the index breaks every later check.",
+        "页码基准混用是引用系统最常见的隐性缺陷。",
+        "后半部分接续于此，合起来才是一句完整引用。",
+        "第 6 页 / 共 6 页"
+      ],
+      "pdf_page_index0": 5,
+      "pdf_page_label": "vi"
+    }
+  ],
+  "pdf_file_name": "po-ext-02.pdf",
+  "pdf_sha256": "cd21f24937ef8668acdc6f935767a98ba649b3cfc0c31c22ff52a58e78648a8f",
+  "spec_format_version": "pagetrace.fixture-spec/v1",
+  "split_pages0": [
+    4,
+    5
+  ],
+  "variant": "minus-one-shift"
+}
